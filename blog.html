@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabrizio Cafolla</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Bitter", serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4caf50
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #318834;
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blog</h1>
+        <h2>| Fabrizio Cafolla</h2>
+        <div id="substack-feed-embed"></div>
+        <script>
+        window.SubstackFeedWidget = {
+            substackUrl: "fabriziocafolla.substack.com",
+            posts: 32,
+            layout: "center",
+            hidden: ["author"]
+        };
+        </script>
+        <script src="https://substackapi.com/embeds/feed.js" async></script>
+    </div>
+</body>
+</html>
