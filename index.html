@@ -137,8 +137,12 @@
                 if (!response.ok) throw new Error('Errore nel caricamento dei progetti');
                 
                 const repos = await response.json();
-                
-                filterHiddenRepository = ['FabrizioCafolla', 'fabriziocafolla.com']
+
+                // const sortedRepos = repos
+                //     .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                //     .slice(0, 6);
+
+                const filterHiddenRepository = ['FabrizioCafolla', 'fabriziocafolla.com']
 
                 const filteredRepos = repos.filter(repo => !repo.fork && !filterHiddenRepository.includes(repo.name));
 
@@ -176,8 +180,6 @@
                 console.error('Errore:', error);
             }
         }
-
-        // Carica i progetti all'avvio
         fetchGitHubProjects('projects-container', 'users', 'FabrizioCafolla',10);
         fetchGitHubProjects('italiaopensource-container', 'orgs', 'italia-opensource', 3);
     </script>
