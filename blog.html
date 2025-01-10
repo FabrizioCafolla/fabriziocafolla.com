@@ -8,14 +8,25 @@
     <meta property="og:title" content="Fabrizio Cafolla">
     <meta property="og:description" content="I combine professional experiences in the world of startups and enterprises with the curiosity to explore new technologies and share them through open-source projects">
     <meta property="og:image" content="profile.jpeg">
-    <meta property="og:url" content="https://fabriziocafolla.com">
+    <meta property="og:url" content="https://fabriziocafolla.com/blog">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Fabrizio Cafolla">
     <meta name="twitter:description" content="I combine professional experiences in the world of startups and enterprises with the curiosity to explore new technologies and share them through open-source projects">
     <meta name="twitter:image" content="profile.jpeg">
-    <link rel="canonical" href="https://fabriziocafolla.com">
+    <link rel="canonical" href="https://fabriziocafolla.com/blog">
 
     <link rel="stylesheet" href="styles.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YF481CDR34"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YF481CDR34');
+    </script>
+
+    <title>Blog | Fabrizio Cafolla</title>
+    <link rel="stylesheet" href="style.css"></link>
 
     <script type="application/ld+json">
         {
@@ -34,88 +45,20 @@
             }
           }
     </script>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YF481CDR34"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-YF481CDR34');
-    </script>
-
-    <title>Fabrizio Cafolla</title>
-    <link rel="stylesheet" href="style.css"></link>
 </head>
 <body>
     
     <div class="container">
-        <section class="header-section header">
-            <div class="column-container">
-              <!-- Prima colonna con foto -->
-              <div class="column">
-                <div class="image-container">
-                    <img src="profile.jpeg" alt="Profile" class="header-img">
-                </div>
-              </div>
-          
-              <!-- Seconda colonna -->
-              <div class="column">
-                <h1>Fabrizio Cafolla</h1>
-                <p>
-                    👨‍💻 <b>DevOps & Cloud Engineer</b> <br>
-                    🟢 <b>Founder</b> of <a href="https://italiaopensource.com" target="_blank">Italia Open-Source</a> <br>
-                    🟢 <b>Community Manager</b> of <a href="" target="_blank">Latina in Tech</a>. 
-                    <br>
-                    I combine professional experiences in the world of startups and enterprises with the curiosity to explore new technologies and share them through open-source projects and community-building initiatives.
-                </p>
+        <h1>Fabrizio Cafolla's Blog</h1>
 
-                <div class="hashtag-container">
-                    <span class="hashtag">open-source</span>
-                    <span class="hashtag">ci/cd</span>
-                    <span class="hashtag">cloud</span>
-                    <span class="hashtag">aws</span>
-                    <span class="hashtag">docker</span>
-                    <span class="hashtag">python</span>
-                </div>
-              </div>
-          
-              <!-- Terza colonna -->
-              <div class="column">
-                <a href="https://linktr.ee/fabriziocafolla">
-                    <button class="cta-button primary-button">
-                        ❤ Follow me
-                    </button>
-                </a>
-                <a href="https://blog.fabriziocafolla.com">
-                    <button class="cta-button primary-button">
-                        ✍ Blog
-                    </button>
-                </a>
-                <h2 style="margin-top: 1rem;">Newsletter</h2>
-                <iframe src="https://fabriziocafolla.substack.com/embed" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
-            </div>
-            </div>
-          </section>
-
-        <div class="sections">
-            <section class="section">
-                <h2>Personal Projects</h2>
-                <div id="projects-container">
-                    <div class="loading" id="loading">Caricamento progetti...</div>
-                </div>
-                <h2>Italia Open-Source</h2>
-                <div id="italiaopensource-container">
-                    <div class="loading" id="loading">Caricamento progetti...</div>
-                </div>
-            </section>
-
+        <div>
             <section class="section">
                 <h2>Recent Articles <a href="https://blog.fabriziocafolla.com">(see all)</a></h2>
                 <div id="substack-feed-embed"></div>
                 <script>
                 window.SubstackFeedWidget = {
                     substackUrl: "fabriziocafolla.substack.com",
-                    posts: 5,
+                    posts: 30,
                     layout: "center",
                     hidden: ["author"]
                 };
