@@ -45,7 +45,7 @@ print_error() {
 
 GITHUB_WALLE_REPO="https://github.com/FabrizioCafolla/walle-design-system"
 GITHUB_WALLE_VERSION_BRANCH="main"
-GITHUB_WALLE_VERSION_SHA="" # Is set during the download process 
+GITHUB_WALLE_VERSION_SHA="" # Is set during the download process
 TEMP_DIR="$(mktemp -d)"
 
 function download_project() {
@@ -90,7 +90,7 @@ function create_config_file() {
   \"walleVersion\": \"${source_version}\",
   \"updatedAt\": \"$(date +%Y-%m-%dT%H:%M:%S)\"
 }" >"${config_filepath}" || print_error "Failed to create configuration file: ${config_filepath}"
-    
+
   print_info "Configuration file updated ${config_filepath}"
 }
 
@@ -120,6 +120,8 @@ function sync_walle_files() {
   local temp_dir="$1"
   local project_name="$2"
 
+  sync_files "${temp_dir}/.devcontainer" "${project_name}/.devcontainer"
+  sync_files "${temp_dir}/.vscode" "${project_name}/.vscode"
   sync_files "${temp_dir}/lib/infrastructure/@walle" "${project_name}/lib/infrastructure/@walle"
   sync_files "${temp_dir}/lib/scripts/@walle" "${project_name}/lib/scripts/@walle"
   sync_files "${temp_dir}/lib/website/src/@walle" "${project_name}/lib/website/src/@walle"
@@ -203,7 +205,7 @@ function update() {
   if [ ! -d "${PROJECT_PATH}" ]; then
     print_error "Project path does not exist: ${PROJECT_PATH}"
   fi
-  
+
   print_info "Start update project in ${PROJECT_PATH} to version ${GITHUB_WALLE_VERSION_BRANCH}"
 
   download_project "${TEMP_DIR}" "${GITHUB_WALLE_VERSION_BRANCH}"
