@@ -71,7 +71,7 @@ const headerId = `header-${Math.random().toString(36).slice(2, 11)}`;
   <div class={`header-content ${imageSrc ? "with-image" : ""} ${imageRight ? "image-right" : ""}`}>
     <div class="text-content">
       <h1 class="header-title">{title}</h1>
-      {subtitle && <p class="header-subtitle">{subtitle}</p>}
+      {subtitle && <h2 class="header-subtitle">{subtitle}</h2>}
       <slot />
     </div>
 

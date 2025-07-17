@@ -1,36 +1,37 @@
 ---
-import { BaseLayout } from "@walle/layouts";
+import type { PostsEntry } from "@pages/blog/interfaces";
 import BasicCard from "@walle/components/features/Card/BasicCard.astro";
+import { BaseLayout } from "@walle/layouts";
+import { calculateReadingTime } from "@walle/utils";
 import { getCollection } from "astro:content";
 
 const {
   headerTitle = "Blog",
   buttonText = "Read more",
   buttonIcon = "fa:arrow-right",
+  posts,
+  filterTags,
 } = Astro.props;
 
-// Ottieni tutti i post dal blog
-const posts = await getCollection("posts");
+// Usa i posts passati come input, altrimenti recupera tutti i posts dalla collection
+let postsToUse = posts && posts.length > 0 ? posts : await getCollection("posts");
 
-// Ordina i post per data di pubblicazione (più recenti prima)
-const sortedPosts = posts.sort((a, b) => {
+if (filterTags && filterTags.length > 0) {
+  postsToUse = postsToUse.filter((post: PostsEntry) =>
+    post.data.tags?.some((tag) => filterTags.includes(tag))
+  );
+}
+
+const sortedPosts = postsToUse.sort((a: PostsEntry, b: PostsEntry) => {
   const dateA = a.data.publishDate ? new Date(a.data.publishDate) : new Date(0);
   const dateB = b.data.publishDate ? new Date(b.data.publishDate) : new Date(0);
   return dateB.getTime() - dateA.getTime();
 });
-
-// Funzione per calcolare il tempo di lettura approssimativo
-function getReadingTime(description: string): string {
-  const wordsPerMinute = 200;
-  const words = description.trim().split(/\s+/).length * 10; // Stima
-  const minutes = Math.max(1, Math.ceil(words / wordsPerMinute));
-  return `${minutes} min di lettura`;
-}
 ---
 
 <BaseLayout headerTitle={headerTitle}>
-  <slot />
   <div class="modern-blog-main">
+    <slot />
     <div class="modern-blog-grid">
       {sortedPosts.length === 0 && <div class="no-posts">Not post founded</div>}
       {
@@ -38,7 +39,7 @@ function getReadingTime(description: string): string {
           const badge = post.data.tags?.length
             ? { text: post.data.tags[0], color: "secondary" }
             : undefined;
-          const readingTime = post.data.readingTime || getReadingTime(post.data.description);
+          const readingTime = post.data.readingTime || calculateReadingTime(post.data.description);
           return (
             <BasicCard
               key={post.id}
@@ -66,7 +67,6 @@ function getReadingTime(description: string): string {
     max-width: 1400px;
     margin: 0 auto;
     padding: 3rem 2rem 5rem 2rem;
-    background: linear-gradient(120deg, var(--gray) 0%, var(--white) 100%);
     min-height: 100vh;
   }
 
@@ -81,7 +81,6 @@ function getReadingTime(description: string): string {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background: linear-gradient(90deg, var(--primary) 30%, var(--secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -103,7 +102,6 @@ function getReadingTime(description: string): string {
     transition:
       transform 0.18s cubic-bezier(0.23, 1.01, 0.32, 1),
       box-shadow 0.18s cubic-bezier(0.23, 1.01, 0.32, 1);
-    background: linear-gradient(120deg, var(--white) 80%, var(--gray) 100%);
     position: relative;
     overflow: hidden;
   }

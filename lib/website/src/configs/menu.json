@@ -8,14 +8,8 @@
       "name": "Blog",
       "url": "/blog",
       "children": [
-        {
-          "name": "Examples",
-          "url": "#",
-          "children": [
-            { "name": "Example 1", "url": "/blog/example" },
-            { "name": "Example 2", "url": "/blog/example-2" }
-          ]
-        }
+        { "name": "Tech", "url": "/blog/tech" },
+        { "name": "On the Road", "url": "/blog/on-the-road" }
       ]
     },
     {
