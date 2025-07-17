@@ -1,0 +1,12 @@
+---
+import { AbstractLayout } from "@walle/layouts";
+import { Navbar, Footer } from "@walle/components";
+---
+
+<AbstractLayout {...Astro.props}>
+  <Navbar />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</AbstractLayout>

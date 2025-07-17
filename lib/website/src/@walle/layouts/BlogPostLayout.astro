@@ -1,0 +1,666 @@
+---
+import { BaseLayout } from "@walle/layouts";
+import type { Posts } from "@pages/blog/interfaces";
+import { SectionHeaderStandard } from "@walle/components";
+
+interface Props extends Posts {
+  author?: string;
+  publishDate?: Date;
+  readingTime?: string;
+  tags?: string[];
+}
+
+const { title, description, author, publishDate, readingTime, tags } = Astro.props;
+
+const formattedDate = publishDate
+  ? new Intl.DateTimeFormat("it-IT", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(publishDate)
+  : null;
+---
+
+<BaseLayout headerTitle={title} headerDescription={description}>
+  <SectionHeaderStandard title={title} subtitle={description} variant="secondary">
+    <div class="meta-wrapper">
+      {
+        (author || publishDate || readingTime) && (
+          <div class="meta-info">
+            {author && <span class="meta-author">{author}</span>}
+            {publishDate && (
+              <time class="meta-date" datetime={publishDate.toISOString()}>
+                {formattedDate}
+              </time>
+            )}
+            {readingTime && <span class="meta-reading">{readingTime}</span>}
+          </div>
+        )
+      }
+      {
+        tags && tags.length > 0 && (
+          <div class="tags">
+            {tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </SectionHeaderStandard>
+
+  <div class="article-container">
+    <aside class="table-of-contents" id="toc">
+      <h3>Contents</h3>
+      <nav class="toc-nav" id="toc-nav">
+        <!-- Generated dynamically -->
+      </nav>
+    </aside>
+
+    <article class="article">
+      <div class="article-content" id="article-content">
+        <slot />
+      </div>
+
+      <!-- Reading progress -->
+      <div class="progress-bar" id="progress-bar"></div>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .article-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 3rem;
+    padding: 0 2rem;
+    align-items: start;
+  }
+
+  .table-of-contents {
+    position: sticky;
+    margin-top: 3.5rem;
+    top: 100px;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+  .table-of-contents h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--black);
+    border-bottom: 1px solid var(--gray);
+    padding-bottom: 0.5rem;
+  }
+
+  .toc-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .toc-nav a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--gray-dark);
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+  }
+
+  .toc-nav a:hover {
+    background: var(--gray);
+    color: var(--primary);
+    border-left-color: var(--primary);
+  }
+
+  .toc-nav a.active {
+    background: var(--primary);
+    color: var(--white);
+    border-left-color: var(--primary-dark);
+    font-weight: 600;
+  }
+
+  .article {
+    background: var(--white);
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .meta-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .meta-info {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-dark);
+    flex-wrap: wrap;
+  }
+
+  .meta-author,
+  .meta-date,
+  .meta-reading {
+    position: relative;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+
+  .meta-author::after,
+  .meta-date::after {
+    content: "•";
+    margin-left: 1rem;
+    opacity: 0.5;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: var(--gray);
+    color: var(--gray-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all var(--transition);
+    border: 1px solid transparent;
+  }
+
+  .tag:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  .article-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--black);
+    word-spacing: 0.1em;
+    max-width: 65ch;
+  }
+
+  /* Typography */
+  .article-content :global(h1),
+  .article-content :global(h2),
+  .article-content :global(h3),
+  .article-content :global(h4),
+  .article-content :global(h5),
+  .article-content :global(h6) {
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.2;
+    margin: 3rem 0 1rem 0;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 120px;
+  }
+
+  .article-content :global(h1) {
+    font-size: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  .article-content :global(h2) {
+    font-size: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .article-content :global(h3) {
+    font-size: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .article-content :global(h4) {
+    font-size: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .article-content :global(p) {
+    margin: 1.5rem 0;
+    text-align: left;
+    hyphens: auto;
+  }
+
+  .article-content :global(p:first-of-type) {
+    font-size: 1.25rem;
+    color: var(--primary-dark);
+    margin-top: 0;
+  }
+
+  .article-content :global(a) {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--primary);
+    transition: all var(--transition);
+    padding-bottom: 1px;
+  }
+
+  .article-content :global(a:hover) {
+    color: var(--primary-dark);
+    border-bottom-color: var(--primary-dark);
+  }
+
+  .article-content :global(blockquote) {
+    border-left: 3px solid var(--primary);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    background: var(--gray);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-style: italic;
+    color: var(--primary-dark);
+    position: relative;
+  }
+
+  .article-content :global(blockquote::before) {
+    content: '"';
+    font-size: 3rem;
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    opacity: 0.3;
+    color: var(--primary);
+  }
+
+  .article-content :global(code) {
+    background: var(--gray);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+  }
+
+  .article-content :global(pre) {
+    background: var(--black);
+    color: var(--gray);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .article-content :global(pre code) {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  .article-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 2.5rem auto;
+    display: block;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .article-content :global(li) {
+    margin: 0.75rem 0;
+    line-height: 1.6;
+  }
+
+  .article-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--gray);
+  }
+
+  .article-content :global(th),
+  .article-content :global(td) {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--primary-light);
+  }
+
+  .article-content :global(th) {
+    background: var(--primary);
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .article-content :global(hr) {
+    border: none;
+    height: 1px;
+    background: var(--primary);
+    margin: 3rem 0;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--primary);
+    z-index: 1000;
+    transition: width 0.1s ease;
+  }
+
+  /* Responsive design */
+  @media (max-width: 1024px) {
+    .article-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .table-of-contents {
+      position: relative;
+      top: 0;
+      max-height: none;
+      order: -1;
+    }
+
+    .article-content {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .article-container {
+      padding: 0 1rem;
+    }
+
+    .table-of-contents {
+      padding: 1rem;
+    }
+
+    .meta-info {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .meta-author::after,
+    .meta-date::after {
+      display: none;
+    }
+
+    .article-content {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .article-content :global(h1) {
+      font-size: 2rem;
+      margin-top: 3rem;
+    }
+
+    .article-content :global(h2) {
+      font-size: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .article-content :global(h3) {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .article-content :global(blockquote) {
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .article-content :global(pre) {
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .article-content :global(table) {
+      font-size: 0.875rem;
+    }
+
+    .article-content :global(th),
+    .article-content :global(td) {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .article-container {
+      padding: 0 0.75rem;
+    }
+
+    .table-of-contents {
+      padding: 0.75rem;
+    }
+
+    .tags {
+      gap: 0.25rem;
+    }
+
+    .tag {
+      font-size: 0.625rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .article-content :global(blockquote) {
+      padding: 0.75rem 1rem;
+    }
+
+    .article-content :global(pre) {
+      padding: 0.75rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .table-of-contents {
+      display: none;
+    }
+
+    .progress-bar {
+      display: none;
+    }
+
+    .article-container {
+      grid-template-columns: 1fr;
+      max-width: none;
+      padding: 0;
+    }
+
+    .article-content {
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+  }
+</style>
+
+<script>
+  interface TocItem {
+    id: string;
+    text: string;
+    element: HTMLElement;
+  }
+
+  let tocItems: TocItem[] = [];
+  let currentActiveIndex = -1;
+
+  // Generate Table of Contents
+  function generateTOC(): void {
+    const articleContent = document.getElementById("article-content");
+    const tocNav = document.getElementById("toc-nav");
+    const tocContainer = document.getElementById("toc");
+
+    if (!articleContent || !tocNav || !tocContainer) return;
+
+    const headings = articleContent.querySelectorAll("h2");
+
+    if (headings.length === 0) {
+      tocContainer.style.display = "none";
+      return;
+    }
+
+    tocItems = [];
+    let fragment = document.createDocumentFragment();
+
+    headings.forEach((heading, index) => {
+      const headingElement = heading as HTMLElement;
+      let id = headingElement.id;
+
+      if (!id) {
+        id = `heading-${index + 1}-${
+          headingElement.textContent
+            ?.toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w\-]+/g, "")
+            .substring(0, 50) || ""
+        }`;
+        headingElement.id = id;
+      }
+
+      const tocItem: TocItem = {
+        id,
+        text: headingElement.textContent || "",
+        element: headingElement,
+      };
+      tocItems.push(tocItem);
+
+      const link = document.createElement("a");
+      link.href = `#${id}`;
+      link.textContent = tocItem.text;
+      link.setAttribute("data-toc-index", index.toString());
+
+      fragment.appendChild(link);
+    });
+
+    tocNav.appendChild(fragment);
+  }
+
+  // Update active TOC item based on scroll position
+  function updateActiveTOC(): void {
+    if (tocItems.length === 0) return;
+
+    const scrollTop = window.pageYOffset;
+    const offset = 150; // Offset for sticky header
+
+    let activeIndex = -1;
+
+    for (let i = 0; i < tocItems.length; i++) {
+      const element = tocItems[i].element;
+      const elementTop = element.getBoundingClientRect().top + scrollTop;
+
+      if (elementTop <= scrollTop + offset) {
+        activeIndex = i;
+      }
+    }
+
+    if (activeIndex !== currentActiveIndex) {
+      const tocLinks = document.querySelectorAll(".toc-nav a");
+
+      tocLinks.forEach((link, index) => {
+        const linkElement = link as HTMLElement;
+        linkElement.classList.toggle("active", index === activeIndex);
+      });
+
+      currentActiveIndex = activeIndex;
+    }
+  }
+
+  // Reading progress
+  function updateProgress(): void {
+    const article = document.querySelector(".article-content");
+    const progressBar = document.getElementById("progress-bar");
+
+    if (!article || !progressBar) return;
+
+    const articleHeight = article.scrollHeight;
+    const articleTop = article.offsetTop;
+    const windowHeight = window.innerHeight;
+    const scrolled = window.pageYOffset;
+
+    const progress = Math.min(
+      Math.max((scrolled - articleTop + windowHeight * 0.25) / articleHeight, 0),
+      1
+    );
+
+    progressBar.style.width = `${progress * 100}%`;
+  }
+
+  // Smooth scroll for anchor links - FIX PRINCIPALE
+  function initSmoothScroll(): void {
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === "A" && target.getAttribute("href")?.startsWith("#")) {
+        e.preventDefault();
+        const targetId = target.getAttribute("href")?.substring(1);
+        const targetElement = document.getElementById(targetId || "");
+
+        if (targetElement) {
+          // Calcolo più preciso della posizione
+          const rect = targetElement.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const elementTop = rect.top + scrollTop;
+          const offset = 120; // Account for sticky header
+
+          window.scrollTo({
+            top: elementTop - offset,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  }
+
+  // Throttle function for performance
+  function throttle(func: Function, limit: number): Function {
+    let inThrottle: boolean;
+    return function (this: any, ...args: any[]) {
+      if (!inThrottle) {
+        func.apply(this, args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  }
+
+  // Initialize
+  document.addEventListener("DOMContentLoaded", () => {
+    generateTOC();
+    initSmoothScroll();
+    updateProgress();
+    updateActiveTOC();
+
+    const throttledScroll = throttle(() => {
+      updateProgress();
+      updateActiveTOC();
+    }, 16); // ~60fps
+
+    window.addEventListener("scroll", throttledScroll, { passive: true });
+    window.addEventListener("resize", updateProgress);
+  });
+</script>
