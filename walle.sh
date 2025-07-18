@@ -103,13 +103,21 @@ function sync_files() {
   fi
 
   if [ -d "$source_path" ]; then
-    mkdir -p "$target_path"
-    if [ $? -ne 0 ]; then
-      print_error "Failed to create target directory: $target_path"
+    # Remove existing target directory if it exists
+    if [ -d "${target_path}" ]; then
+      rm -rf "${target_path}"
     fi
-    cp -r "$source_path/" "$target_path/"
+
+    if [ $? -ne 0 ]; then
+      print_error "Failed to create parent directory for: $target_path"
+    fi
+
+    # Copy the entire directory
+    cp -r "${source_path}" "${target_path}"
   elif [ -f "$source_path" ]; then
-    cp "$source_path" "$target_path"
+    # Create parent directory if it doesn't exist
+    rm -f "${target_path}" || true
+    cp "${source_path}" "${target_path}"
   else
     print_error "Error synchronizing files from $source_path to $target_path."
   fi
@@ -120,7 +128,7 @@ function sync_walle_files() {
   local temp_dir="$1"
   local project_name="$2"
 
-  sync_files "${temp_dir}/.devcontainer" "${project_name}/.devcontainer"
+  sync_files "${temp_dir}/.devcontainer/@walle" "${project_name}/.devcontainer/@walle"
   sync_files "${temp_dir}/.vscode" "${project_name}/.vscode"
   sync_files "${temp_dir}/lib/infrastructure/@walle" "${project_name}/lib/infrastructure/@walle"
   sync_files "${temp_dir}/lib/scripts/@walle" "${project_name}/lib/scripts/@walle"
