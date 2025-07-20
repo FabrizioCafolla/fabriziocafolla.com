@@ -1,0 +1,129 @@
+---
+export interface ArticleNavigation {
+  nextArticle?: {
+    title: string;
+    slug: string;
+  };
+  previousArticle?: {
+    title: string;
+    slug: string;
+  };
+  columnName: string;
+}
+
+export interface ReferralLink {
+  name: string;
+  description: string;
+  link?: string;
+  code?: string;
+  reward: string;
+}
+
+export interface Props {
+  navigation: ArticleNavigation;
+  referralLinks?: ReferralLink[];
+}
+
+const defaultReferralLinks: ReferralLink[] = [
+  {
+    name: "Airbnb",
+    description: "Receive 50$",
+    link: "https://www.airbnb.com/c/iB6UltmS76TCmZJq?unique_share_id=f98edb85-93ab-4989-ac28-e7aa572795bf",
+    reward: "50$",
+  },
+  {
+    name: "eDreams Prime",
+    description: "Receive 60$ Referral link",
+    reward: "60$",
+  },
+  {
+    name: "Revolut",
+    description: "Referral link",
+    reward: "",
+  },
+  {
+    name: "Airalo eSIM",
+    description: "Registration code: FABRIZ2683 (link)",
+    code: "FABRIZ2683",
+    reward: "",
+  },
+  {
+    name: "TheFork",
+    description: "Registration code: 7DA38543 (link)",
+    code: "7DA38543",
+    reward: "",
+  },
+];
+
+const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
+---
+
+<div>
+  <h3>Go to the next article</h3>
+  <blockquote>
+    {
+      navigation.nextArticle ? (
+        <a href={navigation.nextArticle.slug}>{navigation.nextArticle.title}</a>
+      ) : (
+        "❌"
+      )
+    }
+  </blockquote>
+
+  <h3>Go to the previous article</h3>
+  <blockquote>
+    {
+      navigation.previousArticle ? (
+        <a href={navigation.previousArticle.slug}>{navigation.previousArticle.title}</a>
+      ) : (
+        "❌"
+      )
+    }
+  </blockquote>
+
+  <h3>Articles in the column</h3>
+  <blockquote>{navigation.columnName}</blockquote>
+
+  <h3>💚 Questions & Feedback</h3>
+  <p>
+    If you have questions or curiosities (which I can answer) or feedback to improve the column,
+    please send them to me through the following link.
+    <br />
+    For me, every suggestion or constructive criticism is an added value.
+  </p>
+  <ul>
+    <li>
+      <a href="https://forms.gle/ZsirxCiXF735kVrT8">Questions & Feedback Form</a>
+    </li>
+  </ul>
+
+  <h3>
+    <span role="img" aria-label="contacts">🤝</span>
+    <a href="https://linktr.ee/fabriziocafolla">Contacts</a>
+  </h3>
+
+  <h3>💶 Referral</h3>
+  <p>
+    By using the referral links or the specific codes below, you will have access to registration
+    rewards
+  </p>
+  {
+    referralLinks.map((referral) => (
+      <div>
+        <h4>{referral.name}</h4>
+        <blockquote>
+          {referral.description}
+          <br />
+          {referral.link ? (
+            <a href={referral.link}>
+              <strong>Referral link</strong>
+            </a>
+          ) : (
+            "Referral link"
+          )}
+          {referral.code && <Fragment> (code: {referral.code})</Fragment>}
+        </blockquote>
+      </div>
+    ))
+  }
+</div>

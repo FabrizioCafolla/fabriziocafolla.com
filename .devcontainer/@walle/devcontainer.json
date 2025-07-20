@@ -1,7 +1,7 @@
 {
   "name": "walle-design-system",
   "build": {
-    "dockerfile": "${localWorkspaceFolder}/.devcontainer/Dockerfile",
+    "dockerfile": "${localWorkspaceFolder}/.devcontainer/@walle/Dockerfile",
     "args": {
       "NODE_VERSION": "22-bullseye"
     },
