@@ -5,7 +5,7 @@ import { AbstractLayout } from "@walle/layouts";
 ---
 
 <AbstractLayout {...Astro.props}>
-  <Navbar config={config.navbar} />
+  <Navbar config={config.navbar || {}} />
   <main>
     <slot />
   </main>

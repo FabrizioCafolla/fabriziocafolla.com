@@ -40,10 +40,16 @@ export interface NavbarConfig {
   items: NavigationLink[];
 }
 
+export interface FooterConfig {
+  logo: NavbarLogo;
+  items: NavigationLink[];
+}
+
 export interface DefaultConfig {
   astro: AstroConfig;
   app: AppConfig;
   navbar: NavbarConfig;
+  footer: FooterConfig;
   [key: string]: any;
 }
 
