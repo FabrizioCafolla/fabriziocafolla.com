@@ -15,6 +15,7 @@ export interface Props {
   elevated?: boolean;
   buttonIcon?: string;
   clickableCard?: boolean;
+  publishDate?: Date | string | null;
   badge?: {
     text: string;
     color?: "primary" | "secondary";
@@ -35,6 +36,7 @@ const {
   buttonIcon = "fa:arrow-right",
   clickableCard = false,
   badge,
+  publishDate,
 } = Astro.props;
 
 const cardClasses = [
@@ -65,6 +67,7 @@ const cardProps = clickableCard
         {badge && (
           <span class={`card__badge card__badge--${badge.color || "primary"}`}>{badge.text}</span>
         )}
+        {publishDate && <span class="card__date">{publishDate}</span>}
       </div>
     )
   }
@@ -100,7 +103,6 @@ const cardProps = clickableCard
 
 <style>
   .card {
-    /* CSS Custom Properties */
     --card-radius: 12px;
     --card-padding: 24px;
     --card-gap: 16px;
@@ -109,7 +111,6 @@ const cardProps = clickableCard
     --card-border: 1px solid var(--gray-light);
     --card-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Layout */
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -146,7 +147,6 @@ const cardProps = clickableCard
     opacity: 1;
   }
 
-  /* Image Section */
   .card__image {
     position: relative;
     width: 100%;
@@ -166,7 +166,6 @@ const cardProps = clickableCard
     transform: scale(1.05);
   }
 
-  /* Badge */
   .card__badge {
     position: absolute;
     top: 12px;
@@ -187,7 +186,22 @@ const cardProps = clickableCard
     background: var(--secondary);
   }
 
-  /* Content Section */
+  .card__date {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    background: var(--gray-light);
+    color: var(--balck);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
   .card__content {
     padding: var(--card-padding);
     display: flex;
@@ -221,7 +235,6 @@ const cardProps = clickableCard
     padding-top: var(--card-gap);
   }
 
-  /* Overlay for clickable cards */
   .card__overlay {
     position: absolute;
     inset: 0;
@@ -240,7 +253,6 @@ const cardProps = clickableCard
     color: var(--white);
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
     .card {
       --card-padding: 20px;
@@ -256,11 +268,19 @@ const cardProps = clickableCard
       -webkit-line-clamp: 2;
     }
 
-    .card__badge {
+    .card__badge,
+    .card__date {
       top: 8px;
-      left: 8px;
       padding: 4px 8px;
       font-size: 11px;
+    }
+
+    .card__badge {
+      left: 8px;
+    }
+
+    .card__date {
+      right: 8px;
     }
 
     .card__image {
@@ -282,12 +302,27 @@ const cardProps = clickableCard
       font-size: 13px;
     }
 
+    .card__badge,
+    .card__date {
+      top: 6px;
+      padding: 3px 6px;
+      font-size: 10px;
+      border-radius: 16px;
+    }
+
+    .card__badge {
+      left: 6px;
+    }
+
+    .card__date {
+      right: 6px;
+    }
+
     .card__image {
       aspect-ratio: 4/3;
     }
   }
 
-  /* Accessibility improvements */
   @media (prefers-reduced-motion: reduce) {
     .card,
     .card__image img,
@@ -304,19 +339,18 @@ const cardProps = clickableCard
     }
   }
 
-  /* Focus management */
   .card--clickable:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
 
-  /* High contrast mode support */
   @media (prefers-contrast: high) {
     .card {
       border: 2px solid var(--primary-dark);
     }
 
-    .card__badge {
+    .card__badge,
+    .card__date {
       border: 1px solid var(--white);
     }
   }

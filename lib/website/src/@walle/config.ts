@@ -18,10 +18,32 @@ export interface AppConfig {
   [key: string]: any;
 }
 
+export interface NavigationLink {
+  name?: string;
+  url: string;
+  icon?: string;
+  children?: NavigationLink[];
+}
+
+export interface NavbarLogo {
+  src?: string;
+  title?: string;
+  url: string;
+  width?: number;
+  height?: number;
+  alt?: string;
+  cssClasses?: string;
+}
+
+export interface NavbarConfig {
+  logo: NavbarLogo;
+  items: NavigationLink[];
+}
+
 export interface DefaultConfig {
   astro: AstroConfig;
   app: AppConfig;
-  menu: Record<string, object>;
+  navbar: NavbarConfig;
   [key: string]: any;
 }
 

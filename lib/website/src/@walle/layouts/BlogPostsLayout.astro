@@ -39,16 +39,15 @@ const sortedPosts = postsToUse.sort((a: PostsEntry, b: PostsEntry) => {
         </div>
       ) : (
         <div class="blog-layout__grid">
-          {sortedPosts.map((post) => {
+          {sortedPosts.map((post: PostsEntry) => {
             const badge = post.data.tags?.length
               ? { text: post.data.tags[0], color: "secondary" as const }
               : undefined;
 
             return (
               <BasicCard
-                key={post.id}
                 title={post.data.title}
-                content={`${post.data.description} • ${formatDate(post.data.publishDate.toString())}`}
+                content={post.data.description}
                 linkUrl={`/blog/${post.id}`}
                 imageUrl={post.data.image || "/img/posts/default.jpg"}
                 imageAlt={post.data.title}
@@ -57,6 +56,9 @@ const sortedPosts = postsToUse.sort((a: PostsEntry, b: PostsEntry) => {
                 elevated={false}
                 buttonText={buttonText}
                 buttonIcon={buttonIcon}
+                publishDate={
+                  post.data.publishDate ? formatDate(post.data.publishDate.toString()) : null
+                }
                 linkTarget="_self"
               />
             );
