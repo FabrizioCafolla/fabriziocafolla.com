@@ -1,0 +1,332 @@
+---
+import { BasicCard, SectionHeaderStandard } from "@walle/components";
+import { BaseLayout } from "@walle/layouts";
+import { Icon } from "astro-icon/components";
+
+interface GitHubRepo {
+  name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  updated_at: string;
+  archived: boolean;
+  fork: boolean;
+}
+
+interface ProjectsData {
+  personalProjects: GitHubRepo[];
+  italiaOpenSourceProjects: GitHubRepo[];
+}
+
+async function fetchGitHubProjects(
+  type: "users" | "orgs",
+  account: string,
+  limit: number
+): Promise<GitHubRepo[]> {
+  try {
+    const response = await fetch(
+      `https://api.github.com/${type}/${account}/repos?sort=updated&per_page=${limit}`
+    );
+    if (!response.ok) throw new Error("Errore nel caricamento dei progetti");
+
+    const repos: GitHubRepo[] = await response.json();
+    const filterHiddenRepository = ["FabrizioCafolla", "fabriziocafolla.com"];
+
+    return repos.filter((repo) => !repo.fork && !filterHiddenRepository.includes(repo.name));
+  } catch (error) {
+    console.error("Errore nel caricamento dei progetti:", error);
+    return [];
+  }
+}
+
+function sortProjectsByStars(projects: GitHubRepo[]): GitHubRepo[] {
+  return [...projects].sort((a, b) => {
+    // Se uno è archiviato e l'altro no, quello non archiviato va prima
+    if (a.archived && !b.archived) return 1;
+    if (!a.archived && b.archived) return -1;
+
+    // Se entrambi hanno lo stesso stato di archiviazione, ordina per stelle (decrescente)
+    return b.stargazers_count - a.stargazers_count;
+  });
+}
+
+function formatDate(dateString: string): string {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+  return new Date(dateString).toLocaleDateString("en-US", options);
+}
+
+function formatProjectContentWithIcons(repo: GitHubRepo) {
+  const description = repo.description || "No description available";
+
+  return {
+    description,
+    stats: [
+      {
+        icon: "mdi:star",
+        text: repo.stargazers_count.toString(),
+        label: "stars",
+      },
+      {
+        icon: "mdi:source-fork",
+        text: repo.forks_count.toString(),
+        label: "forks",
+      },
+      {
+        icon: "mdi:calendar-clock",
+        text: formatDate(repo.updated_at),
+        label: "updated",
+      },
+    ],
+  };
+}
+
+// Fetch dei progetti
+const [personalProjectsRaw, italiaOpenSourceProjectsRaw] = await Promise.all([
+  fetchGitHubProjects("users", "FabrizioCafolla", 10),
+  fetchGitHubProjects("orgs", "italia-opensource", 3),
+]);
+
+// Ordina i progetti per stelle con archiviati in fondo
+const personalProjects = sortProjectsByStars(personalProjectsRaw);
+const italiaOpenSourceProjects = sortProjectsByStars(italiaOpenSourceProjectsRaw);
+
+const projectsData: ProjectsData = {
+  personalProjects,
+  italiaOpenSourceProjects,
+};
+---
+
+<BaseLayout headerTitle="Projects">
+  <SectionHeaderStandard title="Projects" variant="white" />
+
+  <section>
+    <div class="container">
+      {
+        projectsData.personalProjects.length > 0 && (
+          <div class="projects-group">
+            <h2>Personal</h2>
+            <div class="projects-grid" id="projects-container">
+              {projectsData.personalProjects.map((repo) => {
+                const projectData = formatProjectContentWithIcons(repo);
+                return (
+                  <div class="project-card-wrapper">
+                    <BasicCard
+                      title={`${repo.name}${repo.archived ? " (archived)" : ""}`}
+                      content={projectData.description}
+                      linkUrl={repo.html_url}
+                      buttonText="View on GitHub"
+                      buttonType="primary"
+                      linkTarget="_blank"
+                      buttonIcon="fa:github"
+                      badge={repo.archived ? { text: "Archived", color: "secondary" } : undefined}
+                    />
+                    <div class="project-stats">
+                      {projectData.stats.map((stat) => (
+                        <div class="stat-item">
+                          <Icon name={stat.icon} class="stat-icon" />
+                          <span class="stat-text">{stat.text}</span>
+                          <span class="stat-label sr-only">{stat.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )
+      }
+
+      {
+        projectsData.italiaOpenSourceProjects.length > 0 && (
+          <div class="projects-group">
+            <h2>Italia Open Source</h2>
+            <div class="projects-grid" id="italiaopensource-container">
+              {projectsData.italiaOpenSourceProjects.map((repo) => {
+                const projectData = formatProjectContentWithIcons(repo);
+                return (
+                  <div class="project-card-wrapper">
+                    <BasicCard
+                      title={`${repo.name}${repo.archived ? " (archived)" : ""}`}
+                      content={projectData.description}
+                      linkUrl={repo.html_url}
+                      buttonText="View on GitHub"
+                      buttonType="primary"
+                      linkTarget="_blank"
+                      buttonIcon="fa:github"
+                      badge={{ text: "Italia OS", color: "primary" }}
+                    />
+                    <div class="project-stats">
+                      {projectData.stats.map((stat) => (
+                        <div class="stat-item">
+                          <Icon name={stat.icon} class="stat-icon" />
+                          <span class="stat-text">{stat.text}</span>
+                          <span class="stat-label sr-only">{stat.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )
+      }
+
+      {
+        projectsData.personalProjects.length === 0 &&
+          projectsData.italiaOpenSourceProjects.length === 0 && (
+            <div class="error-message">
+              <p>
+                Si è verificato un errore nel caricamento dei progetti. Per favore, riprova più
+                tardi.
+              </p>
+            </div>
+          )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-group {
+    margin-bottom: 4rem;
+  }
+
+  .projects-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .projects-group h2 {
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+    text-align: center;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .project-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--gray-light);
+    border-radius: 0 0 12px 12px;
+    margin-top: -1px;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--gray-dark);
+    flex: 1;
+    justify-content: center;
+  }
+
+  .stat-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .stat-text {
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  .stat-label {
+    margin-left: 2px;
+    font-size: 0.75rem;
+    color: var(--gray-dark);
+  }
+
+  .error-message {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--gray-light);
+    color: var(--gray-dark);
+  }
+
+  .blog-section {
+    background-color: var(--white);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .projects-group h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .projects-group {
+      margin-bottom: 3rem;
+    }
+
+    .project-stats {
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.75rem;
+    }
+
+    .stat-item {
+      justify-content: flex-start;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .projects-grid {
+      gap: 1rem;
+    }
+
+    .projects-group h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .projects-group {
+      margin-bottom: 2rem;
+    }
+
+    .project-stats {
+      padding: 0.5rem;
+    }
+
+    .stat-item {
+      font-size: 0.8rem;
+    }
+
+    .stat-icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
+</style>
