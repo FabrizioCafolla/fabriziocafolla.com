@@ -1,26 +1,28 @@
-name: Tests
+name: Deploy
 
 on:
-  pull_request:
+  push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  id-token: write
+  contents: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  test-data:
-    name: Test
+  deploy:
+    name: Deploy
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Test
-        id: test
-        uses: ./.github/workflows/actions/@walle/website-tests
+      - name: Deploy to GitHub Pages
+        uses: ./.github/workflows/actions/@walle/deploy-github-pages
         timeout-minutes: 5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cname: "fabriziocafolla.com"
