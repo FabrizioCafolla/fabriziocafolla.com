@@ -1,18 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
 import { Button } from "@walle/components";
-
-export interface ArticleNavigation {
-  nextArticle?: {
-    title: string;
-    slug: string;
-  };
-  previousArticle?: {
-    title: string;
-    slug: string;
-  };
-  columnName: string;
-}
+import { ArticleNavigation } from "@walle/components";
+import type { ArticleNavigation as ArticleNavigationInterface } from "@walle/components/features/Blog/ArticleNavigation.astro";
 
 export interface ReferralLink {
   name: string;
@@ -23,8 +13,8 @@ export interface ReferralLink {
 }
 
 export interface Props {
-  navigation: ArticleNavigation;
   referralLinks?: ReferralLink[];
+  navigation: ArticleNavigationInterface;
 }
 
 const defaultReferralLinks: ReferralLink[] = [
@@ -61,41 +51,13 @@ const defaultReferralLinks: ReferralLink[] = [
   },
 ];
 
-const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
+const { referralLinks = defaultReferralLinks, navigation } = Astro.props;
 ---
 
-<footer class="blog-footer">
-  <!-- Article Navigation -->
-  <section class="blog-footer__navigation" aria-label="Article navigation">
-    <div class="navigation-grid">
-      {
-        navigation.previousArticle && (
-          <div class="nav-card nav-card--previous">
-            <span class="nav-card__label">Previous Article</span>
-            <a href={navigation.previousArticle.slug} class="nav-card__link">
-              <Icon name="fa:chevron-left" class="nav-card__icon" />
-              <span class="nav-card__title">{navigation.previousArticle.title}</span>
-            </a>
-          </div>
-        )
-      }
-
-      {
-        navigation.nextArticle && (
-          <div class="nav-card nav-card--next">
-            <span class="nav-card__label">Next Article</span>
-            <a href={navigation.nextArticle.slug} class="nav-card__link">
-              <span class="nav-card__title">{navigation.nextArticle.title}</span>
-              <Icon name="fa:chevron-right" class="nav-card__icon" />
-            </a>
-          </div>
-        )
-      }
-    </div>
-  </section>
-
+<ArticleNavigation navigation={navigation} />
+<div class="blog-footer-content">
   <!-- Referral Section -->
-  <section class="blog-footer__referrals" aria-label="Referral links">
+  <section class="blog-footer-content__referrals" aria-label="Referral links">
     <div class="referrals-header">
       <h3 class="referrals-title">Referral Partners</h3>
       <p class="referrals-description">
@@ -147,7 +109,7 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
   </section>
 
   <!-- Feedback Section -->
-  <section class="blog-footer__feedback" aria-label="Feedback section">
+  <section class="blog-footer-content__feedback" aria-label="Feedback section">
     <div class="feedback-card">
       <div class="feedback-card__header">
         <h3 class="feedback-card__title">
@@ -169,99 +131,22 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
       />
     </div>
   </section>
-</footer>
+</div>
 
 <style>
-  .blog-footer {
-    padding: 1.5rem;
-  }
-
-  .blog-footer > * {
+  .blog-footer-content {
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  /* Navigation Section */
-  .blog-footer__navigation {
-    margin-bottom: 1rem;
-  }
-
-  .navigation-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .nav-card {
-    padding: 1.5rem;
-    border: 1px solid var(--gray-light);
-    border-radius: 12px;
-    background: var(--white);
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
-  }
-
-  .nav-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
-  }
-
-  .nav-card__label {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--gray-dark);
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    font-family: "Ronzino-Medium", sans-serif;
-  }
-
-  .nav-card__link {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--primary-dark);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-  }
-
-  .nav-card__link:hover {
-    color: var(--primary);
-  }
-
-  .nav-card--previous .nav-card__link {
-    flex-direction: row;
-  }
-
-  .nav-card--next .nav-card__link {
-    flex-direction: row-reverse;
-    text-align: right;
-  }
-
-  .nav-card__icon {
-    flex-shrink: 0;
-    color: var(--primary);
-    width: 20px;
-    height: 20px;
-  }
-
-  .nav-card__title {
-    line-height: 1.3;
-  }
-
   /* Card Sections */
-  .blog-footer__feedback,
-  .blog-footer__contact,
-  .blog-footer__referrals {
+  .blog-footer-content__feedback,
+  .blog-footer-content__referrals {
     margin-bottom: 1rem !important;
     padding: 1.5rem !important;
   }
 
-  .feedback-card,
-  .contact-card {
+  .feedback-card {
     padding: 2rem;
     border: 1px solid var(--gray-light);
     border-radius: 12px;
@@ -270,8 +155,7 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
     transition: var(--transition);
   }
 
-  .feedback-card:hover,
-  .contact-card:hover {
+  .feedback-card:hover {
     transform: translateY(-2px);
   }
 
@@ -279,8 +163,7 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
     margin-bottom: 1rem;
   }
 
-  .feedback-card__title,
-  .contact-card__title {
+  .feedback-card__title {
     margin: 0 0 1rem 0 !important;
     color: var(--primary-dark);
     display: flex;
@@ -289,8 +172,7 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
     font-family: "Ronzino-Medium", sans-serif;
   }
 
-  .feedback-card__icon,
-  .contact-card__icon {
+  .feedback-card__icon {
     width: 24px;
     height: 24px;
     color: var(--primary);
@@ -378,12 +260,6 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
     gap: 0.75rem;
   }
 
-  .referral-card__no-link {
-    color: var(--gray-dark);
-    font-style: italic;
-    font-size: 0.875rem;
-  }
-
   .referral-card__code {
     display: flex;
     align-items: center;
@@ -435,21 +311,7 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
 
   /* Responsive Design */
   @media (max-width: 768px) {
-    .blog-footer {
-      padding: 2rem 1rem;
-    }
-
-    .navigation-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .nav-card {
-      padding: 1rem;
-    }
-
-    .feedback-card,
-    .contact-card {
+    .feedback-card {
       padding: 1.5rem;
     }
 
@@ -470,45 +332,33 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
   }
 
   @media (max-width: 480px) {
-    .blog-footer {
-      padding: 1.5rem 0.75rem;
-    }
-
     .referral-card__code {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
     }
-
-    .nav-card__link {
-      font-size: 0.875rem;
-    }
   }
 
   /* Accessibility improvements */
   @media (prefers-reduced-motion: reduce) {
-    .nav-card,
     .feedback-card,
-    .contact-card,
     .referral-card {
       transition: none;
     }
 
-    .nav-card:hover,
     .feedback-card:hover,
-    .contact-card:hover,
     .referral-card:hover {
       transform: none;
     }
   }
 
   /* Focus styles */
-  .nav-card__link:focus,
   .referral-card__copy-btn:focus {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
 </style>
+
 <script>
   // Add copy to clipboard functionality
   document.addEventListener("DOMContentLoaded", function () {
@@ -521,7 +371,6 @@ const { navigation, referralLinks = defaultReferralLinks } = Astro.props;
         const button = event.currentTarget as HTMLButtonElement;
         const code = button.getAttribute("data-code");
         const textSpan = button.querySelector(".copy-btn__text") as HTMLElement;
-        const icon = button.querySelector(".copy-btn__icon") as HTMLElement;
 
         if (!code || !textSpan) return;
 
