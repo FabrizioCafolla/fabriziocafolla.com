@@ -9,6 +9,7 @@ const {
   headerTitle = "Blog",
   buttonText = "Read more",
   buttonIcon = "fa:arrow-right",
+  clickableCard = true,
   posts,
   filterTags,
 } = Astro.props;
@@ -52,7 +53,7 @@ const sortedPosts = postsToUse.sort((a: PostsEntry, b: PostsEntry) => {
                 imageUrl={post.data.image || "/img/posts/default.jpg"}
                 imageAlt={post.data.title}
                 badge={badge}
-                clickableCard={true}
+                clickableCard={clickableCard}
                 elevated={false}
                 buttonText={buttonText}
                 buttonIcon={buttonIcon}

@@ -68,7 +68,7 @@
   "containerEnv": {
     "NODE_ENV": "development"
   },
-  "postCreateCommand": "make setup",
-  "postStartCommand": "make dev",
+  "postCreateCommand": "just setup",
+  "postStartCommand": "just dev",
   "remoteUser": "node"
 }

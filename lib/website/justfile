@@ -1,0 +1,14 @@
+website_dir := if path_exists("package.json") == "true" { "." } else { "lib/website" }
+
+# Run yarn commands in the website directory
+yarn *args:
+    cd {{website_dir}} && yarn {{args}}
+
+# Start development server
+dev:
+    just yarn "dev --host"
+
+# Build the project
+build:
+    just yarn install
+    just yarn build

@@ -5,6 +5,7 @@ export interface AstroConfig {
   baseUrl: string;
   basePath: string;
   trailingSlash: string;
+  analyticsScriptContent?: string;
   [key: string]: any;
 }
 

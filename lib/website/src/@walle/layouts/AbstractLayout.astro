@@ -1,5 +1,5 @@
 ---
-import { Head } from "@walle/components";
+import { Analytics, Head } from "@walle/components";
 import config from "@walle/config";
 import "@walle/styles/global.css";
 /* Ignore this line if you don't have a global.css file */
@@ -22,6 +22,10 @@ const {
       description={headerDescription}
       image={headerImage}
       robots={headerRobots}
+    />
+    <Analytics
+      enable={config.env.IS_PRODUCTION || false}
+      scriptContent={config.astro.analyticsScriptContent || ""}
     />
   </head>
   <body>
