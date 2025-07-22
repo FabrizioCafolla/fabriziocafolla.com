@@ -7,10 +7,10 @@ import "@styles/global.css";
 
 const {
   headerTitle = "",
-  headerDescription = config.app.description || "",
-  headerImage = config.app.image || null,
-  headerRobots = config.app.robots || "index, follow",
-  headerLanguage = config.app.language || "",
+  headerDescription = config.app.website.description || "",
+  headerImage = config.app.website.image || null,
+  headerRobots = config.app.website.robots || "index, follow",
+  headerLanguage = config.app.website.language || "",
 } = Astro.props;
 ---
 
@@ -25,7 +25,7 @@ const {
     />
     <Analytics
       enable={config.env.IS_PRODUCTION || false}
-      scriptContent={config.astro.analyticsScriptContent || ""}
+      scriptContent={config.app.astro.analyticsScriptContent || ""}
     />
   </head>
   <body>

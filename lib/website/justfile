@@ -1,4 +1,4 @@
-website_dir := if path_exists("package.json") == "true" { "." } else { "lib/website" }
+website_dir := if path_exists("package.json") == "true" { "." } else { "./lib/website" }
 
 # Run yarn commands in the website directory
 yarn *args:

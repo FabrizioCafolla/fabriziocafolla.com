@@ -9,7 +9,7 @@ export interface AstroConfig {
   [key: string]: any;
 }
 
-export interface AppConfig {
+export interface WebsiteConfig {
   title: string;
   description: string;
   favicon: string;
@@ -46,8 +46,12 @@ export interface FooterConfig {
   items: NavigationLink[];
 }
 
-export interface DefaultConfig {
+export interface AppConfig {
   astro: AstroConfig;
+  website: WebsiteConfig;
+}
+
+export interface DefaultConfig {
   app: AppConfig;
   navbar: NavbarConfig;
   footer: FooterConfig;
