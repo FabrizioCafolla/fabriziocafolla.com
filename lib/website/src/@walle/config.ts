@@ -34,6 +34,7 @@ export interface NavbarLogo {
   height?: number;
   alt?: string;
   cssClasses?: string;
+  license?: string;
 }
 
 export interface NavbarConfig {

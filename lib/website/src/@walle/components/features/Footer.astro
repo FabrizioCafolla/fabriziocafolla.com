@@ -41,10 +41,10 @@ const shouldShowBrand = hasLogo || hasTitle;
         }
         {
           !shouldShowBrand && (
-            <span class={footerConfig.logo.cssClasses || ""}>{config.app.website.title}</span>
+            <span class={footerConfig.logo.cssClasses || ""}>{footerConfig.logo.title}</span>
           )
         }
-        <span class="license">&copy; {today.getFullYear()} All right reserved.</span>
+        <span class="license">{today.getFullYear()} &copy; {footerConfig.logo.license}</span>
       </div>
     </div>
 

@@ -14,6 +14,7 @@ const posts = defineCollection({
     readingTime: z.string().optional(),
     author: z.string().optional(),
     image: z.string().optional(),
+    draft: z.boolean().optional(),
   }),
 });
 

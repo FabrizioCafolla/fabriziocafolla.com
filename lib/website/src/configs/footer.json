@@ -2,7 +2,8 @@
   "logo": {
     "title": "Fabrizio Cafolla",
     "url": "/",
-    "cssClasses": "logo-text-footer"
+    "cssClasses": "logo-text-footer",
+    "license": "All Rights Reserved"
   },
   "items": [
     {

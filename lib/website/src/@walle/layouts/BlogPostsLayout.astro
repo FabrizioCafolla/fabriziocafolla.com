@@ -1,5 +1,4 @@
 ---
-import type { PostsEntry } from "@pages/blog/interfaces";
 import { BasicCard } from "@walle/components";
 import { BaseLayout } from "@walle/layouts";
 import { formatDate } from "@walle/utils";
@@ -11,18 +10,21 @@ const {
   buttonIcon = "fa:arrow-right",
   clickableCard = true,
   posts,
+  postsCollection = "posts",
   filterTags,
 } = Astro.props;
 
-let postsToUse = posts && posts.length > 0 ? posts : await getCollection("posts");
+let postsToUse = posts && posts.length > 0 ? posts : await getCollection(postsCollection);
+
+postsToUse = postsToUse.filter((post: any) => !post.data.draft);
 
 if (filterTags && filterTags.length > 0) {
-  postsToUse = postsToUse.filter((post: PostsEntry) =>
+  postsToUse = postsToUse.filter((post: any) =>
     post.data.tags?.some((tag) => filterTags.includes(tag))
   );
 }
 
-const sortedPosts = postsToUse.sort((a: PostsEntry, b: PostsEntry) => {
+const sortedPosts = postsToUse.sort((a: any, b: any) => {
   const dateA = a.data.publishDate ? new Date(a.data.publishDate) : new Date(0);
   const dateB = b.data.publishDate ? new Date(b.data.publishDate) : new Date(0);
   return dateB.getTime() - dateA.getTime();
