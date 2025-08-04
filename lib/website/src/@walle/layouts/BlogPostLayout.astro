@@ -8,14 +8,24 @@ interface Props extends Posts {
   author?: string;
   publishDate?: Date;
   readingTime?: string;
+  image?: string | null;
   tags?: string[];
   draft?: boolean;
 }
 
-const { title, description, author, publishDate, readingTime, tags, draft = false } = Astro.props;
+const {
+  title,
+  description,
+  author,
+  publishDate,
+  readingTime,
+  tags,
+  image = null,
+  draft = false,
+} = Astro.props;
 ---
 
-<BaseLayout headerTitle={title} headerDescription={description}>
+<BaseLayout headerTitle={title} headerDescription={description} headerImage={image}>
   {
     draft ? (
       <div class="draft-message">
