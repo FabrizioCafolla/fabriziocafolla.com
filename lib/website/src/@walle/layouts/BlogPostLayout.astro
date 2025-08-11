@@ -26,6 +26,7 @@ const {
 ---
 
 <BaseLayout headerTitle={title} headerDescription={description} headerImage={image}>
+  <slot name="before" />
   {
     draft ? (
       <div class="draft-message">
@@ -81,6 +82,7 @@ const {
       </>
     )
   }
+  <slot name="after" />
 </BaseLayout>
 
 <style>

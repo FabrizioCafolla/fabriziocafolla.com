@@ -34,7 +34,7 @@ const sortedPosts = postsToUse.sort((a: any, b: any) => {
 <BaseLayout headerTitle={headerTitle}>
   <main class="blog-layout">
     <slot />
-
+    <slot name="before" />
     {
       sortedPosts.length === 0 ? (
         <div class="blog-layout__empty">
@@ -69,6 +69,7 @@ const sortedPosts = postsToUse.sort((a: any, b: any) => {
         </div>
       )
     }
+    <slot name="after" />
   </main>
 </BaseLayout>
 

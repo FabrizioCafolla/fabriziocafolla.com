@@ -73,6 +73,8 @@ export interface Props {
   disabled?: boolean;
 
   disableEffects?: boolean;
+
+  buttonType?: "button" | "submit" | "reset";
 }
 
 const {
@@ -88,6 +90,7 @@ const {
   target = null,
   disabled = false,
   disableEffects = false,
+  buttonType = "button",
 } = Astro.props;
 
 // Combine classes
@@ -115,7 +118,7 @@ const isLink = link && !disabled;
       class={`button-link-wrapper ${fullWidth ? "button-full-width" : ""}`}
       aria-disabled={disabled}
     >
-      <button id={id} class={buttonClasses} disabled={disabled} type="button">
+      <button id={id} class={buttonClasses} disabled={disabled} type={buttonType}>
         <span class="button-text">{text}</span>
         {iconName && (
           <Icon
@@ -127,7 +130,7 @@ const isLink = link && !disabled;
       </button>
     </a>
   ) : (
-    <button id={id} class={buttonClasses} disabled={disabled} type="button">
+    <button id={id} class={buttonClasses} disabled={disabled} type={buttonType}>
       <span class="button-text">{text}</span>
       {iconName && <Icon name={iconName} class="button-icon" />}
     </button>

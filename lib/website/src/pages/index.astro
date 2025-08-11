@@ -1,4 +1,5 @@
 ---
+import NewsletterForm from "@components/Newsletter.astro";
 import { SectionHeaderStandard } from "@walle/components";
 import { BlogPostsLayout } from "@walle/layouts";
 ---
@@ -16,4 +17,16 @@ import { BlogPostsLayout } from "@walle/layouts";
       </h5>
     </div>
   </SectionHeaderStandard>
+  <div slot="after" class="newsletter-section">
+    <NewsletterForm showDescription={false} type="white" />
+  </div>
 </BlogPostsLayout>
+
+<style>
+  .newsletter-section {
+    border-radius: 8px;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+</style>
