@@ -1,0 +1,178 @@
+---
+title: "Open AI Block Crawl IPs"
+description: "Protect your website from OpenAI crawlers and unauthorized AI scraping. Discover updated IPs, user-agents, and step-by-step guides for Nginx, Cloudflare, and more."
+author: Fabrizio Cafolla
+publishDate: 2025-07-31
+tags: ["tech"]
+image: /img/posts/open-ai-block-crawl-ips/preview.jpg
+---
+
+import FooterBlogPost from "@components/FooterBlogPost.astro";
+
+## Introduction
+
+We live in an era where Artificial Intelligence touches everyone’s life daily—even those who don’t use it directly. AI is changing the way we work, create, and communicate. Change can be frightening, but this fear should not stop us: technology itself is not harmful; harm comes from those who use it irresponsibly.
+
+However, I believe it is essential to establish fundamental moral principles to guide the development and use of AI:
+
+- It must not infringe on anyone’s privacy
+- It must not use copyrighted content without consent
+- It must not appropriate ideas, concepts, or theories without citing sources
+- It must not be biased for political or marketing purposes
+- Legality must always be at the center of every conversation
+
+> In recent years, much of the content used to train AIs has been taken from the web without the authors’ consent, often violating copyright. This has been confirmed by various lawsuits and rulings.
+
+This is unacceptable: we cannot talk about progress if fundamental rights are trampled in the name of technology.
+As Voltaire once said:
+
+> The civilization of a country is measured by its prisons.
+
+Today, we might say:
+
+> Civilization is measured by what and how we teach artificial intelligence.
+
+The defense of our rights must start from the ground up, from those who contribute to open-source every day and believe in conscious and responsible sharing. Open-source is not—and never will be—fodder for those who want to train their AI without respect. In recent months, I have noticed—and I am not alone—an increase in unusual traffic on websites, caused by intensive searches from AI crawlers.
+
+Sometimes these crawlers may act in good faith, but often they are part of massive scraping activities. It’s important to note, even for less experienced users, that anyone can use the User-Agent (of the major AIs) and pretend to be someone they are not.
+
+Let’s see, in practical terms, how we can protect ourselves and block these massive requests to our systems.
+
+## How to block OpenAI User-Agents
+
+> Even if you’re not an expert sysadmin, you can follow these steps to protect your site. All configurations are explained simply, and for any questions, you can consult or contribute to the [OpenAI crawlers IP ranges GitHub project](https://github.com/FabrizioCafolla/openai-crawlers-ip-ranges), updated weekly.
+
+In this section, we’ll look at different methods to block OpenAI user-agents or IPs, with practical examples for Nginx and references to major cloud infrastructures.
+
+### Block User-Agent
+
+Blocking the following User-Agents is one of the simplest and most effective ways to limit access by AI crawlers. You can do this directly in your Nginx configuration by adding this rule at the `server` level:
+
+```
+if ($http_user_agent ~* (GPTBot|ChatGPT-User|OAI-SearchBot)) {
+    return 403;
+}
+```
+
+Below are the official agents used by OpenAI:
+
+- **OAI-SearchBot**
+
+  Full user-agent string will contain: `; OAI-SearchBot/1.0; +https://openai.com/searchbot`
+
+- **ChatGPT-User**
+
+  Full user-agent string: `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot`
+
+- **GPTBot**
+
+  Full user-agent string: `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.1; +https://openai.com/gptbot`
+
+You can also block these User-Agents using other tools, depending on your infrastructure:
+
+- [Cloudflare](https://developers.cloudflare.com/waf/tools/user-agent-blocking/)
+- [Cloudfront](https://docs.aws.amazon.com/waf/latest/developerguide/waf-bot-control-example-user-agent-exception.html)
+
+### IP Block
+
+Blocking OpenAI’s official IPs adds another layer of protection. Remember that these IPs can change frequently: update your configuration regularly by checking the GitHub repository, which is updated weekly.
+
+Here’s how to do it with Nginx:
+
+1. Create a file like `/etc/nginx/blocked_ips.conf` and add the list of IPs to block:
+
+   ```
+   deny x.y.z.w;
+   ...
+   ```
+
+2. Add `include /etc/nginx/blocked_ips.conf;` to your `server` block configuration.
+
+You can also apply IP blocks using other tools, depending on your infrastructure:
+
+- [Cloudflare](https://developers.cloudflare.com/learning-paths/secure-internet-traffic/build-dns-policies/create-list/)
+- [Cloudfront](https://docs.aws.amazon.com/waf/latest/developerguide/classic-listing-managed-ips.html)
+- [Akamai](https://techdocs.akamai.com/aura-network-policy/reference/put-blocklist)
+- [Fastly](https://docs.fastly.com/en/guides/using-the-ip-block-list)
+
+### Block spam user-agents
+
+If you want even more granular control, you can block all requests from suspicious User-Agents that do not come from official OpenAI IPs. This advanced Nginx configuration allows you to cross-check User-Agent and IP, blocking anything that doesn’t match the rules.
+
+Example configuration:
+
+```
+geo $allowedipaddr {
+    default             1;
+    20.42.10.176        0; # <-- Official OpenAI IPs
+    172.203.190.128     0; # <-- Official OpenAI IPs
+    51.8.102.0          0; # <-- Official OpenAI IPs
+    ...
+}
+
+map $http_user_agent $block_spam_user_agent {
+    '~*GPTBot'                 $allowedipaddr;
+    '~*ChatGPT-User'           $allowedipaddr;
+    '~*OAI-SearchBot'          $allowedipaddr;
+    default                    0;
+}
+
+server {
+    ...
+    location / {
+      ...
+      if ($block_spam_user_agent) { return 403; }
+    }
+}
+```
+
+> This solution is especially useful if you want to ensure that only real OpenAI bots (and not impostors) can access your site.
+
+## Cloudflare Pay per Crawl
+
+Cloudflare has recently released a great new feature, still in beta, that allows you to monetize visits from AI crawlers to your website. It’s not available to everyone yet, but if you’re interested, you can [request access to the beta](https://www.cloudflare.com/it-it/paypercrawl-signup/).
+
+This is definitely one of the first initiatives I’ve seen in this area, and I’m curious to see how it will evolve—whether other market players will follow suit or if the AI giants will manage to resist these kinds of initiatives.
+
+Some resources for further reading:
+
+- [Introducing pay per crawl: Enabling content owners to charge AI crawlers for access](https://blog.cloudflare.com/introducing-pay-per-crawl/)
+- [What is Pay Per Crawl?](https://developers.cloudflare.com/ai-audit/features/pay-per-crawl/what-is-pay-per-crawl/)
+
+## All OpenAI IPs
+
+- [**List of all IPs**](https://raw.githubusercontent.com/FabrizioCafolla/openai-crawlers-ip-ranges/refs/heads/main/openai/openai-ip-ranges-all.txt)
+
+### ChatGPT User IP
+
+- [**IPs list**](https://raw.githubusercontent.com/FabrizioCafolla/openai-crawlers-ip-ranges/refs/heads/main/openai/openai-ip-ranges-chatgpt-user.txt)
+- **User Agent**: `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot`
+
+### GPTBot IP
+
+- [**IPs List**](https://raw.githubusercontent.com/FabrizioCafolla/openai-crawlers-ip-ranges/refs/heads/main/openai/openai-ip-ranges-gptbot.txt)
+- **User Agent**: `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.1; +https://openai.com/gptbot`
+
+### SearchBot IP
+
+- [**IPs List**](https://raw.githubusercontent.com/FabrizioCafolla/openai-crawlers-ip-ranges/refs/heads/main/openai/openai-ip-ranges-searchbot.txt)
+- **User Agent**: `OAI-SearchBot/1.0; +https://openai.com/searchbot`
+
+## Conclusions
+
+Blocking AI crawlers is not always the best choice: today, these systems have become true advanced search engines and, in some cases, you might want to be included in their results.
+
+**Awareness is key**: knowing who accesses your content, how it is used, and what the risks are. Only then can you make an informed decision about whether to open your doors to AIs, limit them, or block them entirely. What matters is that the choice is yours.
+
+Personally, I believe that defending your digital rights and creativity also means sharing tools and knowledge.
+
+If you have questions, want to share your experience, or suggest other strategies, feel free to contact me or contribute to the project on GitHub.
+
+<FooterBlogPost
+  navigation={{
+    previousArticle: {
+      title: "Docker BuildKit Deep Dive: Optimize Your Build Performance",
+      slug: "/blog/docker-buildkit-deep-dive",
+    },
+  }}
+/>

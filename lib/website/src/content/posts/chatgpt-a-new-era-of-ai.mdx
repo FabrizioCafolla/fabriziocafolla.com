@@ -1,0 +1,116 @@
+---
+title: "ChatGPT the new era of AI - OpenAI"
+description: My vision on ChatGPT and OpenAI. They won’t take away our jobs, but rather they will help us to become more efficient and productive..
+author: Fabrizio Cafolla
+publishDate: 2023-01-17
+tags: ["tech"]
+image: /img/posts/chatgpt-a-new-era-of-ai/preview.jpg
+---
+
+import FooterBlogPost from "@components/FooterBlogPost.astro";
+
+## Introduction
+
+This article comes from my desire to experiment with OpenAI’s ChatGPT.
+
+I was intrigued by the recent hype around it, with some people condemning it while others can’t get enough of it, so I had to test it out for myself to form my own opinion.
+
+The initial idea was to test the power of this AI, but it quickly evolved into an open-source project. I thought about creating a command for performing text translations from the command line using OpenAI’s APIs, so I implemented a Python script that takes in text or a file and then asks ChatGPT to translate it into the desired language.
+
+Nothing special in terms of code, but it gave me a good overview of this technology.
+
+[**GitHub - FabrizioCafolla/openai-chatgpt-opentranslator**](https://github.com/FabrizioCafolla/opentranslator)
+
+![preview](/img/posts/chatgpt-a-new-era-of-ai/preview.jpg)
+
+## ChatGPT overview
+
+ChatGPT, released in November 2022, is a chatbot created by OpenAI, based on the GPT-3.5 language model, meaning it can answer questions, write essays, summarize long texts, translate languages, and even create code. GPT-3 was released in 2020 and in December 2022 GPT-3.5 was released, a high-performing model with the ability to provide human-like conversational responses, trained with over 750GB of data collected from various sources. After reading several sources, I found one that explains the functioning of the model and its training very well (deepen [source](https://www.assemblyai.com/blog/how-chatgpt-actually-works/)).
+
+Algorithms are not public and the data used to train them is not well-defined, or rather, most of the sources are from Common Crawl, Reddit, Books, and Wikipedia, but we don’t know which data was taken into consideration nor whether there are copyrighted data which could make the responses inaccurate or under a license.
+
+It is not said that OpenAI will not make the GPT-3 model open source in the future, as it has already done with the [Whisper](https://github.com/openai/whisper) model for voice recognition, another important aspect, there are models like LaMDA that are still not available to the public but when they are released they will raise the bar even higher. Certainly, the success it is having in terms of use is good for the AI world, even non-professionals are starting to use ChatGPT, some for fun, some out of curiosity and some are starting to integrate it into their work.
+
+The energy cost for the computational calculations of the training is another important factor, the training requires enormous computing power and therefore equal energy consumption, all of which translates into costs for the users (the current APIs are very expensive in my opinion).
+
+## Project
+
+Mine is a small project to interact with the OpenAi API which is accessible only through a token that has to be created from your own [profile](https://beta.openai.com/account/api-keys), if you don’t have a profile you can create it for free, and once created you will have a 3 month “Free trial” with a credit of 18$.
+
+Once you have generated the key copy it and add it to your environment variables so that it is usable by the user in any context.
+
+From the terminal install the [**opentranslator**](https://github.com/FabrizioCafolla/opentranslator) package:
+
+```
+pip install opentranslator
+```
+
+Now you can use the terminal command:
+
+```
+opentranslator --translate english --text "Ciao, mondo!"
+
+opentranslator --translate english --filepath {FILENAME}
+```
+
+This simple command will allow you to translate into all languages supported by ChatGPT directly from the terminal. Be aware that API calls have a variable cost based on the number of characters sent and the complexity of computation, plus there is a maximum character limit per request based on the engine used.
+
+## Considerations
+
+The first consideration I want to make is this: why be afraid of AI?
+
+Many have raised doubts about how this technology can harm humans, thinking, creativity, and many other things that make us feel unique, but I wonder what they are afraid of.
+
+The fact that an AI can do creative drawings does not mean that it is art, the fact that an AI can do summaries does not mean that we will forget how to do them, and the fact that an AI can write code will not make programmers disappear. What scares me more is who uses the technology and not the technology itself.
+
+> Cars didn’t make us forget how to walk, so why should AI make us forget how to think?
+
+All the outraged and scared should fear social networks much more than a technology created to facilitate people in performing more or less complicated tasks.
+
+Revolution can be scary, but it must be faced, because of how much it can change the lives of people with disabilities. Glasses that transcribe lip reading in real time, devices that can alert a blind person to imminent dangers, help dyslexics understand a text, use in the processing of molecules to create and study drugs, and many other ideas that could facilitate and improve everyday life and work.
+
+The future that lies ahead of us gives us the opportunity to use machines to improve our lives and man must find the right symbiosis with them.
+
+Another consideration is the paternity of the answers, as mentioned before, the algorithms are not public and the data used are not clear. This could lead to copyright violations, debates are already being fueled in this regard, and a concrete petition has been made by the artistic world ([article](https://winbuzzer.com/2023/01/16/copyright-lawsuit-against-diffusion-and-midjounrey-led-by-same-team-battling-github-copilot-xcxwbn/)) denouncing applications such as Midjourney for having used works of artists to train the model without the consent of the authors. So in the future, there will be many legal and ethical aspects to be faced before this technology can be defined as usable.
+
+Summing up, I think it is still too early to have an outcome that will radically change the world of work or everyday life, still too immature, but definitely, something that will become more and more performant and accurate in the coming years. We will have to be very careful about the ethics and use of this technology because it could be used for non-legal purposes, or it could bring discrimination in decision-making, and many other things that would harm people or infrastructure. That is why Google and Microsoft, with the LaMDA and VALL-E models, respectively, state that they are tools with a great capacity, but that before they make them accessible they must ensure that they comply with some fundamental principles.
+
+## DALL-E
+
+OpenAI’s DALL-E project is an artificial intelligence system that generates images from textual descriptions. The system was developed using a deep neural network (Deep Learning) and a machine learning technique called “transfer learning”. The system is able to generate realistic images from a textual description, such as “a cat with a cowboy hat”. \*
+
+**Paint an oil painting of a dystopian future similar to Blade Runner**
+
+![dalle-e 1](/img/posts/chatgpt-a-new-era-of-ai/dalle-1.jpg)
+
+**Oil painting on canvas of the Pontine swamp in Victorian style**
+
+![dalle-e 2](/img/posts/chatgpt-a-new-era-of-ai/dalle-2.jpg)
+
+**Human fighting with lucifer, oil on canvas like Michelangelo**
+
+![dalle-e 3](/img/posts/chatgpt-a-new-era-of-ai/dalle-3.jpg)
+
+\* This text was generated by ChatGPT
+
+### Resources
+
+- https://www.forbes.com/sites/bernardmarr/2020/10/05/what-is-gpt-3-and-why-is-it-revolutionizing-artificial-intelligence/?sh=18296ec3481a
+- https://medium.com/geekculture/how-to-detect-if-an-essay-was-generated-by-openais-chatgpt-58bb8adc8461
+- https://www.assemblyai.com/blog/how-chatgpt-actually-works/
+- https://www.springboard.com/blog/data-science/machine-learning-gpt-3-open-ai/
+- https://scholar.harvard.edu/saghafian/blog/analytics-science-behind-chatgpt-human-algorithm-or-human-algorithm-centaur
+- https://www.forbes.com/sites/bernardmarr/2020/10/05/what-is-gpt-3-and-why-is-it-revolutionizing-artificial-intelligence/?sh=18296ec3481a
+
+<FooterBlogPost
+  navigation={{
+    previousArticle: {
+      title: "Open source a new era!",
+      slug: "/open-source-a-new-era",
+    },
+    nextArticle: {
+      title: "Terraform 1.8 — From Zero to Best Practices",
+      slug: "/blog/terraform-from-zero-to-best-practices",
+    },
+  }}
+/>

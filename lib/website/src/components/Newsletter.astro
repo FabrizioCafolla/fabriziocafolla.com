@@ -1,0 +1,473 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  type?: "primary" | "gray" | "white";
+  centered?: boolean;
+  showDescription?: boolean;
+  compact?: boolean;
+}
+
+const {
+  title = "Newsletter",
+  subtitle = "Don't miss out on any of the latest articles. Sign up for the newsletter!",
+  type = "gray",
+  centered = true,
+  showDescription = true,
+  compact = false,
+} = Astro.props;
+---
+
+<!-- Newsletter Component with Brevo Integration -->
+<section
+  class={`newsletter-section ${type ? `newsletter-${type}` : ""} ${centered ? "text-centered" : ""} ${compact ? "newsletter-compact" : ""}`}
+>
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <h2 class="newsletter-title">{title}</h2>
+      {showDescription && <p class="newsletter-subtitle">{subtitle}</p>}
+
+      <!-- Success and Error Messages -->
+      <div id="error-message" class="message-panel error-message">
+        <div class="message-content">
+          <svg class="message-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span class="message-text">Your entry cannot be validated.</span>
+        </div>
+      </div>
+
+      <div id="success-message" class="message-panel success-message">
+        <div class="message-content">
+          <svg class="message-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span class="message-text">Your registration was successful.</span>
+        </div>
+      </div>
+
+      <!-- Newsletter Form -->
+      <div id="sib-container" class="newsletter-form-container">
+        <form
+          id="sib-form"
+          method="POST"
+          action="https://58b98eb2.sibforms.com/serve/MUIFAA6lSKkAogY5UGlFGTqbPRtyAT2gzZVt_C_LYIdR4xzJTbidgPW1C-aELrl_UGLiF4mEKfM-Npm4zGoSuVTGniJYW6XI2nNXZjq42Km7l6Vu5xQxjDfraJQ3jpT1lQvy1OzQOrQyoy-BP7TXuRlbHjVaVVtUcQGplcUhEcm5_FM4pyWcV4w5p4Swtfxjjgq9eR9mx9_K_yWT"
+          data-type="subscription"
+          class="newsletter-form"
+        >
+          <div class="form-field">
+            <label for="EMAIL" class="field-label required">
+              Enter your email address to sign up
+            </label>
+            <input
+              type="email"
+              id="EMAIL"
+              name="EMAIL"
+              placeholder="your@email.com"
+              class="field-input"
+              autocomplete="email"
+              data-required="true"
+              required
+            />
+            <label class="field-error"></label>
+          </div>
+
+          <div class="form-field">
+            <label for="FIRSTNAME" class="field-label"> First Name </label>
+            <input
+              type="text"
+              id="FIRSTNAME"
+              name="FIRSTNAME"
+              placeholder="Your first name"
+              class="field-input"
+              maxlength="200"
+              autocomplete="given-name"
+            />
+            <label class="field-error"></label>
+          </div>
+
+          <div class="form-field">
+            <label for="LASTNAME" class="field-label"> Last Name </label>
+            <input
+              type="text"
+              id="LASTNAME"
+              name="LASTNAME"
+              placeholder="Your last name"
+              class="field-input"
+              maxlength="200"
+              autocomplete="family-name"
+            />
+            <label class="field-error"></label>
+          </div>
+
+          <div class="form-field checkbox-field">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                id="OPT_IN"
+                name="OPT_IN"
+                value="1"
+                class="checkbox-input"
+                required
+              />
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">
+                Accetto le condizioni generali e di ricevere le newsletter
+              </span>
+            </label>
+            <label class="field-error"></label>
+          </div>
+
+          <!-- reCAPTCHA -->
+          <div class="recaptcha-container">
+            <div
+              class="g-recaptcha"
+              data-sitekey="6LdB9YsrAAAAAPPM0-_k_G7HF15sgpjJKDJTkXmZ"
+              data-callback="invisibleCaptchaCallback"
+              data-size="invisible"
+              onclick="executeCaptcha"
+            >
+            </div>
+          </div>
+
+          <button type="submit" class="newsletter-button" form="sib-form">
+            <span class="button-text">Sign up</span>
+            <svg class="button-loader" viewBox="0 0 512 512">
+              <path
+                d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Hidden fields for Brevo -->
+          <input type="text" name="email_address_check" value="" class="hidden-field" />
+          <input type="hidden" name="locale" value="en" />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Newsletter Section */
+  .newsletter-section {
+    padding: 4rem 0;
+    position: relative;
+  }
+
+  .newsletter-compact {
+    padding: 2rem 0;
+  }
+
+  .newsletter-compact .newsletter-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-compact .newsletter-form-container {
+    padding: 1.5rem;
+  }
+
+  .newsletter-primary {
+    background-color: var(--primary);
+    color: var(--white);
+  }
+
+  .newsletter-gray {
+    background-color: var(--gray);
+    color: var(--black);
+  }
+
+  .newsletter-white {
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+  .newsletter-container {
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .text-centered {
+    text-align: center;
+  }
+
+  .newsletter-title {
+    font-family: "Ronzino-Bold", sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+  }
+
+  .newsletter-primary .newsletter-title {
+    color: var(--white);
+  }
+
+  .newsletter-subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  /* Form Container */
+  .newsletter-form-container {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    margin-top: 2rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Form Fields */
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .field-label {
+    font-family: "Ronzino-Bold", sans-serif;
+    font-size: 0.9rem;
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .field-label.required::after {
+    content: " *";
+    color: var(--secondary);
+  }
+
+  .field-input {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all var(--transition);
+    background: var(--white);
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(76, 174, 79, 0.1);
+  }
+
+  .field-input::placeholder {
+    color: var(--gray-dark);
+    opacity: 0.7;
+  }
+
+  /* Checkbox Field */
+  .checkbox-field {
+    margin: 1rem 0;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .checkbox-input {
+    display: none;
+  }
+
+  .checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .checkbox-input:checked + .checkbox-custom {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .checkbox-input:checked + .checkbox-custom::after {
+    content: "✓";
+    color: var(--white);
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .checkbox-text {
+    color: var(--black);
+  }
+
+  /* Submit Button */
+  .newsletter-button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    font-family: "Ronzino-Bold", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: var(--box-shadow);
+    margin-top: 1rem;
+  }
+
+  .newsletter-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .button-loader {
+    width: 16px;
+    height: 16px;
+    display: none;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Message Panels */
+  .message-panel {
+    display: none;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .error-message {
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+  }
+
+  .success-message {
+    background-color: #dcfce7;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+  }
+
+  .message-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .message-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* Field Errors */
+  .field-error {
+    color: var(--secondary);
+    font-size: 0.8rem;
+    display: none;
+    padding: 0.25rem 0;
+  }
+
+  /* Hidden Field */
+  .hidden-field {
+    display: none !important;
+  }
+
+  /* reCAPTCHA Container */
+  .recaptcha-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .newsletter-section {
+      padding: 2rem 0;
+    }
+
+    .newsletter-title {
+      font-size: 2rem;
+    }
+
+    .newsletter-form-container {
+      padding: 1.5rem;
+    }
+  }
+
+  /* Animation */
+  .newsletter-form-container {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<!-- Scripts for Brevo Integration -->
+<script is:inline>
+  // Global variables for Brevo form validation
+  window.REQUIRED_CODE_ERROR_MESSAGE = "Please choose a country code";
+  window.LOCALE = "en";
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
+    "The information provided is invalid. Check the field format and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+  window.GENERIC_INVALID_MESSAGE =
+    "The information provided is invalid. Check the field format and try again.";
+
+  window.translation = {
+    common: {
+      selectedList: "{quantity} list selected",
+      selectedLists: "{quantity} lists selected",
+      selectedOption: "{quantity} selected",
+      selectedOptions: "{quantity} selected",
+    },
+  };
+
+  var AUTOHIDE = Boolean(0);
+</script>
+
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?hl=en"></script>

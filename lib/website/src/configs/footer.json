@@ -1,0 +1,26 @@
+{
+  "logo": {
+    "title": "Fabrizio Cafolla",
+    "url": "/",
+    "cssClasses": "logo-text-footer",
+    "license": "All Rights Reserved"
+  },
+  "items": [
+    {
+      "name": "Privacy Policy",
+      "url": "/privacy-policy"
+    },
+    {
+      "name": "Terms & Conditions",
+      "url": "/terms-and-conditions"
+    },
+    {
+      "icon": "fa:linkedin",
+      "url": "https://www.linkedin.com/in/fabrizio-cafolla/"
+    },
+    {
+      "icon": "fa:github",
+      "url": "https://github.com/FabrizioCafolla"
+    }
+  ]
+}

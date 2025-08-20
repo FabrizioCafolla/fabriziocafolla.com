@@ -1,0 +1,370 @@
+---
+title: "Terraform 1.8 — Deep dive into the Terraform State as an Expert"
+description: "This article aims to delve into the details of the Terraform state to better understand how it works and its limitations."
+author: Fabrizio Cafolla
+publishDate: 2024-05-14
+tags: ["tech"]
+image: /img/posts/terraform-a-deep-dive/preview.jpg
+---
+
+import FooterBlogPost from "@components/FooterBlogPost.astro";
+
+## Scope
+
+This article aims to delve into the details of the Terraform state to better understand how it works and its limitations. If you are unfamiliar with Terraform, I recommend reading the article “[Terraform 1.8 — From Zero to Best Practices](/blog/terraform-from-zero-to-best-practices)”, which gives an overview of how Terraform works and its best practices.
+
+![preview](/img/posts/terraform-a-deep-dive/preview.jpg)
+
+## Hands-on
+
+First, let’s create a new folder and insert the following files to simply create an IAM user with associated credentials. This will serve us to explain all the following examples.
+
+Requirements:
+
+- AWS IAM User (with policy to create a user)
+- Terraform ≥ 1.7
+
+**main.tf**
+
+```
+resource "aws_iam_user" "test" {
+  name = "test-user"
+}
+
+resource "aws_iam_access_key" "test" {
+  user = aws_iam_user.test.name
+}
+```
+
+**terraform.tf**
+
+```
+terraform {
+  required_version = ">= 1.7"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region     = "eu-central-1"
+}
+```
+
+**outputs.tf**
+
+```
+output "test_access_key" {
+  value     = aws_iam_access_key.test.id
+  sensitive = true
+}
+
+output "test_secret_key" {
+  value     = aws_iam_access_key.test.secret
+  sensitive = true
+}
+output "test_user_name" {
+  value = aws_iam_user.test.name
+}
+```
+
+We initialize and deploy the newly defined infrastructure
+
+```
+$ terraform init
+$ terraform plan
+$ terraform aply
+```
+
+## Sensitive data
+
+The first concept we will address is sensitive data. A concept that Terraform has been repeatedly called upon to fix, is currently still unresolved, as we will see later the sensitive data created through Terrafarom example keys and credentials are saved in the `terraform.state` and are accessible to anyone who owns it.
+
+A solution is to always save the state in a remote backend and encrypt it, but this still does not allow access segregation, because if I wanted to exclude some devs from seeing the credentials inside the `terraform.state` I could not because they are accessible to everyone.
+
+## Outputs
+
+We can note that if we output values with the `sensitive = true` property, they will be hidden if we execute:
+
+```
+$ terraform output
+
+test_access_key = <sensitive>
+test_secret_key = <sensitive>
+test_user_name = "test-user"
+```
+
+But if we run the same command adding the `-json` option, we notice that the outputs will be printed clearly:
+
+```
+$ terraform output -json
+
+{
+  "test_access_key": {
+    "sensitive": true,
+    "type": "string",
+    "value": "FAKEVALUEFOREXAMPLE" # Print real value
+  },
+  "test_secret_key": {
+    "sensitive": true,
+    "type": "string",
+    "value": "FAKEVALUEFOREXAMPLE" # Print real value
+  },
+  "test_user_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "test-user"
+  }
+}
+```
+
+## State
+
+The state, regardless of the output definition, will always save the data in `terraform.state`. We can retrieve information from the state at any time using these commands:
+
+```
+# Print all terraform.state
+$ terraform show -json
+
+# Get resource values directly
+$ terraform show -json | jq '.values.root_module.resources[] | select(.address == "RESOURCE_SERVICE.RESOURCE_NAME")'
+
+# Get module values directly
+$ terraform show -json | jq '.values.root_module.child_modules[] | select(.address == "module.MODULE_NAME")'
+```
+
+In our example, we can see that by executing the command:
+
+```
+$ terraform show -json | jq '.values.root_module.resources[] | select(.address == "aws_iam_access_key.test")'
+
+{
+  "address": "aws_iam_access_key.test",
+  "mode": "managed",
+  "type": "aws_iam_access_key",
+  "name": "test",
+  "provider_name": "registry.terraform.io/hashicorp/aws",
+  "schema_version": 0,
+  "values": {
+    "create_date": "2024-05-09T08:29:54Z",
+    "encrypted_secret": null,
+    "encrypted_ses_smtp_password_v4": null,
+    "id": "FAKEVALUEFOREXAMPLE", # Print real value
+    "key_fingerprint": null,
+    "pgp_key": null,
+    "secret": "FAKEVALUEFOREXAMPLE", # Print real value
+    "ses_smtp_password_v4": "FAKEVALUEFOREXAMPLE", # Print real value
+    "status": "Active",
+    "user": "test-user"
+  },
+  "sensitive_values": {
+    "secret": true,
+    "ses_smtp_password_v4": true
+  },
+  "depends_on": [
+    "aws_iam_user.test"
+  ]
+
+```
+
+## Encrypt terraform state
+
+To encrypt the `terraform.state` file, it is possible to use a remote backend that supports encryption. For example, the AWS S3 backend supports this using KMS keys.
+
+The following backend configuration can be used to enable encryption of the `terraform.state` file:
+
+```
+terraform {
+  backend "s3" {
+    bucket = "mybucket"
+    key    = "path/to/my/key"
+    region = "us-west-2"
+    encrypt = true
+  }
+}
+```
+
+But remember, anyone with access to the state can still access sensitive data
+
+> So be careful what you create and who has access to that information.
+
+## Manipulating the state file
+
+Let’s move on to manipulating the state through various commands or resource blocks (if you don’t know what they are read this)
+
+### Import
+
+Terraform allows you to insert existing components and services into your infrastructure using the **import** feature. You can import resources in two ways, the first through the CLI and the second through the function.
+
+**CLI**Add the resource to the `main.tf` file you want to import, it must have the same parameters as it is declared, in this example I want to import a test-user2 inside the previously created infrastructure:
+
+```
+resource "aws_iam_user" "test_two" {
+  name = "test-user2"
+}
+```
+
+I then import the resource with the `terraform import` command
+
+```
+$ terraform import aws_iam_user.test_two test-user2
+
+aws_iam_user.test_two: Importing from ID "test-user2"...
+aws_iam_user.test_two: Import prepared!
+  Prepared aws_iam_user for import
+aws_iam_user.test_two: Refreshing state... [id=test-user2]
+
+Import successful!
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.
+```
+
+Please note that once imported it will be managed by your infrastructure, so if you delete the resource from Terraform it will automatically be deleted from the provider.
+
+**Resource block**Or you can simply use the resource block [import](https://developer.hashicorp.com/terraform/language/import#syntax). To keep track of the imports performed, I recommend creating an `import.tf` file and placing the blocks in it
+
+```
+import {
+  to = aws_iam_user.test_two
+  id = "test-user2"
+}
+
+resource "aws_iam_user" "test_two" {
+  name = "test-user2"
+}
+```
+
+Once you have entered the import block and defined the resource as shown above, the plan will tell you that Terraform is trying to import the resource
+
+```
+$ terraform plan
+
+aws_iam_user.test_two: Preparing import... [id=test-user2]
+aws_iam_user.test_two: Refreshing state... [id=test-user2]
+aws_iam_user.test: Refreshing state... [id=test-user]
+aws_iam_access_key.test: Refreshing state... [id=***]
+
+Terraform will perform the following actions:
+  # aws_iam_user.test_two will be imported
+    resource "aws_iam_user" "test_two" {
+        arn       = "arn:aws:iam::***:user/test-user2"
+        id        = "test-user2"
+        name      = "test-user2"
+        path      = "/"
+        tags      = {}
+        tags_all  = {}
+        unique_id = "***"
+    }
+Plan: 1 to import, 0 to add, 0 to change, 0 to destroy.
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
+```
+
+### Move
+
+The move allows us to rename the defined resource.
+
+We now have three resources defined in our terraform.state. To be sure, we simply run the `terraform state list` command, which will give us this output:
+
+```
+$ terraform state list
+
+aws_iam_access_key.test
+aws_iam_user.test
+aws_iam_user.test_two
+```
+
+**CLI** Using the `terraform state mv` command, we can rename the resource
+
+```
+$ terraform state mv aws_iam_user.test_two aws_iam_user.test_two_mv
+
+Move "aws_iam_user.test_two" to "aws_iam_user.test_two_mv"
+Successfully moved 1 object(s).
+$ terraform plan
+
+aws_iam_user.test_two_mv: Refreshing state... [id=test-user2]
+aws_iam_user.test: Refreshing state... [id=test-user]
+aws_iam_access_key.test: Refreshing state... [id=***]
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+  - destroy
+Terraform will perform the following actions:
+  # aws_iam_user.test_two will be created
+  + resource "aws_iam_user" "test_two" {
+      + arn           = (known after apply)
+      + force_destroy = false
+      + id            = (known after apply)
+      + name          = "test-user2"
+      + path          = "/"
+      + tags_all      = (known after apply)
+      + unique_id     = (known after apply)
+    }
+  # aws_iam_user.test_two_mv will be destroyed
+  # (because aws_iam_user.test_two_mv is not in configuration)
+  - resource "aws_iam_user" "test_two_mv" {
+      - arn       = "arn:aws:iam::***:user/test-user2" -> null
+      - id        = "test-user2" -> null
+      - name      = "test-user2" -> null
+      - path      = "/" -> null
+      - tags      = {} -> null
+      - tags_all  = {} -> null
+      - unique_id = "***" -> null
+    }
+Plan: 1 to add, 0 to change, 1 to destroy.
+```
+
+As you can see, the move was successful but the plan tells us that the user resource `test_two_mv` would be destroyed and `test_two` would be created because Terraform does not have the updated `main.tf` file, you just have to edit the file by hand, and the plan will give you:
+
+`No changes. Your infrastructure matches the configuration.`
+
+**Resource block**All you need to do is create a `moved.tf` file and use the [moved](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring#moved-block-syntax) resource block (the name is not mandatory, you can choose whatever you want) where you can insert all the moves you make. Once you have added the following script, change the module name from ‘a’ ⇒ ‘b’ and then you can run the `plan` and finally `apply` it.
+
+```
+moved {
+	from = aws_iam_user.test_two
+	to   = aws_iam_user.test_two_mv
+}
+```
+
+### Delete
+
+You may want to remove a resource from the terraform state and no longer manage it with that project, this can happen for several reasons, for example, you may want to manage the resource in another project and then remove the resource from project A and import it into project B.
+
+Note that deleting a resource from its state is not the same as deleting it from its provider. It just means that it is removed from the Terraform state and you no longer have control over it.
+
+**CLI**
+
+```
+$ terraform state rm aws_iam_user.test_two_mv
+
+Removed aws_iam_user.test_two_mv
+Successfully removed 1 resource instance(s).
+```
+
+**Resource Block**Or with the resource block [removed](https://developer.hashicorp.com/terraform/language/resources/syntax#removing-resources)
+
+```
+removed {
+	from = aws_instance.example
+	lifecycle {
+		destroy = false
+	}
+}
+```
+
+<FooterBlogPost
+  navigation={{
+    previousArticle: {
+      title: "Terraform from Zero to Best Practices",
+      slug: "/blog/terraform-a-deep-dive",
+    },
+    nextArticle: {
+      title: "New Relic 101 — Why and what is there to know?",
+      slug: "/blog/new-relic-101",
+    },
+  }}
+/>
