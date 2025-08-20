@@ -1,0 +1,197 @@
+---
+title: "New Relic 101 — Why and what is there to know?"
+description: "New Relic is a software analytics product that helps you analyze and troubleshoot your software performance, and improve your overall…"
+author: Fabrizio Cafolla
+publishDate: 2024-06-23
+tags: ["tech"]
+image: /img/posts/new-relic-101/preview.jpg
+---
+
+import FooterBlogPost from "@components/FooterBlogPost.astro";
+
+> New Relic is a software analytics product that helps you analyze and troubleshoot your software performance and improve your overall software operations.
+
+## Monitoring
+
+Monitoring collects regular data about systems so performance can be viewed and tracked. Monitoring aims to quickly know when something goes wrong so it can be resolved before impacting users and business functions. The type of monitoring most common today is called application performance monitoring (or APM). Key questions:
+
+- _Is the service online?_
+- _Is the service up and running?_
+- _Is the service performing?_
+
+## Key incident management KPIs
+
+**MTTD** (Mean Time To Detect): is the average time elapsed between the start of a problem and until it is reported to the team (does not include time to resolve the problem)
+
+**MTTR** (Mean Time To Resolution): is the elapsed time between revealing the problem until the system is fixed completely (Ideally, this time includes the duration to fix it and implementation so that it does not happen again)
+
+## Monitoring Methods
+
+**Red Method** (Service layer):
+
+- Rate requests per second
+- Errors failed request
+- Duration response latency
+
+**Use Method** (Infrastructure layer):
+
+- Resource utilization (i/o disk, CPU usage, etc)
+- Resource saturation
+- Errors of the physical resource (finished disk etc)
+
+**Four Golden Signals Method** (Service & Infrastructure layer):
+
+- Response latency
+- Traffic (number of requests)
+- Errors
+- Resource Saturation.
+
+**Core Web Vitals** (UX Layer):
+
+- Page/app loading
+- Responsiveness/Delay of the page/app
+- Stability
+
+## Observability
+
+> Observability is the practice of instrumenting systems to collect usable data that indicates not only when and where a problem occurred, but more importantly, why it occurred.
+
+> “Observability is the capability to allow a human to ask and answer questions about the system.”
+
+Observability is constantly evolving, so yes there is a need to better manage raw data. So in addition to MELT, it is also possible to consider:
+
+- Profiles: The generation of performance profiles that provide details about the resources used by an application or system at a given time. Performance profiling is a technique that analyzes application behavior in terms of CPU usage, memory, function execution times, and more. With Continuous Profiling, this analysis process is performed continuously, often in real-time
+- Exceptions
+
+### Observability vs. Monitoring
+
+Monitoring and observability are not two different competing solutions. Monitoring is an important action to achieve observability.
+
+Monitoring is a verb. It is symptom-oriented. It can identify when something is wrong and where. Observability is a noun. It is a type of approach that allows one to ask why something is wrong. It provides the flexibility to investigate “unknown unknowns” on the fly.
+
+### Telemetry Data MELT
+
+- Metrics: aggregation of events
+- Events: records when an action occurs
+- Logs: records in detail what happens in the event
+- Traces: the sequence of processes that occur in one event (and may trigger others)
+
+### Agent
+
+Is software that enables the collection of MELT data and through configurations sends it to an observability platform. There are four types of agents:
+
+- APM for server-side applications
+- Browser for browser applications
+- Mobile for mobile applications
+- Infrastructure for hosts and on-host integration
+
+![New Relic logo](/img/posts/new-relic-101/preview.jpg)
+
+## NewRelic 101
+
+- **APM Agent**: application code-side metrics collection, an agent is added at runtime to the app that allows MELT to be sent to Newrelic
+- **Infrastructure Agent**: system side metrics collection, installed on the machine and allows to do log forwarding, send system metrics (also bootable in k8s and docker)
+- **Browser Agent**: ux browser side metrics collection, is a javascript agent that runs from the user browser and instruments performance (Core web vitals)
+- **Mobile Agent**: collection MELT and crash analytics, installable through SDK (Apple or Android)
+- **Cloud Agent**: sends data related to Cloud services (AWS, Azure, and GCP).
+- **Networking Agent**: monitors network flows of devices and SNMP
+
+### Entity
+
+Entities are anything that is entered on NewRelic and carries data with it. Each entity has an **entity GUID** that identifies it. An entity's data can be any host, application, etc. Finally, entities can be related to each other.
+
+**In detail, the entity shows**
+
+- Related entities
+- Service Maps (what services host, calls, interact with)
+- Distributed Traces
+- Queries with NerdGraph
+
+**Grouping entities can be done with**
+
+- Tags
+- Workloads (logical groups based on metadata)
+
+**Explorer Entity**
+
+- [List](https://one.eu.newrelic.com/nr1-core?account=3540246) of entities in filterable table format
+- [Navigator](https://one.eu.newrelic.com/nr1-core/navigator/home?account=3540246&duration=1800000) list of entities to find issues based on alerts (green = good, red = error, yellow = warning, gray = entity without alert)
+- [Lookout](https://one.eu.newrelic.com/nr1-core/lookout/recent-deviations?account=3540246&duration=1800000) usage and performance of entities.
+
+### Type of Data
+
+**Browser**
+
+- Allows monitoring of application pages.
+- Keeps track of:
+- of the loading times of HTML/js/img components
+- Of errors that occur on the client side
+- Of the Ajax calls that occur on the page
+- Of user interactions
+- of the Geographics of the requests
+
+**APM**
+
+- Allows monitoring of application performance
+- Keeps track:
+- of errors
+- of throughput
+- of response times
+- of the transactions that occur in the call
+- the distributed traces
+
+**Logs**
+
+- Allows you to read application logs (filterable by key/value)
+- Keeps track:
+- Of what the application writes to the logs
+- Of the link between logs and Traces
+
+**Host**
+
+- It lets you monitor the host where the application is running.
+- Keeps track:
+- of the complete system view (storage, network, processes)
+- Of the services and containers that the host contains
+
+**Alerts**
+
+- Allows notifications to be sent based on: logs, metrics, or synthetic check
+
+**Synthetics**
+
+- Allows batch monitoring by performing predetermined actions.
+
+**NRQL** (NewRelic Query Language)
+
+- Allows queries to be performed on all data in NewRelic.
+- Specific components can be created for inclusion in dashboards
+
+**APM**
+
+Instrumenting APMs first you need to create an “INGEST-LICENSE KEY” then depending on the application language follow the configuration [new relic](https://onenr.io/0BQr09m02RZ)
+
+To retrieve the information go to the AMP entity or run a Query with `FROM Transaction`
+
+Docs: [link](https://docs.newrelic.com/docs/new-relic-solutions/best-practices-guides/full-stack-observability/apm-best-practices-guide/)
+
+**Browser**
+
+Instruct the Browser you have to go to APM do the `add data` search browser and start the procedure (you can hook it to an APM app). After the procedure is finished it will generate a snippet to put in the index of the frontend app.
+
+To retrieve the information you can do a Query with `FROM PageView`
+
+Docs: [link](https://docs.newrelic.com/docs/browser/new-relic-browser/getting-started/compatibility-requirements-browser-monitoring/)
+
+<FooterBlogPost
+  navigation={{
+    previousArticle: {
+      title: "Terraform 1.8 — Deep dive into the Terraform State as an Expert",
+      slug: "/blog/terraform-a-deep-dive",
+    },
+    nextArticle: {
+      title: "Open Source Day 2025",
+      slug: "/blog/open-source-day-2025",
+    },
+  }}
+/>

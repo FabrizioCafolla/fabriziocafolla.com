@@ -1,0 +1,423 @@
+---
+import { Icon } from "astro-icon/components";
+import { Button } from "@walle/components";
+import { ArticleNavigation } from "@walle/components";
+import type { ArticleNavigation as ArticleNavigationInterface } from "@walle/components/features/Blog/ArticleNavigation.astro";
+
+export interface ReferralLink {
+  name: string;
+  description: string;
+  link?: string;
+  code?: string;
+  reward: string;
+}
+
+export interface Props {
+  referralLinks?: ReferralLink[];
+  navigation: ArticleNavigationInterface;
+}
+
+const defaultReferralLinks: ReferralLink[] = [
+  {
+    name: "Airbnb",
+    description: "Receive 50$ when you join",
+    link: "https://www.airbnb.com/c/4sbX6pr38NHLyA9W?unique_share_id=17051f7d-e308-4109-b50a-60b76584d81e",
+    reward: "50$",
+  },
+  {
+    name: "Revolut",
+    description: "Digital banking made simple",
+    link: "https://revolut.com/referral/?referral-code=fabrizkc6s!JUL1-25-AR-L1&geo-redirect",
+    reward: "Free card",
+  },
+  {
+    name: "Airalo eSIM",
+    description: "Stay connected while traveling",
+    code: "FABRIZ2683",
+    reward: "3$",
+  },
+  {
+    name: "TheFork",
+    description: "Discover and book restaurants",
+    code: "7DA38543",
+    reward: "€10",
+  },
+  {
+    name: "Trade Republic",
+    description: "Invest, spend, and save smartly",
+    link: "https://refnocode.trade.re/q4rvc8f8",
+    code: "q4rvc8f8",
+    reward: "10$",
+  },
+];
+
+const { referralLinks = defaultReferralLinks, navigation } = Astro.props;
+---
+
+<ArticleNavigation navigation={navigation} />
+<div class="blog-footer-content">
+  <!-- Referral Section -->
+  <section class="blog-footer-content__referrals" aria-label="Referral links">
+    <div class="referrals-header">
+      <h3 class="referrals-title">Referral Partners</h3>
+      <p class="referrals-description">
+        Support the blog and get rewards by using these referral links and codes
+      </p>
+    </div>
+
+    <div class="referrals-grid">
+      {
+        referralLinks.map((referral) => (
+          <div class="referral-card">
+            <div class="referral-card__header">
+              <h4 class="referral-card__name">{referral.name}</h4>
+              {referral.reward && <span class="referral-card__reward">{referral.reward}</span>}
+            </div>
+            <p class="referral-card__description">{referral.description}</p>
+            <div class="referral-card__actions">
+              {referral.link ? (
+                <Button
+                  text="Get Started"
+                  link={referral.link}
+                  type="secondary"
+                  iconName="fa:external-link"
+                  target="_blank"
+                  size="small"
+                />
+              ) : (
+                ""
+              )}
+              {referral.code && (
+                <div class="referral-card__code">
+                  <span class="referral-card__code-label">Code:</span>
+                  <code class="referral-card__code-value">{referral.code}</code>
+                  <button
+                    class="referral-card__copy-btn"
+                    data-code={referral.code}
+                    aria-label={`Copy code ${referral.code}`}
+                  >
+                    <Icon name="fa:copy" class="copy-btn__icon" />
+                    <span class="copy-btn__text">Copy</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section class="blog-footer-content__feedback" aria-label="Feedback section">
+    <div class="feedback-card">
+      <div class="feedback-card__header">
+        <h3 class="feedback-card__title">
+          <Icon name="fa:heart" class="feedback-card__icon" />
+          Questions & Feedback
+        </h3>
+      </div>
+      <p class="feedback-card__description">
+        Have questions, suggestions, or feedback? I'd love to hear from you! Every piece of
+        constructive feedback helps me improve.
+      </p>
+      <Button
+        text="Send Feedback"
+        link="https://forms.gle/ZsirxCiXF735kVrT8"
+        type="primary"
+        iconName="fa:external-link"
+        target="_blank"
+        size="medium"
+      />
+    </div>
+  </section>
+</div>
+
+<style>
+  .blog-footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Card Sections */
+  .blog-footer-content__feedback,
+  .blog-footer-content__referrals {
+    margin-bottom: 1rem !important;
+    padding: 1.5rem !important;
+  }
+
+  .feedback-card {
+    padding: 2rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+  }
+
+  .feedback-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .feedback-card__header {
+    margin-bottom: 1rem;
+  }
+
+  .feedback-card__title {
+    margin: 0 0 1rem 0 !important;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Ronzino-Medium", sans-serif;
+  }
+
+  .feedback-card__icon {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+  }
+
+  .feedback-card__description {
+    color: var(--gray-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* Referrals Section */
+  .referrals-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .referrals-title {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: "Ronzino-Medium", sans-serif;
+  }
+
+  .referrals-description {
+    margin: 0;
+  }
+
+  .referrals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .referral-card {
+    padding: 1.5rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    background: var(--white);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+  }
+
+  .referral-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+  }
+
+  .referral-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .referral-card__name {
+    margin: 0;
+    color: var(--primary-dark);
+    font-size: 1.125rem;
+    font-family: "Ronzino-Medium", sans-serif;
+  }
+
+  .referral-card__reward {
+    background: var(--secondary);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: "Ronzino-Medium", sans-serif;
+  }
+
+  .referral-card__description {
+    color: var(--gray-dark);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .referral-card__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .referral-card__code {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--gray);
+    border-radius: 6px;
+    font-size: 0.875rem;
+  }
+
+  .referral-card__code-label {
+    color: var(--gray-dark);
+    font-weight: 500;
+  }
+
+  .referral-card__code-value {
+    font-family: "NectoMono", monospace;
+    background: var(--primary);
+    color: var(--white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .referral-card__copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--gray-dark);
+    color: var(--white);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: "Ronzino-Medium", sans-serif;
+  }
+
+  .referral-card__copy-btn:hover {
+    background: var(--primary);
+  }
+
+  .copy-btn__icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .feedback-card {
+      padding: 1.5rem;
+    }
+
+    .referrals-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .referral-card {
+      padding: 1rem;
+    }
+
+    .referral-card__header {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .referral-card__code {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .feedback-card,
+    .referral-card {
+      transition: none;
+    }
+
+    .feedback-card:hover,
+    .referral-card:hover {
+      transform: none;
+    }
+  }
+
+  /* Focus styles */
+  .referral-card__copy-btn:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  // Add copy to clipboard functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const copyButtons = document.querySelectorAll(".referral-card__copy-btn");
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async function (event) {
+        event.preventDefault();
+
+        const button = event.currentTarget as HTMLButtonElement;
+        const code = button.getAttribute("data-code");
+        const textSpan = button.querySelector(".copy-btn__text") as HTMLElement;
+
+        if (!code || !textSpan) return;
+
+        try {
+          // Try modern clipboard API first
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(code);
+          } else {
+            // Fallback for older browsers
+            const textArea = document.createElement("textarea");
+            textArea.value = code;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+          }
+
+          // Visual feedback
+          const originalText = textSpan.textContent;
+          const originalBg = button.style.background;
+
+          textSpan.textContent = "Copied!";
+          button.style.background = "var(--primary)";
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            textSpan.textContent = originalText;
+            button.style.background = originalBg;
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy: ", err);
+
+          // Show error feedback
+          const originalText = textSpan.textContent;
+          textSpan.textContent = "Error!";
+          button.style.background = "var(--secondary)";
+
+          setTimeout(() => {
+            textSpan.textContent = originalText;
+            button.style.background = "";
+          }, 2000);
+        }
+      });
+    });
+  });
+</script>

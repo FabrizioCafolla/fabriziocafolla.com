@@ -1,0 +1,219 @@
+---
+title: "Terraform 1.8 — From Zero to Best Practices"
+description: "Terraform by HashiCorp is an IaC tool that allows you to manage your cloud and on-premise infrastructure in an easy and maintainable way…"
+author: Fabrizio Cafolla
+publishDate: 2024-05-13
+tags: ["tech"]
+image: /img/posts/terraform-from-zero-to-best-practices/preview.jpg
+---
+
+import FooterBlogPost from "@components/FooterBlogPost.astro";
+
+## Overview
+
+Terraform by HashiCorp is an IaC (Infrastructure as Code) tool that allows you to manage your cloud and on-premise infrastructure easily and maintainably. It features a human-readable syntax that enables you to maintain, evolve, and track your infrastructure by automating processes through reusable modules and configurations.
+
+Another great strength is the **community**, one of the most active in the tech scene, thanks to the support and involvement of all the big companies offering cloud services.
+
+![preview](/img/posts/terraform-from-zero-to-best-practices/preview.jpg)
+
+## Operations
+
+Terraform uses the concept of **Providers,** they are in charge of making API calls to the respective service provider. So in our infrastructure, we will choose the appropriate providers to implement the API calls of our service provider, for example, if we wanted to implement an AWS service, we would simply use the `hashicorp/aws` provider
+
+Thanks for reading Fabrizio Cafolla! Subscribe for free to receive new posts and support my work.
+
+## Workflow
+
+- **Write**: Define your resources following best practices.
+- **Plan**: Execute your infrastructure plan, this will create a new desired state that Terraform will try to apply.
+- **Apply**: Terraform performs the operations defined by the plan in the correct order, respecting the various dependencies.
+
+A base Terraform project contains a `providers.tf` file and a `main.tf` file. In the first one, the providers to be installed are defined, in the second one, the resources to be created using the modules provided by the installed providers are defined. The first thing to do is to initialize the environment with `terraform init`. This process involves several actions:
+
+1. **Download of providers**: Terraform downloads the plugins of the providers specified in your configuration file (for example, AWS, Azure, GCP, etc.).
+2. **Backend Initialization**: If you have configured a backend for remote state storage, Terraform initializes the connection to the backend. By default, if not specified, the state is saved in a local folder of the filesystem.
+3. **Initialization of modules**: If you are using Terraform modules, `terraform init` checks the modules defined in your configuration file and downloads/installs them (if not already present) so that they are available for use.
+4. **Initialization of the local provider**: Terraform may require the initialization of any local providers, such as the `random` provider, used to generate random values during resource creation.
+5. **Dependency-Check**: Terraform checks that all necessary dependencies are present and configured correctly.
+
+## Terraform State
+
+The Terraform state is a file that contains information related to the resources created in your infrastructure. This allows Terraform to know which resources are under its control and when to update or delete them. By default, it is generated under the name `terraform.state` and placed in the folder where it is initialized, it is only generated after the execution of the `apply` command and it is in JSON format.
+
+When the `plan` is executed instead, the current state is compared with the new one containing the changes made, in this way, Terraform will know what to create, update, or delete from the infrastructure.
+
+### Saving terraform.state
+
+The state file can be saved locally or can be saved in remote storage space (S3, Azure Blob Storage, Google Cloud Storage, or even a service like Terraform Cloud or Terraform Enterprise). Remote storage has many advantages, including:
+
+- Working simultaneously on the same project
+- Avoid human errors in modifying the file
+- Easy use in CI/CD
+
+By defining a `backend.tf` you can choose the storage configuration that best suits your needs (S3, Terraform Cloud, etc...).
+
+A good practice is to isolate `tfstate` based on the environment and the application domain, this allows for greater security and less chance of conflicts, to do this you can use a folder structure or workspaces.
+
+In `terraform.state` it is also possible to save outputs that allow exposing useful information to other infrastructures or for debugging.
+
+### tfstate interaction
+
+The state can also be used by other infrastructures to retrieve useful information.
+
+Suppose we have `Infra A` that creates a Database and `Infra B` that needs the endpoint to access the Database. In this case, `Infra B` through the `terraform_remote_state` function can retrieve the state of `Infra A` access the output endpoint, and use it for its scope.
+
+It is also possible to interact with the state of an infrastructure through CLI using the command `terraform state` which allows to retrieve info, import externally created resources, or remove them.
+
+## Terraform state deep dive
+
+Learn more about `terraform.state`, its potential, and its limitations.
+
+Read more: [Terraform 1.8 — Deep dive into the Terraform State as an Expert](/blog/terraform-a-deep-dive)
+
+## Terraform Resource Lifecycle
+
+A resource in Terraform is the definition of an infrastructure component with configuration values (based on the type of resource). When the resource is defined within the code, the resource object does not exist until `tf apply` is executed.
+
+The resource can be created, modified, or destroyed depending on the difference between the current state and the desired state (generated by the `tf plan`). At the end of the apply, the `terraform.state` will be updated and the resource will be added, modified, or removed from it (and the same will occur on the service provider).
+
+Terraform can apply one of the following actions to the resource object:
+
+- **Create**: Create a new object with defined values
+- **Destroy**: Delete the object
+- **Update-in-place**: Update the object when the defined resource changes settings in the code.
+- **Destroy and recreate**: Delete and recreate the object this happens for some types of resources
+
+## Hands-On
+
+The structure of a Terraform project varies based on the requirements and needs of the project itself. But if we were to define what the standard files and folders are, this would be the basic representation of a project:
+
+```
+.
+├── env/
+│   ├── dev.tfvars
+│   ├── ...
+│   ├── qa.tfvars
+│   └── prod.tfvars
+├── modules/
+│   ├── ...
+├── backend.tf
+├── main.tf
+├── provider.tf
+├── version.tf
+├── variables.tf
+├── output.tf
+├── README.md
+```
+
+- [**provider.tf**](http://provider.tf/): contains the definition of the providers
+- [\*\*version.tf](https://developer.hashicorp.com/terraform/language/settings):\*\* contains the terraform block
+- [**main.tf**](http://main.tf/): contains the infrastructure defined through the resource blocks that will be deployed
+- [**variables.tf**](http://variables.tf/): contains the declaration of variables that can be used by the resource block
+- [**output.tf**](http://output.tf/): contains the definition of the outputs that will be saved on the tfstate
+- **env/\*.tfvars**: contains the key-value definition of the variables that serve the infrastructure. They are usually divided based on the environment
+- [**README.md**](http://readme.md/): contains the description of the infrastructure and its operation
+- **modules/**: is the folder that contains all the components of the infrastructure. Modules (or components) are created that implement a logic that can then be reused within the infrastructure or in others. This also allows for greater code readability.
+
+It should be noted that not all files are required and do not necessarily have to have the indicated names, but this is generally the standard convention with which a project is structured.
+
+### Coding
+
+The goal of the project is to create a local k8s infrastructure and delpoy microservices using Terraform.
+
+https://github.com/FabrizioCafolla/kubernetes-terraform-demo
+
+The project is a monorepo that allows the developer to create, run, and test microservices locally. Let’s see some parts:
+
+**.pre-commit-yml**
+
+The pre-commit tool allows you to run scripts when git executes hooks (for example commit or push). In particular, this configuration performs security checks and lint
+
+```
+repos:
+  - repo: <https://github.com/gitleaks/gitleaks>
+    rev: v8.18.2
+    hooks:
+      - id: gitleaks
+  - repo: <https://github.com/pre-commit/pre-commit-hooks>
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        stages: [pre-commit]
+      - id: end-of-file-fixer
+        stages: [pre-commit]
+      - id: check-yaml
+        stages: [pre-commit]
+      - id: requirements-txt-fixer
+        stages: [pre-commit]
+  - repo: <https://github.com/antonbabenko/pre-commit-terraform>
+    rev: v1.88.0
+    hooks:
+      - id: terraform_tflint
+      - id: terraform_fmt
+      - id: terraform_checkov
+        args:
+          - --args=--quiet
+          - --args=--skip-check CKV_K8S_43
+          - --args=--skip-check CKV_K8S_15
+```
+
+**localstack/run.sh**
+
+This is the entry point of the project that allows you to manage the entire local infrastructure simply as it takes care of:
+
+1. Starting Minikube and dependencies
+2. Initializing the common terraform infrastructure for all microservices
+3. Deploying all microservices (and their infrastructure) on the local cluster
+
+**microservices/**
+
+This is where the microservices of your infrastructure reside. Each folder corresponds to a microservice so you can use any language it is OBLIGATORY to create:
+
+- `Dockerfile` that creates the image of the microservice
+- `infrastructure` folder containing the terraform **main.tf**, the various modules if needed, and the env folder with the tfvars. The main file should retrieve the state of the shared infrastructure so that the shared resources can be accessed.
+
+**infrastructure/**
+
+The `infrastructure` folder is the basic structure of our cluster. Here you can add all the services and containers common to all microservices. By default, it creates a namespace.
+
+## Best Practices & Tools
+
+Many tools allow correct project management, the ones I found most useful are the following:
+
+### tfenv
+
+This is a tool that allows transparent management of the Terraform version.
+
+### tflint
+
+TFLint is a framework and each feature is provided by plugins, the key features are as follows:
+
+Find possible errors (like invalid instance types) for Major Cloud providers (AWS/Azure/GCP). Warn about deprecated syntax and unused declarations. Enforce best practices, naming conventions
+
+### checkov
+
+Checkov scans cloud infrastructure configurations to find misconfigurations before they’re deployed.
+
+Checkov uses a common command line interface to manage and analyze infrastructure as code (IaC) scan results across platforms such as Terraform, CloudFormation, Kubernetes, Helm, ARM Templates, and Serverless framework.
+
+### terraform fmt
+
+The `terraform fmt` command is used to rewrite Terraform configuration files to a canonical format and style. This command applies a subset of the Terraform language style conventions, along with other minor adjustments for readability.
+
+### Pre-commit
+
+Use pre-commit (or similar tools) to run lint and security checks at each commit and/or push.
+
+<FooterBlogPost
+  navigation={{
+    previousArticle: {
+      title: "ChatGPT a new era of AI",
+      slug: "/blog/chatgpt-a-new-era-of-ai",
+    },
+    nextArticle: {
+      title: "Terraform 1.8 — Deep dive into the Terraform State as an Expert",
+      slug: "/blog/terraform-a-deep-dive",
+    },
+  }}
+/>

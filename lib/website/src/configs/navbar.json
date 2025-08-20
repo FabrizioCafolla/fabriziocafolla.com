@@ -1,0 +1,33 @@
+{
+  "logo": {
+    "title": "Fabrizio Cafolla",
+    "url": "/",
+    "cssClasses": "logo-text-navbar"
+  },
+  "items": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "Projects",
+      "url": "/projects"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog",
+      "children": [
+        { "name": "Tech", "url": "/blog/tech" },
+        { "name": "On the Road", "url": "/blog/on-the-road" }
+      ]
+    },
+    {
+      "icon": "fa:linkedin",
+      "url": "https://www.linkedin.com/in/fabrizio-cafolla/"
+    },
+    {
+      "icon": "fa:github",
+      "url": "https://github.com/FabrizioCafolla"
+    }
+  ]
+}
