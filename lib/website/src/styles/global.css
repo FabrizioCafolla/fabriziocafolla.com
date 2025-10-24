@@ -1,15 +1,3 @@
-:root {
-  --primary: #4cae4f;
-  --primary-light: #7bdc7e;
-  --primary-dark: #318834;
-  --secondary: #bd1178;
-  --secondary-light: #cb1482;
-  --secondary-dark: #a90b6a;
-  --alternative: #0046ad;
-  --alternative-light: #0153ce;
-  --alternative-dark: #00216e;
-}
-
 @font-face {
   font-family: "NectoMono";
   src: url("/fonts/NectoMono-Regular.woff2") format("woff2");
@@ -18,15 +6,13 @@
   font-display: swap;
 }
 
-.logo-text,
-.logo-text-navbar,
 .logo-text-footer,
 .header-title {
   font-family: "NectoMono", sans-serif !important;
 }
 
-.logo-text-navbar {
-  font-size: 1.6rem;
+.logo-img-navbar {
+  width: 150px;
   margin: 0;
   padding: 0;
 }
@@ -38,8 +24,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  .logo-text-navbar {
-    font-size: 1.25rem;
+  .logo-img-navbar {
+    width: 125px;
     padding: 0.125rem;
   }
 }

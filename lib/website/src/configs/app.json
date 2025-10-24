@@ -2,8 +2,8 @@
   "website": {
     "title": "Fabrizio Cafolla",
     "description": "Cloud Architect & Platform Engineer specializing in secure, scalable cloud solutions and CI/CD automation. Open-source advocate, Italia Open-Source founder, and digital nomad.",
-    "favicon": "/img/profile.jpg",
-    "image": "/img/profile.jpg",
+    "favicon": "/favicon/favicon.svg",
+    "image": "/img/logo/standard.svg",
     "robots": "index, follow",
     "language": "en-US"
   },

@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-export interface ArticleNavigation {
+export interface BlogArticleNavigation {
   nextArticle?: {
     title: string;
     slug: string;
@@ -14,7 +14,7 @@ export interface ArticleNavigation {
 }
 
 export interface Props {
-  navigation: ArticleNavigation;
+  navigation: BlogArticleNavigation;
 }
 
 const { navigation } = Astro.props;

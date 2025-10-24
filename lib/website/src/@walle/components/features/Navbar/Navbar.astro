@@ -17,7 +17,7 @@ const shouldShowBrand = hasLogo || hasTitle;
 
 <header class="site-header">
   <div class="container">
-    <nav class="main-nav" aria-label="Main navigation">
+    <nav class="main-nav" aria-label="Main navigation" data-component="Navbar" data-nav-root="true">
       {
         shouldShowBrand && (
           <div class="brand-container">
@@ -30,10 +30,12 @@ const shouldShowBrand = hasLogo || hasTitle;
                 <img
                   src={config.logo.src}
                   alt={config.logo.alt || config.logo.title || "Logo"}
+                  aria-label={config.logo.alt || config.logo.title || "Logo"}
                   width={config.logo.width || 50}
                   height={config.logo.height || 50}
                   loading="eager"
                   class={config.logo.cssClasses || ""}
+                  fetchpriority="high"
                 />
               ) : hasTitle ? (
                 <h2 class={config.logo.cssClasses || ""}>{config.logo.title}</h2>
@@ -56,12 +58,14 @@ const shouldShowBrand = hasLogo || hasTitle;
       </button>
 
       <div class="nav-container" id={navId}>
-        <ul class="nav-links">
+        <ul class="nav-links" data-nav-level="1" data-component="NavbarLinks">
           {
             config.items?.map((item: NavigationLink) => (
               <li
                 class="nav-item"
                 class:list={[{ "has-dropdown": item.children && item.children.length > 0 }]}
+                data-has-children={item.children && item.children.length > 0 ? "true" : "false"}
+                data-component="NavbarItem"
               >
                 {item.children && item.children.length > 0 ? (
                   <div class="dropdown-container">
@@ -79,7 +83,12 @@ const shouldShowBrand = hasLogo || hasTitle;
                         class="dropdown-arrow"
                       />
                     </button>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul
+                      class="dropdown-menu"
+                      role="menu"
+                      data-component="NavbarDropdown"
+                      data-nav-level="2"
+                    >
                       {item.children.map((child: NavigationLink) => (
                         <li
                           class="dropdown-item"
@@ -105,7 +114,12 @@ const shouldShowBrand = hasLogo || hasTitle;
                                   class="subdropdown-arrow"
                                 />
                               </button>
-                              <ul class="subdropdown-menu" role="menu">
+                              <ul
+                                class="subdropdown-menu"
+                                role="menu"
+                                data-component="NavbarSubDropdown"
+                                data-nav-level="3"
+                              >
                                 {child.children.map((grandchild: NavigationLink) => (
                                   <li class="subdropdown-item">
                                     <NavbarLink
@@ -204,6 +218,12 @@ const shouldShowBrand = hasLogo || hasTitle;
     align-items: center;
     text-decoration: none;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+  }
+
+  .brand-link:focus {
+    outline: none;
+    box-shadow: none;
   }
 
   .nav-container {
@@ -242,6 +262,14 @@ const shouldShowBrand = hasLogo || hasTitle;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     letter-spacing: -0.01em;
+    outline: none;
+  }
+
+  .nav-link:focus,
+  .nav-link:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
   }
 
   /* Desktop underline effect */
@@ -290,7 +318,10 @@ const shouldShowBrand = hasLogo || hasTitle;
     position: absolute;
     top: calc(100% + 12px);
     left: 0;
-    min-width: 240px;
+    /* Adaptive sizing: minimum baseline, grow to content, cap at container width */
+    min-width: 160px;
+    width: max-content; /* fit content width */
+    max-width: min(100%, 520px); /* never exceed container, optional hard cap */
     background: white;
     border-radius: 16px;
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
@@ -303,6 +334,8 @@ const shouldShowBrand = hasLogo || hasTitle;
     margin: 0;
     padding: 12px;
     border: 1px solid rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    overflow-wrap: anywhere; /* prevent overflow from long words */
   }
 
   .nav-item.has-dropdown:hover .dropdown-menu,
@@ -334,6 +367,7 @@ const shouldShowBrand = hasLogo || hasTitle;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     letter-spacing: -0.01em;
+    outline: none;
   }
 
   .dropdown-link:hover,
@@ -341,6 +375,13 @@ const shouldShowBrand = hasLogo || hasTitle;
     color: var(--primary, #4caf50);
     background-color: rgba(var(--primary, 76, 175, 80), 0.08);
     transform: translateX(4px);
+    outline: none;
+    box-shadow: none;
+  }
+
+  .dropdown-link:active {
+    outline: none;
+    border: none;
   }
 
   .subdropdown-container {
@@ -363,7 +404,9 @@ const shouldShowBrand = hasLogo || hasTitle;
     position: absolute;
     top: 0;
     left: calc(100% + 12px);
-    min-width: 220px;
+    min-width: 160px;
+    width: max-content;
+    max-width: min(100%, 480px);
     background: white;
     border-radius: 16px;
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
@@ -376,6 +419,8 @@ const shouldShowBrand = hasLogo || hasTitle;
     margin: 0;
     padding: 12px;
     border: 1px solid rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
   }
 
   .dropdown-item.has-subdropdown:hover .subdropdown-menu,
@@ -397,6 +442,18 @@ const shouldShowBrand = hasLogo || hasTitle;
     border-radius: 10px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     letter-spacing: -0.01em;
+    outline: none;
+  }
+
+  .subdropdown-link:hover,
+  .subdropdown-link:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .subdropdown-link:active {
+    outline: none;
+    border: none;
   }
 
   .subdropdown-link:hover,
@@ -543,9 +600,28 @@ const shouldShowBrand = hasLogo || hasTitle;
     }
 
     .nav-link:hover {
-      background: transparent;
-      color: var(--primary, #4caf50);
-      transform: none;
+      background: transparent !important;
+      color: var(--primary) !important;
+      transform: none !important;
+    }
+
+    /* Override any active/hover styles for dropdown triggers on mobile */
+    .dropdown-trigger:hover,
+    .dropdown-trigger:focus,
+    .dropdown-trigger:active {
+      color: var(--primary) !important;
+      background: transparent !important;
+    }
+
+    /* Force normal state when not active */
+    .nav-item:not(.active) .dropdown-trigger {
+      color: var(--text-dark, #1a1a1a) !important;
+      background: transparent !important;
+    }
+
+    .nav-item:not(.active) .dropdown-trigger .dropdown-arrow {
+      transform: rotate(0deg) !important;
+      opacity: 0.5 !important;
     }
 
     .nav-link::after {
@@ -559,7 +635,7 @@ const shouldShowBrand = hasLogo || hasTitle;
 
     .dropdown-menu {
       position: static;
-      width: 100%;
+      width: 100%; /* mobile full width */
       background: transparent;
       box-shadow: none;
       border: none;
@@ -718,11 +794,19 @@ const shouldShowBrand = hasLogo || hasTitle;
         const navItem = trigger.closest(".nav-item");
         const isActive = navItem?.classList.contains("active");
 
+        // Close all other dropdowns first
         navItem?.parentElement?.querySelectorAll(".nav-item.active").forEach((item) => {
           if (item !== navItem) item.classList.remove("active");
         });
 
-        navItem?.classList.toggle("active", !isActive);
+        // Explicit toggle - if active, remove; if not active, add
+        if (isActive) {
+          navItem?.classList.remove("active");
+          console.log("Removed active class from:", navItem);
+        } else {
+          navItem?.classList.add("active");
+          console.log("Added active class to:", navItem);
+        }
       });
     });
 
@@ -734,11 +818,17 @@ const shouldShowBrand = hasLogo || hasTitle;
         const dropdownItem = trigger.closest(".dropdown-item");
         const isActive = dropdownItem?.classList.contains("active");
 
+        // Close all other subdropdowns first
         dropdownItem?.parentElement?.querySelectorAll(".dropdown-item.active").forEach((item) => {
           if (item !== dropdownItem) item.classList.remove("active");
         });
 
-        dropdownItem?.classList.toggle("active", !isActive);
+        // Explicit toggle - if active, remove; if not active, add
+        if (isActive) {
+          dropdownItem?.classList.remove("active");
+        } else {
+          dropdownItem?.classList.add("active");
+        }
       });
     });
 

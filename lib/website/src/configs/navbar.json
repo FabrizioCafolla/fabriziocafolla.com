@@ -1,8 +1,9 @@
 {
   "logo": {
-    "title": "Fabrizio Cafolla",
+    "src": "/img/logo/standard-with-text.svg",
+    "alt": "Fabrizio Cafolla Logo",
     "url": "/",
-    "cssClasses": "logo-text-navbar"
+    "cssClasses": "logo-img-navbar"
   },
   "items": [
     {
@@ -22,12 +23,8 @@
       ]
     },
     {
-      "icon": "fa:linkedin",
-      "url": "https://www.linkedin.com/in/fabrizio-cafolla/"
-    },
-    {
-      "icon": "fa:github",
-      "url": "https://github.com/FabrizioCafolla"
+      "name": "My Links",
+      "url": "https://linktr.ee/fabriziocafolla"
     }
   ]
 }

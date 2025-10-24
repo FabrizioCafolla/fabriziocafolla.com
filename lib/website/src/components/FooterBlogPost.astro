@@ -1,8 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
 import { Button } from "@walle/components";
-import { ArticleNavigation } from "@walle/components";
-import type { ArticleNavigation as ArticleNavigationInterface } from "@walle/components/features/Blog/ArticleNavigation.astro";
 
 export interface ReferralLink {
   name: string;
@@ -14,14 +12,13 @@ export interface ReferralLink {
 
 export interface Props {
   referralLinks?: ReferralLink[];
-  navigation: ArticleNavigationInterface;
 }
 
 const defaultReferralLinks: ReferralLink[] = [
   {
     name: "Airbnb",
     description: "Receive 50$ when you join",
-    link: "https://www.airbnb.com/c/4sbX6pr38NHLyA9W?unique_share_id=17051f7d-e308-4109-b50a-60b76584d81e",
+    link: "https://www.airbnb.com/c/NTLjwmx25Incom4O?unique_share_id=dee305d4-d7ca-4946-967d-13a82a9f4526",
     reward: "50$",
   },
   {
@@ -51,15 +48,14 @@ const defaultReferralLinks: ReferralLink[] = [
   },
 ];
 
-const { referralLinks = defaultReferralLinks, navigation } = Astro.props;
+const { referralLinks = defaultReferralLinks } = Astro.props;
 ---
 
-<ArticleNavigation navigation={navigation} />
 <div class="blog-footer-content">
   <!-- Referral Section -->
   <section class="blog-footer-content__referrals" aria-label="Referral links">
     <div class="referrals-header">
-      <h3 class="referrals-title">Referral Partners</h3>
+      <h3 class="referrals-title" data-toc-skip>Referral Partners</h3>
       <p class="referrals-description">
         Support the blog and get rewards by using these referral links and codes
       </p>
@@ -112,7 +108,7 @@ const { referralLinks = defaultReferralLinks, navigation } = Astro.props;
   <section class="blog-footer-content__feedback" aria-label="Feedback section">
     <div class="feedback-card">
       <div class="feedback-card__header">
-        <h3 class="feedback-card__title">
+        <h3 class="feedback-card__title" data-toc-skip>
           <Icon name="fa:heart" class="feedback-card__icon" />
           Questions & Feedback
         </h3>

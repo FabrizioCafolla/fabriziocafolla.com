@@ -108,8 +108,26 @@ const isLink = link && !disabled;
       target={target}
       class={`button-link-wrapper ${fullWidth ? "button-full-width" : ""}`}
       aria-disabled={disabled}
+      aria-label={text}
+      data-component="Button"
+      data-variant={type}
+      data-size={size}
+      data-outline={outline ? "true" : "false"}
+      data-disabled={disabled ? "true" : "false"}
     >
-      <button id={id} class={buttonClasses} disabled={disabled} type={buttonType}>
+      <button
+        id={id}
+        class={buttonClasses}
+        disabled={disabled}
+        type={buttonType}
+        aria-label={text}
+        aria-disabled={disabled ? "true" : undefined}
+        data-component="Button"
+        data-variant={type}
+        data-size={size}
+        data-outline={outline ? "true" : "false"}
+        data-disabled={disabled ? "true" : "false"}
+      >
         <span class="button-text">{text}</span>
         {iconName && (
           <Icon
@@ -121,7 +139,19 @@ const isLink = link && !disabled;
       </button>
     </a>
   ) : (
-    <button id={id} class={buttonClasses} disabled={disabled} type={buttonType}>
+    <button
+      id={id}
+      class={buttonClasses}
+      disabled={disabled}
+      type={buttonType}
+      aria-label={text}
+      aria-disabled={disabled ? "true" : undefined}
+      data-component="Button"
+      data-variant={type}
+      data-size={size}
+      data-outline={outline ? "true" : "false"}
+      data-disabled={disabled ? "true" : "false"}
+    >
       <span class="button-text">{text}</span>
       {iconName && <Icon name={iconName} class="button-icon" />}
     </button>

@@ -3,27 +3,27 @@ import { Image } from "astro:assets";
 
 export interface Props {
   /**
-   * Titolo principale della pagina (h1)
+   * Main page title (h1)
    */
   title: string;
 
   /**
-   * Sottotitolo o descrizione della pagina
+   * Subtitle or page description
    */
   subtitle?: string;
 
   /**
-   * URL dell'immagine di sfondo o decorativa
+   * Background or decorative image URL
    */
   imageSrc?: ImageMetadata;
 
   /**
-   * Testo alternativo per l'immagine
+   * Alternative text for the image
    */
   imageAlt?: string;
 
   /**
-   * Posiziona l'immagine a destra o a sinistra del testo
+   * Position the image to the right or left of the text
    * @default false
    */
   imageRight?: boolean;
