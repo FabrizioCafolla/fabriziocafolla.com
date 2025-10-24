@@ -22,12 +22,8 @@
       ]
     },
     {
-      "icon": "fa:linkedin",
-      "url": "https://www.linkedin.com/in/fabrizio-cafolla/"
-    },
-    {
-      "icon": "fa:github",
-      "url": "https://github.com/FabrizioCafolla"
+      "icon": "fa:heart",
+      "url": "https://linktr.ee/fabriziocafolla"
     }
   ]
 }

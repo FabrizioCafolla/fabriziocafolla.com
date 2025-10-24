@@ -204,6 +204,12 @@ const shouldShowBrand = hasLogo || hasTitle;
     align-items: center;
     text-decoration: none;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+  }
+
+  .brand-link:focus {
+    outline: none;
+    box-shadow: none;
   }
 
   .nav-container {
@@ -242,6 +248,14 @@ const shouldShowBrand = hasLogo || hasTitle;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     letter-spacing: -0.01em;
+    outline: none;
+  }
+
+  .nav-link:focus,
+  .nav-link:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
   }
 
   /* Desktop underline effect */
@@ -334,6 +348,7 @@ const shouldShowBrand = hasLogo || hasTitle;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     letter-spacing: -0.01em;
+    outline: none;
   }
 
   .dropdown-link:hover,
@@ -341,6 +356,13 @@ const shouldShowBrand = hasLogo || hasTitle;
     color: var(--primary, #4caf50);
     background-color: rgba(var(--primary, 76, 175, 80), 0.08);
     transform: translateX(4px);
+    outline: none;
+    box-shadow: none;
+  }
+
+  .dropdown-link:active {
+    outline: none;
+    border: none;
   }
 
   .subdropdown-container {
@@ -397,6 +419,18 @@ const shouldShowBrand = hasLogo || hasTitle;
     border-radius: 10px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     letter-spacing: -0.01em;
+    outline: none;
+  }
+
+  .subdropdown-link:hover,
+  .subdropdown-link:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .subdropdown-link:active {
+    outline: none;
+    border: none;
   }
 
   .subdropdown-link:hover,
@@ -543,9 +577,28 @@ const shouldShowBrand = hasLogo || hasTitle;
     }
 
     .nav-link:hover {
-      background: transparent;
-      color: var(--primary, #4caf50);
-      transform: none;
+      background: transparent !important;
+      color: var(--primary) !important;
+      transform: none !important;
+    }
+
+    /* Override any active/hover styles for dropdown triggers on mobile */
+    .dropdown-trigger:hover,
+    .dropdown-trigger:focus,
+    .dropdown-trigger:active {
+      color: var(--primary) !important;
+      background: transparent !important;
+    }
+
+    /* Force normal state when not active */
+    .nav-item:not(.active) .dropdown-trigger {
+      color: var(--text-dark, #1a1a1a) !important;
+      background: transparent !important;
+    }
+
+    .nav-item:not(.active) .dropdown-trigger .dropdown-arrow {
+      transform: rotate(0deg) !important;
+      opacity: 0.5 !important;
     }
 
     .nav-link::after {
@@ -718,11 +771,19 @@ const shouldShowBrand = hasLogo || hasTitle;
         const navItem = trigger.closest(".nav-item");
         const isActive = navItem?.classList.contains("active");
 
+        // Close all other dropdowns first
         navItem?.parentElement?.querySelectorAll(".nav-item.active").forEach((item) => {
           if (item !== navItem) item.classList.remove("active");
         });
 
-        navItem?.classList.toggle("active", !isActive);
+        // Explicit toggle - if active, remove; if not active, add
+        if (isActive) {
+          navItem?.classList.remove("active");
+          console.log("Removed active class from:", navItem);
+        } else {
+          navItem?.classList.add("active");
+          console.log("Added active class to:", navItem);
+        }
       });
     });
 
@@ -734,11 +795,17 @@ const shouldShowBrand = hasLogo || hasTitle;
         const dropdownItem = trigger.closest(".dropdown-item");
         const isActive = dropdownItem?.classList.contains("active");
 
+        // Close all other subdropdowns first
         dropdownItem?.parentElement?.querySelectorAll(".dropdown-item.active").forEach((item) => {
           if (item !== dropdownItem) item.classList.remove("active");
         });
 
-        dropdownItem?.classList.toggle("active", !isActive);
+        // Explicit toggle - if active, remove; if not active, add
+        if (isActive) {
+          dropdownItem?.classList.remove("active");
+        } else {
+          dropdownItem?.classList.add("active");
+        }
       });
     });
 

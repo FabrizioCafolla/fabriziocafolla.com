@@ -1,0 +1,499 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  categories?: string[];
+}
+
+const { categories } = Astro.props;
+---
+
+<div class="filters">
+  <div class="filters__row">
+    <div class="filters__search">
+      <Icon name="fa:search" class="filters__icon" />
+      <input
+        type="text"
+        id="search-input"
+        class="filters__input"
+        placeholder="Search posts..."
+        aria-label="Search posts by title"
+      />
+    </div>
+    {
+      categories && categories.length > 0 && (
+        <div class="filters__categories">
+          <div class="filters__dropdown">
+            <button type="button" id="category-toggle" class="filters__dropdown-btn">
+              <span id="category-label">Select Categories</span>
+              <Icon name="fa:chevron-down" class="filters__dropdown-icon" />
+            </button>
+            <div class="filters__dropdown-content" id="category-dropdown">
+              {categories.map((category) => (
+                <label class="filters__option">
+                  <input
+                    type="checkbox"
+                    class="filters__checkbox"
+                    value={category}
+                    name="category"
+                  />
+                  <span class="filters__option-text">{category}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <button type="button" id="clear-filters" class="filters__clear"> Clear Filters </button>
+  </div>
+</div>
+
+<script>
+  function initFilters() {
+    const searchInput = document.getElementById("search-input") as HTMLInputElement;
+    const categoryToggle = document.getElementById("category-toggle") as HTMLButtonElement;
+    const categoryDropdown = document.getElementById("category-dropdown") as HTMLDivElement;
+    const categoryLabel = document.getElementById("category-label") as HTMLSpanElement;
+    const checkboxes = document.querySelectorAll(
+      ".filters__checkbox"
+    ) as NodeListOf<HTMLInputElement>;
+    const clearButton = document.getElementById("clear-filters") as HTMLButtonElement;
+    const postsGrid = document.querySelector(".blog-layout__grid") as HTMLElement;
+
+    if (!searchInput || !categoryToggle || !checkboxes.length) return;
+
+    // Toggle dropdown visibility
+    categoryToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = categoryDropdown.classList.contains("open");
+      if (isOpen) {
+        categoryDropdown.classList.remove("open");
+      } else {
+        categoryDropdown.classList.add("open");
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", () => {
+      categoryDropdown.classList.remove("open");
+    });
+
+    // Prevent dropdown close when clicking inside
+    categoryDropdown.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    // Helper function to get all card elements
+    const getAllCards = () => Array.from(document.querySelectorAll(".card")) as HTMLAnchorElement[];
+
+    // Extract post data from card element
+    const getPostData = (card: HTMLAnchorElement) => {
+      const title = card.querySelector(".card__title")?.textContent?.toLowerCase().trim() || "";
+      const category = card.querySelector(".card__badge")?.textContent?.toLowerCase().trim() || "";
+      return { title, category, element: card };
+    };
+
+    // Get currently selected categories
+    const getSelectedCategories = () => {
+      return Array.from(checkboxes)
+        .filter((cb) => cb.checked)
+        .map((cb) => cb.value.toLowerCase());
+    };
+
+    // Update dropdown button label based on selection
+    const updateCategoryLabel = () => {
+      const selected = getSelectedCategories();
+      if (selected.length === 0) {
+        categoryLabel.textContent = "Select Categories";
+      } else if (selected.length === 1) {
+        categoryLabel.textContent = selected[0];
+      } else {
+        categoryLabel.textContent = `${selected.length} categories selected`;
+      }
+    };
+
+    // Main filter logic
+    const filterPosts = () => {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const selectedCategories = getSelectedCategories();
+      const cards = getAllCards();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const { title, category } = getPostData(card);
+        const matchesSearch = !searchTerm || title.includes(searchTerm);
+        const matchesCategory =
+          selectedCategories.length === 0 || selectedCategories.includes(category);
+
+        if (matchesSearch && matchesCategory) {
+          card.style.display = "block";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Show/hide empty state
+      let emptyState = document.querySelector(".blog-layout__empty") as HTMLElement;
+
+      if (visibleCount === 0) {
+        // Hide posts grid
+        if (postsGrid) postsGrid.style.display = "none";
+
+        // Create empty state if it doesn't exist
+        if (!emptyState) {
+          emptyState = document.createElement("div");
+          emptyState.className = "blog-layout__empty";
+          emptyState.innerHTML =
+            "<p>No posts found matching your filters. Try adjusting your search criteria.</p>";
+
+          // Insert empty state after posts grid or in the container
+          const container = document.querySelector(".blog-layout__container");
+          if (container && postsGrid) {
+            container.insertBefore(emptyState, postsGrid.nextSibling);
+          } else if (container) {
+            container.appendChild(emptyState);
+          }
+        } else {
+          const emptyStateText = emptyState.querySelector("p");
+          if (emptyStateText) {
+            emptyStateText.textContent =
+              "No posts found matching your filters. Try adjusting your search criteria.";
+          }
+        }
+
+        emptyState.style.display = "block";
+      } else {
+        // Show posts grid
+        if (postsGrid) postsGrid.style.display = "grid";
+
+        // Hide empty state
+        if (emptyState) {
+          emptyState.style.display = "none";
+        }
+      }
+
+      updateCategoryLabel();
+    };
+
+    // Reset all filters
+    const clearFilters = () => {
+      searchInput.value = "";
+      checkboxes.forEach((cb) => (cb.checked = false));
+      categoryDropdown.classList.remove("open");
+      filterPosts();
+    };
+
+    // Event listeners
+    searchInput.addEventListener("input", filterPosts);
+    checkboxes.forEach((cb) => cb.addEventListener("change", filterPosts));
+    clearButton.addEventListener("click", clearFilters);
+
+    updateCategoryLabel();
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFilters);
+  } else {
+    initFilters();
+  }
+
+  // Reinitialize on Astro navigation
+  document.addEventListener("astro:page-load", initFilters);
+</script>
+
+<style>
+  .filters {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+
+  .filters__row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  /* Search Input */
+  .filters__search {
+    position: relative;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+  }
+
+  .filters__icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--gray-dark);
+    pointer-events: none;
+  }
+
+  .filters__input {
+    width: 100%;
+    padding: 12px 0 12px 28px;
+    border: none;
+    border-radius: 0;
+    font-size: 16px;
+    font-family: inherit;
+    background: transparent;
+    transition: border-color 0.2s ease;
+    color: var(--gray-darker);
+  }
+
+  .filters__input:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+  }
+
+  .filters__input::placeholder {
+    color: var(--gray-dark);
+    font-weight: 400;
+  }
+
+  /* Category Dropdown */
+  .filters__categories {
+    flex-shrink: 0;
+    min-width: 200px;
+    max-width: 250px;
+    position: relative;
+  }
+
+  .filters__dropdown {
+    position: relative;
+  }
+
+  .filters__dropdown-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--gray-darker);
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .filters__dropdown-btn:hover {
+    border-color: var(--gray);
+  }
+
+  .filters__dropdown-btn:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  .filters__dropdown-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--gray-dark);
+    transition: transform 0.2s ease;
+  }
+
+  .filters__dropdown.open .filters__dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  .filters__dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    max-height: 200px;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: all 0.2s ease;
+  }
+
+  .filters__dropdown-content.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .filters__option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    user-select: none;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .filters__option:last-child {
+    border-bottom: none;
+  }
+
+  .filters__option:hover {
+    background: var(--gray-light);
+  }
+
+  .filters__checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--primary);
+    margin: 0;
+  }
+
+  .filters__option-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-darker);
+    text-transform: capitalize;
+  }
+
+  .filters__checkbox:checked + .filters__option-text {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* Clear Button */
+  .filters__clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
+  .filters__clear:hover {
+    background: var(--primary-dark, #003a8c);
+    transform: translateY(-1px);
+  }
+
+  .filters__clear:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 70, 173, 0.2);
+  }
+
+  .filters__clear:active {
+    transform: translateY(0);
+  }
+
+  /* Empty State */
+  .blog-layout__empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray-dark);
+  }
+
+  .blog-layout__empty p {
+    font-size: 18px;
+    margin: 0;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .filters__row {
+      gap: 24px;
+    }
+
+    .filters__search {
+      min-width: 100%;
+      max-width: 100%;
+      order: 1;
+    }
+
+    .filters__categories {
+      min-width: 160px;
+      max-width: 200px;
+      order: 2;
+    }
+
+    .filters__clear {
+      order: 3;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .filters__row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+    }
+
+    .filters__search {
+      order: 1;
+    }
+
+    .filters__categories {
+      min-width: 100%;
+      max-width: 100%;
+      order: 2;
+    }
+
+    .filters__clear {
+      width: 100%;
+      margin-left: 0;
+      order: 3;
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+
+    .filters__input {
+      padding: 10px 0 10px 24px;
+      font-size: 15px;
+    }
+
+    .filters__icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .filters__dropdown-btn {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .filters__dropdown-content {
+      max-height: 140px;
+    }
+
+    .filters__option {
+      padding: 8px 12px;
+    }
+
+    .filters__option-text {
+      font-size: 13px;
+    }
+  }
+</style>
