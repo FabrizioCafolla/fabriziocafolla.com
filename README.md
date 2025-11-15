@@ -2,6 +2,10 @@
 
 This is my personal blog: [fabriziocafolla.com](https://fabriziocafolla.com)
 
+### Talks
+
+You can find the slides from the talks in the [talk-slides](lib/website/public/talks/slides) folder or on the website.
+
 ## Devmode
 
 ### With Dev Container (Recommended)
