@@ -11,8 +11,8 @@
       "url": "/"
     },
     {
-      "name": "Activities",
-      "url": "/activities"
+      "name": "About Me",
+      "url": "/about"
     },
     {
       "name": "Blog",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "name": "My Links",
+      "icon": "mdi:link-variant",
       "url": "https://linktr.ee/fabriziocafolla"
     }
   ]

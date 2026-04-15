@@ -3,6 +3,13 @@ import { SectionHeaderStandard } from "@walle/components";
 import { BaseLayout } from "@walle/layouts";
 import { Icon } from "astro-icon/components";
 
+interface OSSProject {
+  name: string;
+  description: string;
+  language: string;
+  githubUrl: string;
+}
+
 interface FeaturedProject {
   title: string;
   subtitle: string;
@@ -40,7 +47,30 @@ function isEventPast(dateString: string): boolean {
   return eventDate < today;
 }
 
-// Featured Projects data
+const ossProjects: OSSProject[] = [
+  {
+    name: "scaffold-ai",
+    description:
+      "Devcontainer feature that scaffolds AI agent and skill assets (Claude, GitHub Copilot) into a workspace. Each asset is assembled from tool-agnostic content files with per-tool YAML frontmatter injected at runtime.",
+    language: "Shell",
+    githubUrl: "https://github.com/FabrizioCafolla/scaffold-ai",
+  },
+  {
+    name: "vscode-dev-setup",
+    description:
+      "A GitHub template repository for consistent, fast, and modular DevContainer environments with AI tooling built in. Designed to bootstrap development workspaces without manual configuration.",
+    language: "Shell",
+    githubUrl: "https://github.com/FabrizioCafolla/vscode-dev-setup",
+  },
+  {
+    name: "openai-crawlers-ip-ranges",
+    description:
+      "Complete and always-updated lists of OpenAI crawler IP addresses (GPTBot, SearchGPT, OAI-SearchBot). Useful for firewall rules, rate limiting, and bot traffic management.",
+    language: "Shell",
+    githubUrl: "https://github.com/FabrizioCafolla/openai-crawlers-ip-ranges",
+  },
+];
+
 const featuredProjects: FeaturedProject[] = [
   {
     title: "European OpenSource",
@@ -66,22 +96,33 @@ const featuredProjects: FeaturedProject[] = [
     title: "Latina in Tech",
     subtitle: "Community Manager",
     description:
-      "LiT (Latina in Tech) is a Latina computer science community. The goal is to discuss a variety of topics, build a network, and share knowledge.",
+      "LiT (Latina in Tech) is a local tech community focused on knowledge sharing, networking, and bringing quality events to the city. The goal is to connect companies and developers and foster an environment based on collaboration.",
     image: "/img/projects/logo-latina-in-tech.png",
     websiteUrl: "https://www.latinaintech.org/it",
     linkedinUrl: "https://www.linkedin.com/company/latina-in-tech/",
   },
 ];
 
-// Talks and Podcasts data
 const talksAndPodcasts: TalkPodcast[] = [
   {
     title: "European OpenSource: open code, shared future!",
     description:
-      "Nel talk discuteremo dello stato attuale del mondo tech europeo e dell'impatto dell'open source su di esso. Presenteremo European OpenSource, la prima piattaforma come soluzione alle sfide future, e mostreremo come sviluppatori, aziende e istituzioni debbano prenderne atto e attivare soluzioni innovative in ambito security e compliance.",
+      "What is the state of the tech ecosystem in Europe? In this talk we will analyze the main problems and current challenges of the sector and the key role of Open Source. We will also talk about European OpenSource, presenting the project and the concrete contribution we want to make to communities and the European market.",
+    image: "/img/talks/latina_in_tech_26022026.jpg",
+    url: "https://www.eventbrite.it/e/biglietti-european-opensource-open-code-shared-future-1983249203756",
+    slidesUrl:
+      "https://github.com/FabrizioCafolla/fabriziocafolla.com/blob/43ee56bab6c3f11f461ecd1c32ef4f89f6f505a3/lib/website/public/slides/European-OpenSource_open-code-shared-future.pdf",
+    type: "talk",
+    date: "2026-02-26",
+  },
+  {
+    title: "European OpenSource: open code, shared future!",
+    description:
+      "What is the state of the tech ecosystem in Europe? In this talk we will analyze the main problems and current challenges of the sector and the key role of Open Source. We will also talk about European OpenSource, presenting the project and the concrete contribution we want to make to communities and the European market.",
     image: "/img/talks/opensearch_milan_13112025.jpeg",
     url: "https://www.meetup.com/it-it/opensearch-project-milan/events/311566107",
-    slidesUrl: "/slides/European-OpenSource_open-code-shared-future.pdf",
+    slidesUrl:
+      "https://github.com/FabrizioCafolla/fabriziocafolla.com/blob/e8fa50e599e533b0bebe0425947a8f560ab82cf2/lib/website/public/slides/European-OpenSource_open-code-shared-future.pdf",
     type: "talk",
     date: "2025-11-13",
   },
@@ -97,18 +138,136 @@ const talksAndPodcasts: TalkPodcast[] = [
     date: "2024-05-14",
   },
 ];
+
+const metaDescription =
+  "Fabrizio Cafolla is a DevOps & Platform Engineer specializing in cloud architecture (AWS, GCP), CI/CD automation, and infrastructure as code with Terraform. Founder of European OpenSource and Italia Open-Source. Community Manager at Latina in Tech.";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Fabrizio Cafolla",
+  jobTitle: "DevOps & Platform Engineer",
+  description: metaDescription,
+  url: "https://fabriziocafolla.com",
+  image: "https://fabriziocafolla.com/img/profile.jpg",
+  sameAs: [
+    "https://www.linkedin.com/in/fabrizio-cafolla/",
+    "https://github.com/FabrizioCafolla",
+    "https://sessionize.com/fabrizio-cafolla/",
+  ],
+  knowsAbout: [
+    "DevOps",
+    "Platform Engineering",
+    "Cloud Architecture",
+    "AWS",
+    "GCP",
+    "CI/CD",
+    "Terraform",
+    "Infrastructure as Code",
+    "Kubernetes",
+    "Open Source",
+  ],
+};
 ---
 
-<BaseLayout headerTitle="Activities">
-  <SectionHeaderStandard title="Activities" variant="white" />
+<BaseLayout headerTitle="About Me" headerDescription={metaDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
+  <SectionHeaderStandard title="About Me" variant="white" />
+
+  <!-- Bio -->
+  <section class="bio-section">
+    <div class="container">
+      <div class="bio-grid">
+        <div class="bio-text">
+          <p>
+            My name is <strong>Fabrizio Cafolla</strong> and I'm a <strong
+              >DevOps &amp; Platform Engineer</strong
+            >. I design cloud architectures, automate CI/CD pipelines, and build the infrastructure
+            that lets development teams ship reliably and move faster.
+          </p>
+          <p>
+            I work primarily with <strong>AWS</strong> and <strong>GCP</strong>, managing
+            infrastructure as code through <strong>Terraform</strong>. My main languages are
+            <strong>Python</strong> and <strong>Bash</strong>, with some TypeScript and Go. Over the
+            years I've worked across very different contexts small and medium businesses, corporate
+            banking, startup ecosystems which taught me that tools and processes need to adapt to
+            the people and the context, not the other way around.
+          </p>
+          <p>
+            I believe open source is the real engine of technological progress, and I try to live
+            that through projects and community work. I founded <strong>Italia Open-Source</strong>
+            and its European spin-off, <strong>European OpenSource</strong>: a community-driven
+            platform to map and connect open-source projects, developers, and organizations across
+            Europe. I also serve as Community Manager of <strong>Latina in Tech</strong>, bringing
+            quality tech events to my city and building connections between developers and
+            companies.
+          </p>
+          <p>
+            Outside of work, I travel whenever I can often as a digital nomad. Many of these trips
+            turn into guides and stories on my blog, where the technical side meets the personal
+            one.
+          </p>
+        </div>
+
+        <div class="bio-photo-wrap">
+          <img
+            src="/img/profile.jpg"
+            alt="Fabrizio Cafolla DevOps & Platform Engineer"
+            class="bio-photo"
+            width="400"
+            height="400"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All project groups -->
   <section class="projects-section">
     <div class="container">
-      <!-- Featured Projects Section -->
+      <!-- Personal OSS Projects -->
       <div class="projects-group">
         <div class="group-header">
-          <h2>Featured Projects</h2>
-          <p class="group-description">Main projects and initiatives I'm actively involved in</p>
+          <h2>Personal Open Source Projects</h2>
+          <p class="group-description">Code projects I maintain publicly on GitHub</p>
+        </div>
+        <div class="projects-grid">
+          {
+            ossProjects.map((project) => (
+              <article class="featured-project-card">
+                <div class="featured-project-content">
+                  <h3 class="featured-project-title">{project.name}</h3>
+                  <p class="featured-project-subtitle">{project.language}</p>
+                  <p class="featured-project-description">{project.description}</p>
+
+                  <div class="featured-project-footer">
+                    <div class="featured-project-links">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link-button github-button"
+                        title="View on GitHub"
+                      >
+                        <Icon name="mdi:github" class="link-icon" />
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Community Projects -->
+      <div class="projects-group">
+        <div class="group-header">
+          <h2>Community Projects</h2>
+          <p class="group-description">Initiatives and communities I'm actively involved in</p>
         </div>
         <div class="projects-grid">
           {
@@ -175,12 +334,11 @@ const talksAndPodcasts: TalkPodcast[] = [
         </div>
       </div>
 
-      <!-- Talks and Podcasts Section -->
-
+      <!-- Talks and Podcasts -->
       <div class="projects-group">
         <div class="group-header">
           <h2>Talks and Podcasts</h2>
-          <p class="group-description">My appearances on various podcasts and talks.</p>
+          <p class="group-description">Public appearances, conferences, and podcast episodes</p>
         </div>
         <div class="projects-grid">
           {
@@ -262,18 +420,55 @@ const talksAndPodcasts: TalkPodcast[] = [
 </BaseLayout>
 
 <style>
-  .projects-section {
-    padding: 3rem 0 5rem;
+  /* ── Bio section ───────────────────────────────────────── */
+  .bio-section {
+    padding: var(--space-4xl) var(--space-xl);
+    background-color: var(--white);
   }
 
-  .container {
+  .bio-grid {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .bio-photo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bio-photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    border: 3px solid var(--gray);
+    display: block;
+  }
+
+  .bio-text p {
+    color: var(--gray-dark);
+    line-height: 1.7;
+  }
+
+  /* ── Projects section (shared layout) ─────────────────── */
+  .projects-section {
+    padding: var(--space-3xl) var(--space-lg) var(--space-4xl);
+    background-color: var(--gray-light);
+  }
+
+  .projects-section > .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .projects-group {
-    margin-bottom: 5rem;
+    margin-bottom: var(--space-4xl);
   }
 
   .projects-group:last-child {
@@ -282,14 +477,14 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .group-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-3xl);
   }
 
   .group-header h2 {
     color: var(--primary-dark);
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-xs);
     letter-spacing: -0.02em;
   }
 
@@ -302,10 +497,10 @@ const talksAndPodcasts: TalkPodcast[] = [
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+    gap: var(--space-lg);
   }
 
-  /* Featured Project Card Styles */
+  /* ── Featured project card ─────────────────────────────── */
   .featured-project-card {
     background: var(--white);
     border: 1px solid #e5e7eb;
@@ -319,14 +514,14 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .featured-project-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 70, 173, 0.1);
+    box-shadow: var(--box-shadow-hover);
     transform: translateY(-2px);
   }
 
   .featured-project-image-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
+    padding-top: 56.25%;
     overflow: hidden;
     background: var(--white);
     display: flex;
@@ -352,7 +547,7 @@ const talksAndPodcasts: TalkPodcast[] = [
   }
 
   .featured-project-content {
-    padding: 1.5rem;
+    padding: var(--space-lg);
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -379,19 +574,19 @@ const talksAndPodcasts: TalkPodcast[] = [
     color: var(--gray-dark);
     font-size: 0.9375rem;
     line-height: 1.6;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 var(--space-lg) 0;
     flex: 1;
   }
 
   .featured-project-footer {
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: var(--space-md);
     border-top: 1px solid #f3f4f6;
   }
 
   .featured-project-links {
     display: flex;
-    gap: 0.75rem;
+    gap: var(--space-sm);
     flex-wrap: wrap;
   }
 
@@ -399,13 +594,12 @@ const talksAndPodcasts: TalkPodcast[] = [
     display: flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.625rem 1rem;
+    padding: 0.625rem var(--space-md);
     border-radius: 6px;
     font-size: 0.875rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
+    transition: all var(--transition);
   }
 
   .link-icon {
@@ -420,6 +614,7 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .website-button:hover {
     background: var(--primary-dark);
+    color: var(--white);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 70, 173, 0.2);
   }
@@ -430,7 +625,8 @@ const talksAndPodcasts: TalkPodcast[] = [
   }
 
   .github-button:hover {
-    background: #374151;
+    background: var(--gray-darker);
+    color: var(--white);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
@@ -442,11 +638,12 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .linkedin-button:hover {
     background: #005582;
+    color: var(--white);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 119, 181, 0.2);
   }
 
-  /* Talk and Podcast Cards Styles */
+  /* ── Talk card ─────────────────────────────────────────── */
   .talk-card {
     background: var(--white);
     border: 1px solid #e5e7eb;
@@ -460,14 +657,14 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .talk-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 70, 173, 0.1);
+    box-shadow: var(--box-shadow-hover);
     transform: translateY(-2px);
   }
 
   .talk-image-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
+    padding-top: 56.25%;
     overflow: hidden;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
@@ -488,11 +685,11 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .talk-type-badge {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: var(--space-md);
+    right: var(--space-md);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    padding: 0.5rem 0.875rem;
+    padding: var(--space-xs) 0.875rem;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -505,10 +702,9 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .event-status-badge {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: var(--secondary);
-    padding: 0.5rem 0.875rem;
+    top: var(--space-md);
+    left: var(--space-md);
+    padding: var(--space-xs) 0.875rem;
     border-radius: 20px;
     font-size: 0.8125rem;
     font-weight: 600;
@@ -518,7 +714,6 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .event-status-badge.upcoming {
     background: var(--secondary);
-    color: var(--white);
   }
 
   .badge-icon {
@@ -528,7 +723,7 @@ const talksAndPodcasts: TalkPodcast[] = [
   }
 
   .talk-content {
-    padding: 1.5rem;
+    padding: var(--space-lg);
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -538,7 +733,7 @@ const talksAndPodcasts: TalkPodcast[] = [
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--primary-dark);
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 var(--space-sm) 0;
     line-height: 1.4;
   }
 
@@ -546,7 +741,7 @@ const talksAndPodcasts: TalkPodcast[] = [
     color: var(--gray-dark);
     font-size: 0.9375rem;
     line-height: 1.6;
-    margin: 0 0 1rem 0;
+    margin: 0 0 var(--space-md) 0;
     flex: 1;
   }
 
@@ -554,9 +749,9 @@ const talksAndPodcasts: TalkPodcast[] = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1rem;
+    padding-top: var(--space-md);
     border-top: 1px solid #f3f4f6;
-    gap: 0.75rem;
+    gap: var(--space-sm);
     flex-wrap: wrap;
   }
 
@@ -575,7 +770,7 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .talk-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     flex-wrap: wrap;
   }
 
@@ -583,13 +778,12 @@ const talksAndPodcasts: TalkPodcast[] = [
     display: flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.5rem 0.875rem;
+    padding: var(--space-xs) 0.875rem;
     border-radius: 6px;
     font-size: 0.8125rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
+    transition: all var(--transition);
   }
 
   .button-icon {
@@ -604,8 +798,8 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .watch-button:hover {
     background: var(--primary-dark);
+    color: var(--white);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 70, 173, 0.2);
   }
 
   .event-button {
@@ -615,8 +809,8 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .event-button:hover {
     background: var(--secondary-dark);
+    color: var(--white);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(189, 17, 120, 0.2);
   }
 
   .slides-button {
@@ -626,140 +820,76 @@ const talksAndPodcasts: TalkPodcast[] = [
 
   .slides-button:hover {
     background: var(--alternative-dark);
+    color: var(--black);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.2);
   }
 
+  /* ── Responsive ────────────────────────────────────────── */
   @media (max-width: 768px) {
+    .bio-section {
+      padding: var(--space-3xl) var(--space-md);
+    }
+
+    .bio-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .bio-photo-wrap {
+      order: -1;
+    }
+
+    .bio-photo {
+      width: 160px;
+      height: 160px;
+    }
+
     .projects-section {
-      padding: 2rem 0 3rem;
+      padding: var(--space-3xl) var(--space-md);
     }
 
     .projects-grid {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
     }
 
     .projects-group {
-      margin-bottom: 3.5rem;
+      margin-bottom: var(--space-3xl);
     }
 
     .group-header {
-      margin-bottom: 2rem;
+      margin-bottom: var(--space-xl);
     }
 
     .group-header h2 {
       font-size: 1.75rem;
     }
-
-    .group-description {
-      font-size: 0.9375rem;
-    }
-
-    .featured-project-content {
-      padding: 1.25rem;
-    }
-
-    .featured-project-title {
-      font-size: 1.25rem;
-    }
-
-    .featured-project-subtitle {
-      font-size: 0.8125rem;
-    }
-
-    .featured-project-description {
-      font-size: 0.875rem;
-    }
-
-    .featured-project-image {
-      max-width: calc(100% - 3rem);
-      max-height: calc(100% - 3rem);
-    }
-
-    .project-link-button {
-      padding: 0.5rem 0.875rem;
-      font-size: 0.8125rem;
-    }
-
-    .talk-content {
-      padding: 1.25rem;
-    }
-
-    .talk-title {
-      font-size: 1.125rem;
-    }
-
-    .talk-description {
-      font-size: 0.875rem;
-    }
-
-    .talk-type-badge,
-    .event-status-badge {
-      top: 0.75rem;
-      padding: 0.375rem 0.75rem;
-      font-size: 0.75rem;
-    }
-
-    .talk-type-badge {
-      right: 0.75rem;
-    }
-
-    .event-status-badge {
-      left: 0.75rem;
-    }
-
-    .talk-actions {
-      gap: 0.375rem;
-    }
-
-    .action-button {
-      padding: 0.375rem 0.75rem;
-      font-size: 0.75rem;
-    }
   }
 
   @media (max-width: 480px) {
-    .container {
-      padding: 0 1rem;
-    }
-
-    .projects-section {
-      padding: 1.5rem 0 2.5rem;
+    .bio-photo {
+      width: 120px;
+      height: 120px;
     }
 
     .group-header h2 {
       font-size: 1.5rem;
     }
 
-    .featured-project-title {
-      font-size: 1.125rem;
-    }
-
-    .featured-project-subtitle {
-      font-size: 0.75rem;
-    }
-
-    .featured-project-image {
-      max-width: calc(100% - 2rem);
-      max-height: calc(100% - 2rem);
-    }
-
-    .featured-project-links {
-      gap: 0.5rem;
-    }
-
     .project-link-button {
-      padding: 0.5rem 0.75rem;
-      font-size: 0.75rem;
       flex: 1;
       justify-content: center;
-      min-width: 0;
     }
+  }
 
-    .link-icon {
-      width: 1rem;
-      height: 1rem;
+  @media (prefers-reduced-motion: reduce) {
+    .featured-project-card,
+    .talk-card,
+    .featured-project-image,
+    .talk-image,
+    .project-link-button,
+    .action-button {
+      transition: none;
+      transform: none !important;
     }
   }
 </style>
