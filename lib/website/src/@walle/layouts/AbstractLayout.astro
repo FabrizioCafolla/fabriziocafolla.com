@@ -9,6 +9,7 @@ const {
   headerTitle = "",
   headerDescription = config.app.website.description || "",
   headerImage = config.app.website.image || null,
+  headerOgImage = null,
   headerRobots = config.app.website.robots || "index, follow",
   headerLanguage = config.app.website.language || "",
 } = Astro.props;
@@ -21,14 +22,16 @@ const {
       title={headerTitle}
       description={headerDescription}
       image={headerImage}
+      ogImage={headerOgImage}
       robots={headerRobots}
     />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
     <Analytics
       enable={config.env.IS_PRODUCTION || false}
       scriptContent={config.app.astro.analyticsScriptContent || ""}
     />
-  </head>
-  <body>
-    <slot />
   </body>
 </html>

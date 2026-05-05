@@ -143,7 +143,7 @@ function sync_walle_files() {
   sync_files "${temp_dir}/LICENSE" "${project_name}/lib/infrastructure/@walle/LICENSE"
   sync_files "${temp_dir}/LICENSE" "${project_name}/lib/scripts/@walle/LICENSE"
   sync_files "${temp_dir}/LICENSE" "${project_name}/lib/website/src/@walle/LICENSE"
-  sync_files "${temp_dir}/LICENSE" "${project_name}/.github/workflows/actions/LICENSE"
+  sync_files "${temp_dir}/LICENSE" "${project_name}/.github/workflows/actions/@walle/LICENSE"
 }
 
 function init() {
