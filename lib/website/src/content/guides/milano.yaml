@@ -1,0 +1,840 @@
+title: Milano
+slug: milano
+aliases: [milan]
+description: |
+  Places I've tried and liked in Milan. Mostly bars, restaurants, bakeries, and spots
+  worth visiting. Updated as I go back.
+tips: |
+  - **Getting around**: Metro + tram cover most of the city. Bike sharing (BikeMi) works well for short hops.
+  - **Aperitivo**: Standard aperitivo hour is 18:00–21:00. Many bars include food with drinks — Navigli and Isola are the best areas for this.
+  - **Navigli vs Brera**: Navigli is louder and younger; Brera is quieter and more expensive. Both are good, depends on what you want.
+  - **Weekends**: Museums are crowded Saturday afternoons. Go early or pick a weekday.
+  - **Coffee rule**: Don't order a cappuccino after 11:00 if you care about blending in.
+  - **Day trips**: Como, Bergamo, and Lago d'Iseo are all under 1h by train. Worth a full day each.
+
+places:
+  # === RISTORANTI ===
+  - name: Da Giannino l'Angolo d'Abruzzo
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJRzPN-JTGhkcRHQdm-qe_ALs
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Sicilian Brera Wine & Food Art Milano
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJecNaJrPGhkcR0R6ZHOwZN6U
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Consorzio Stoppani
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJMcOdLOvGhkcRcIu3aQQmDf0
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Ristorante Poporoya
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJa0rBMOvGhkcRLl_F7HEDTt8
+    notes: "Giapponese autentico, sushi e pesce fresco"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Pellegrini Horse Butcher Shop
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJoVHJRr_GhkcRRfZHF6rnxCI
+    notes: "Macelleria con ristorante"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Mani in Pasta
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJFW4SWZPBhkcREn-tx-Tflyc
+    notes: "Pizza e cucina italiana"
+    type: [Ristorante]
+    rating: consigliatissimo
+
+  - name: Dhole Milano
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJvwo4tqHFhkcR4KrZ8IN56sM
+    type: [Ristorante]
+    rating: ok
+
+  - name: Il ristorantino della carne
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJLxFlkYz-hkcROZbliMRdaxk
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Ta-Hua
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ-aSFUc7GhkcRKqMZ4Znyt-g
+    notes: "Ristorante cinese autentico"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Sottobosco
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJIc-QIv7FhkcRZGbUmHOlswE
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: FRED
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ7bQnir3HhkcRAZEQzjOzZ8g
+    notes: "Bistrot, cocktail bar e negozio di dischi"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Giannasi dal 1967
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJr4SqDCPEhkcRvuyR9igtzBU
+    notes: "Pollo allo spiedo e gastronomia da asporto, istituzione milanese"
+    type: [Ristorante]
+    rating: consigliatissimo
+
+  - name: Tunas Pescheria & Bistrot
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ9-Q7Y_bHhkcRkVUVlLnhNWY
+    notes: "Pescheria e bistrot, pesce freschissimo"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: All'Antico Vinaio
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ981lJZHHhkcRWGi0iWPtFDo
+    notes: "Panini toscani leggendari"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Tel Chi
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJC8m9UifEhkcRdr2n9P_YHVM
+    type: [Ristorante]
+    rating: consigliato
+
+  # === PIZZERIE ===
+  - name: MARGHE
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJu6Vl_cHGhkcRmTjYHL9TLDU
+    type: [Pizzeria]
+    rating: consigliato
+
+  # === BAR ===
+  - name: La Belle Aurore
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJN5IRRZTGhkcRMCRPjxpMPlM
+    type: [Bar]
+    rating: consigliato
+
+  - name: Gaina miscugli e bolle
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ95PR7bjBhkcR7GdYo3iA0CE
+    notes: "Bar, bistrot e wine bar"
+    type: [Bar, Enoteca]
+    rating: consigliatissimo
+
+  - name: Magutt
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAz317QvHhkcRrQM-VZDkn1s
+    type: [Bar]
+    rating: consigliato
+
+  - name: Mag Cafe
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ6VMJJPrDhkcRBQ03OU6avRk
+    notes: "Bar sui Navigli, vino e cocktail in ambiente vintage"
+    type: [Bar]
+    rating: caratteristico
+
+  - name: Mom Cafè
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ19d0nJ_GhkcRI-CdZaC1AIw
+    type: [Bar]
+    rating: consigliato
+
+  - name: Bar Picchio
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJSXSZ2r_GhkcRUz2mXIG7Orw
+    type: [Bar]
+    rating: consigliato
+
+  - name: BASE Milano
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJA3W24OXDhkcR4XkomXLSiKQ
+    notes: "Centro culturale con bar"
+    type: [Bar]
+    rating: consigliato
+
+  - name: Torrital
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJLcy49uDDhkcRjOXeUBibGG8
+    type: [Bar]
+    rating: consigliatissimo
+
+  - name: Frizzi E Lazzi
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJmRPo5wnEhkcR1bPzXZ7VG-0
+    type: [Bar]
+    rating: consigliato
+
+  - name: Circolo Combattenti e Reduci
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAZ9qxjbBhkcRHwgpb2UVHmA
+    notes: "Circolo storico, atmosfera autentica"
+    type: [Bar]
+    rating: caratteristico
+
+  - name: LARG_O Bar Milano
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ51L0UevHhkcRyrVOTs6UZho
+    notes: "Bar, pub, tapas e wine club"
+    type: [Bar]
+    rating: consigliato
+
+  - name: Flow Milano
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJlZsgplTBhkcRaO9DqbKl54s
+    type: [Bar]
+    rating: ok
+
+  - name: NoLoSo
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJB6C8xePHhkcRlqtTDbN2NEE
+    type: [Bar]
+    rating: consigliato
+
+  - name: Dolce Notte Cafè
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJn87BPn8MJRMRG6-4a1Heg40
+    type: [Bar]
+    rating: consigliato
+
+  # === COCKTAIL BAR ===
+  - name: drinc.different
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJk04ZUYjHhkcRCsVM42FCB8w
+    type: [Cocktail bar]
+    rating: consigliatissimo
+
+  - name: Rita
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJC5jiffDDhkcR_8vBv9VhI64
+    notes: "Cocktail bar sui Navigli"
+    type: [Cocktail bar]
+    rating: consigliato
+
+  - name: Nottingham Forest
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ23Owob3GhkcRoGhYsMXgMmc
+    type: [Cocktail bar]
+    rating: consigliato
+
+  - name: Camparino In Galleria
+    cost: medio-alto
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJp12yKazGhkcRf6_h7JBATK0
+    notes: "Storico cocktail bar in Galleria, dal 1915"
+    type: [Cocktail bar]
+    rating: consigliatissimo
+
+  - name: Bar Basso
+    cost: medio-alto
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJo4rohezGhkcRHZ6K_OnXbow
+    notes: "Inventore del Negroni Sbagliato, istituzione milanese"
+    type: [Cocktail bar]
+    rating: caratteristico
+
+  - name: Prog
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJRdfiSp7GhkcR1db7LLFVo-k
+    type: [Cocktail bar]
+    rating: consigliato
+
+  - name: ELETTRAUTO
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ_R_wQ5zGhkcRehRB07__w1k
+    type: [Cocktail bar]
+    rating: ok
+
+  - name: Il Giardino Blu
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJYZEdEvrGhkcRgumfncvmPp8
+    type: [Cocktail bar]
+    rating: consigliato
+
+  # === ENOTECA ===
+  - name: Marcovino
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJK4a6JufHhkcRcyw8F9w-O8I
+    type: [Enoteca]
+    rating: consigliatissimo
+
+  - name: Vineria Eretica
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJC0o5HqPHhkcR9O-N_PNQFXM
+    type: [Enoteca]
+    rating: consigliato
+
+  - name: Associazione Salumi e Vini Naturali
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJr9OEItHBhkcRrx17XqoIvuw
+    type: [Enoteca]
+    rating: consigliato
+
+  - name: Bar Nico
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJa7lEkuTHhkcRJ4I2Qe7klsM
+    type: [Enoteca]
+    rating: consigliato
+
+  - name: Sottobanco
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJjwVjHwDFhkcRTVGL0kC94BE
+    type: [Enoteca]
+    rating: consigliato
+
+  # === PUB ===
+  - name: Pogue Mahone's
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJVXpibCLEhkcRBLxdQLQGqRY
+    notes: "Irish pub"
+    type: [Pub]
+    rating: consigliato
+
+  - name: La Chiesetta
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ_WByOTnBhkcRrQUqpq9YhsI
+    type: [Pub]
+    rating: consigliato
+
+  - name: Birrificio di Ringhiera
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ4bigPpDFhkcR6g6D__NfRmo
+    notes: "Birrificio artigianale"
+    type: [Pub]
+    rating: consigliatissimo
+
+  - name: Ostello Bello Milano Duomo
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJI1FlH1XBhkcRYO3-DPtraNA
+    notes: "Ostello con bar e musica live"
+    type: [Pub]
+    rating: consigliato
+
+  # === PASTICCERIA ===
+  - name: Pasticceria Lorini
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJNaD8RJTGhkcR2LnPaje1LLg
+    type: [Pasticceria]
+    rating: consigliatissimo
+
+  - name: Pavé
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJR3Kw9PDHhkcRMEZH5KMCt_o
+    notes: "Pasticceria artigianale, brioche incredibili"
+    type: [Pasticceria]
+    rating: consigliatissimo
+
+  - name: Marchesi 1824
+    cost: medio-alto
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJD5IlqVPBhkcRr_-qUpovfSA
+    notes: "Pasticceria storica dal 1824"
+    type: [Pasticceria]
+    rating: consigliatissimo
+
+  - name: Panificio Davide Longoni
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ4Zw2AC3EhkcR6RCpOQ9F7UI
+    notes: "Panificio artigianale di altissimo livello"
+    type: [Pasticceria]
+    rating: consigliatissimo
+
+  - name: Egalité
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJw0e1w7_GhkcR3S2mJAeAgKE
+    type: [Pasticceria]
+    rating: consigliato
+
+  - name: Pasticceria Michelangelo
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJt1-KlI3GhkcRy0Yh788wS0Y
+    type: [Pasticceria]
+    rating: consigliato
+
+  # === GELATERIA ===
+  - name: Avgvsto Premiata Gelateria
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJuahBxPzDhkcRxOKp_FJQKWI
+    type: [Gelateria]
+    rating: consigliatissimo
+
+  # === LIBRERIE & CAFFÈ ===
+  - name: Long Song Books & Café
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJz-85hwHHhkcRrU9plMQRx68
+    notes: "Libreria con caffetteria"
+    type: [Libreria & Caffè]
+    rating: consigliato
+
+  # === LOCALI & SPAZI CULTURALI ===
+  - name: Santeria Paladini 8
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJgeaBmGHGhkcRwYaUOd6w9B0
+    notes: "Bistrot, galleria, cocktail bar, coworking e spazio eventi"
+    type: [Locale]
+    rating: consigliato
+
+  - name: Fuorimano OTBP
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ3642wTDHhkcRmD4aBxIsTrs
+    notes: "Ristorante, brunch, cocktail, coworking"
+    type: [Locale]
+    rating: consigliato
+
+  - name: Tipografia Alimentare
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJF0SxRBfHhkcRLw-F77cvxpg
+    notes: "Bistrot nel quartiere NoLo"
+    type: [Locale]
+    rating: consigliato
+
+  # === LUOGHI DA VISITARE ===
+  - name: Duomo di Milano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJoTZGw67GhkcREy4aECdOf6s
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Navigli
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJteb3pfHDhkcRrS9DNcYIAio
+    notes: "Quartiere dei canali, aperitivi e vita notturna"
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Brera
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJCYiuC7PGhkcRz09nwZLNenU
+    notes: "Quartiere artistico, gallerie e botteghe"
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Castello Sforzesco
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJPXupDrb8hkcRm8JyxGbdVmU
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Parco Sempione
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJWUblrUjBhkcRtpP5ICHdu7g
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: BAM - Biblioteca degli Alberi Milano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ90iZT83GhkcRXLqkHmqRL2w
+    notes: "Parco urbano contemporaneo a Porta Nuova"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Giardini Indro Montanelli
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJC9Gf1Z_HhkcRH6EVb5Dg_PI
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Colonne di San Lorenzo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJCab7CQDFhkcRWuDyUOfRqSo
+    notes: "Colonne romane, ritrovo serale"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Galleria Vittorio Emanuele II
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ_f48IazGhkcRc9rvJ8twEkg
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Cimitero Monumentale
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ86AjdDDBhkcRlB_wfs_iB1U
+    notes: "Museo a cielo aperto di scultura e architettura funeraria"
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Brera Botanical Garden
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJPV8zpLPGhkcRyabDZaMWhFo
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Basilica di Sant'Ambrogio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJCfxX3lbBhkcRY78V8stFXio
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Chiesa di Santa Maria presso San Satiro
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJt1PB9qvGhkcRwIetkCDW1qM
+    notes: "Finta abside prospettica di Bramante"
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Chiostri di Sant'Eustorgio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJS9yh5wDFhkcRfeP4ETptQtg
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Chinatown
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJZ8kO6jnBhkcRKFLIbbgJQxg
+    notes: "Via Paolo Sarpi, street food e negozi"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: HORTI
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJaRykUh7EhkcRiF6Rk_boW6A
+    type: [Luogo da visitare]
+    rating: ok
+
+  - name: Giardini della Guastalla
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ6eqVPwDHhkcROFdPcYcv4KA
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Torre dei Gorani
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJn9xboFPBhkcRW8hECR7HJRI
+    notes: "Torre medievale nascosta"
+    type: [Luogo da visitare]
+    rating: caratteristico
+
+  - name: P.za Cordusio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJLcyq_azGhkcR-Q1odMNwe88
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Università degli Studi di Milano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ2XXmLabGhkcRc4-Fcl-Q9h0
+    notes: "Chiostri rinascimentali"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Parco Nord Milano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJX6Fas1fHhkcRUNIoZY5K1Jw
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Toiletpaper Magazine
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJU3KEI4fHhkcR50iyZc1akOI
+    notes: "Studio di Maurizio Cattelan e Pierpaolo Ferrari"
+    type: [Luogo da visitare]
+    rating: caratteristico
+
+  - name: Largo Marinai d'Italia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAYAxLYPGhkcRdEYkNgmBphM
+    type: [Luogo da visitare]
+    rating: ok
+
+  - name: Via Abramo Lincoln
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ30VtMJjGhkcRLIluiUUit-0
+    type: [Luogo da visitare]
+    rating: ok
+
+  - name: Piazza Nicolò Tommaseo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJz6KOS0PBhkcRev-TnVBUweI
+    type: [Luogo da visitare]
+    rating: ok
+
+  # === MUSEI E ATTRAZIONI ===
+  - name: Pinacoteca di Brera
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJH05-WBHuhkcRNjexLI56Nhs
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Fondazione Prada
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ16AE-J7GhkcRnxchwJ_WRRU
+    type: [Museo]
+    rating: consigliato
+
+  - name: Museo del Novecento
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJLd2VYRsuVUARNjgLnq9U2dE
+    type: [Museo]
+    rating: consigliato
+
+  - name: Museo del Cenacolo Vinciano
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ76jHT1rBhkcRhv_9lZv4uG0
+    notes: "L'Ultima Cena di Leonardo, prenotazione obbligatoria"
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Fondazione Luigi Rovati
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ4UFq1b7GhkcROo3SCL9BqZ4
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Triennale Milano
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJRwVc7UXBhkcRIlGMal_aWHU
+    notes: "Design, architettura e arte contemporanea"
+    type: [Museo]
+    rating: consigliato
+
+  - name: Villa Necchi Campiglio
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJn2UxgrvGhkcRNLCIIIOoylM
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Bagatti Valsecchi Museum
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ5RQ7V7DGhkcRpDodQbl-mTs
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Casa Museo Boschi Di Stefano
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJaTHK4cHGhkcRvB5AqS1NjkI
+    notes: "Collezione d'arte moderna, ingresso gratuito"
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Museo Poldi Pezzoli
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJl-MC8rHGhkcRbn3y-uOYmIQ
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Biblioteca Pinacoteca Accademia Ambrosiana
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJn8qyiKzGhkcRbtP7f16_hsw
+    type: [Museo]
+    rating: consigliato
+
+  - name: Museo Civico Archeologico
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJS7pv1lPBhkcRhXsyUlEDVIk
+    type: [Museo]
+    rating: consigliato
+
+  - name: Galleria Campari
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJs9c-uZm4hkcRCkymM3sV9Ss
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Pirelli HangarBicocca
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJX19ryKPGhkcR5i34n6bQsyI
+    notes: "Arte contemporanea, ingresso gratuito"
+    type: [Museo]
+    rating: consigliato
+
+  - name: PAC Padiglione d'Arte Contemporanea
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJW7kYvLnGhkcRwkQX9ATYw5U
+    type: [Museo]
+    rating: consigliato
+
+  - name: GAM - Galleria d'Arte Moderna
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ0aJqFrnGhkcRC7zxxQ2Yk8E
+    type: [Museo]
+    rating: consigliato
+
+  - name: ADI Design Museum
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJGV0cuMrBhkcRxbwIiNrcUqY
+    type: [Museo]
+    rating: consigliato
+
+  - name: Chiesa di San Maurizio al Monastero Maggiore
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ42GMgJi5hkcR70ydC_sBD-8
+    notes: "La 'Cappella Sistina di Milano', affreschi rinascimentali"
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Civico Planetario Ulrico Hoepli
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJswWtguTDhkcRRjRCRVvYlNg
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Abbazia di Chiaravalle
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ7yy6eaDFhkcRSzJkw_utHqw
+    type: [Museo]
+    rating: consigliato
+
+  - name: Palazzo Morando
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ4WbJcLDGhkcR3ZiTB1esAXo
+    notes: "Costume, Moda e Immagine"
+    type: [Museo]
+    rating: consigliato
+
+  - name: Palazzo Serbelloni
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJcWp8VbrGhkcRu2DG4uFm344
+    type: [Museo]
+    rating: consigliato
+
+  - name: Arena Civica Gianni Brera
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJo1Dp_UjBhkcRM-rZAZiXSyg
+    type: [Museo]
+    rating: consigliato
+
+  - name: Acquario Civico di Milano
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJbbKLXknBhkcR0NaOVaDdRZg
+    type: [Museo]
+    rating: ok
+
+  - name: Mudec Art, Design & Book Shop
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJQR0aq0bDhkcRPqS5wVTePFw
+    type: [Museo]
+    rating: consigliato
+
+  - name: Casa Mutina Milano
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJE3iFiSPHhkcRlkRmLKIhxuI
+    notes: "Showroom di design ceramico"
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Chiostro delle Rane
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJhXF3-X_BhkcRoleqtmooTis
+    type: [Museo]
+    rating: consigliatissimo
+
+  # === CLUB ===
+  - name: Tunnel Club
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ1b3n3tjGhkcR7XNfQNWjwzg
+    type: [Club]
+    rating: consigliato
+
+  - name: Tempio del Futuro Perduto
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAwI3QDvBhkcRJ67NLKtEKOs
+    type: [Club]
+    rating: consigliato
+
+  - name: Fabbrica del Vapore
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ0WugyjvBhkcR5PIknXCkP94
+    notes: "Centro culturale, eventi e mostre"
+    type: [Club]
+    rating: consigliato
+
+  - name: Circolo Arci Bellezza
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ_drSERrEhkcRKlEonFPnT1I
+    type: [Club]
+    rating: consigliato
+
+  - name: Fabrique
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJj2-YMuDFhkcRHlGZP1BSH4E
+    notes: "Concerti e club"
+    type: [Club]
+    rating: consigliato
+
+  - name: Santeria Toscana 31
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJmzx3Og7EhkcRSrU1V7ntk-E
+    notes: "Musica live, galleria, cocktail bar"
+    type: [Club]
+    rating: consigliato
+
+  - name: Magnolia
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJTS-qcR3GhkcRczwkCGKk89Y
+    notes: "Musica live e festival"
+    type: [Club]
+    rating: consigliato
+
+  - name: Ex Macello
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJLb0GUmHHhkcRqt6dXPqKIJk
+    type: [Club]
+    rating: consigliato
+
+  - name: Amnesia milano
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ63oQpXrGhkcRUDLdzvowmAM
+    type: [Club]
+    rating: ok
+
+  # === COWORKING ===
+  - name: Open by Joivy
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJtXBqXh_EhkcR0lD0f6Plet4
+    notes: "Coworking, bar, bistrot e spazio eventi"
+    type: [Coworking]
+    rating: consigliato
+
+  # === GITE FUORI PORTA ===
+  - name: Como
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJY-0nEEichkcRJPVfeK-Wm7k
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Lago d'Iseo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJzTUUrYhhgUcRQ5mQ596cPNQ
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Bergamo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJc65ivBFRgUcR0aTlC4_LL9M
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Monza
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJh1tQNqG5hkcRnUQAylh9zBE
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Lecco
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJVTN5KtMChEcRAgbIC6erfI8
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Brescia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJTSmwom52gUcRBOpqRxVGzSI
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Pavia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJSQD6dUwmh0cRjoLPs7y0tfU
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Montevecchia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJUY7T6aGvhkcRFDXE-p10R7A
+    notes: "Colline brianzole, panorami e vigne"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Grazzano Visconti
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ0_icBWXqgEcRW-91KgJQsRw
+    notes: "Borgo medievale ricostruito"
+    type: [Gita fuori porta]
+    rating: caratteristico
+
+  - name: Desenzano del Garda
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ41sgIFiUgUcRofM12thDs60
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Sirmione
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJy2NkqknrgUcRkifP0xijNBM
+    notes: "Castello scaligero e terme sul Lago di Garda"
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Verona
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ4-CbaWhff0cRW1mCaGNa-FM
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Torino
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJJb4YZBJtiEcRv3ec1gP4A4k
+    type: [Gita fuori porta]
+    rating: consigliatissimo

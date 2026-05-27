@@ -1,0 +1,546 @@
+title: Latina
+slug: latina
+description: |
+  Restaurants, bars, day trips, and sights in the Latina province.
+  Covers the coast (Sabaudia, Sperlonga, Gaeta), the hill towns (Sermoneta, Norma, Cori),
+  and the city itself.
+tips: |
+  - **Best time to visit**: April through September. Summers are hot — coast gets packed in August.
+  - **You need a car**: Public transport between towns is slow and unreliable. Rent a car or bring yours.
+  - **Festivals**: Most towns run sagre (food festivals) from June to September. Check local calendars.
+  - **Beaches**: Sabaudia has long sandy beaches; Sperlonga and San Felice Circeo have coves. Arrive early in summer.
+  - **Ponza**: Reachable by ferry from Terracina or Formia. Book ahead in July/August — ferries fill up fast.
+  - **Hill towns**: Sermoneta, Norma, and Cori are all within 20 min of each other. Combine them in one morning.
+  - **Wine**: The area around Cori and the Lepini hills produces solid reds (Nero Buono). Cincinnato is the best known winery.
+
+places:
+  # === RISTORANTI ===
+  - name: Cincinnato Wine Resort
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJOeZ__sVwJRMR3Rm0uCVGUgA
+    notes: "Agriturismo in casale dell'800 immerso nei vigneti, ristorante moderno e luminoso"
+    type: [Ristorante, Enoteca]
+    rating: consigliatissimo
+
+  - name: Panisperna
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJq8SxouUNJRMRI91d2_F8BrI
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Il Golfo
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJtahMG6YJJRMRduUbLx8HYsI
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Osteria Pontina Latina
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJYTpMT4YMJRMRzAx9EGUVMTI
+    type: [Ristorante, Enoteca]
+    rating: consigliato
+
+  - name: Ristorante L'AMO
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJZ07IwxYJJRMRY9IyA1O-Rv8
+    notes: "Ristorante di pesce sul lungomare"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Osteria "Da Giorgione"
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJU-6Ein8MJRMRUaMP6m1S4xY
+    notes: "Trattoria di quartiere, ambiente old-school, cucina italiana casalinga"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Osteria Dalí, di Claudio Vinci
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJvQriB2ANJRMRxBScVHvY0gU
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Al Primo Piano
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJbb6IbIMLJRMRTzDds3fDqqc
+    type: [Ristorante, Pizzeria]
+    rating: consigliato
+
+  - name: L' Euro & gluten free
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ-Uy4_xEMJRMRMcrSPIHdiOs
+    type: [Pizzeria, Ristorante]
+    rating: ok
+
+  - name: Osteria Nicolosi
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdTes138LJRMRL9F2DZNsJrs
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Ristorante Il Quadrato
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJDUBZi38MJRMRMzcTQL645ko
+    notes: "Pesce e cucina italiana"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Il Vulcano
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJhRrqxg4MJRMRr0QNLadYcjw
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Ristorante Greco Sirtakis Latina
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdfu6Hw8NJRMR9dGfo2vjguY
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Il Fogliano Hotel New Life
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAZDSTRYJJRMRd_Pb9R40qxE
+    notes: "Hotel fronte mare con 2 ristoranti, piscina e colazione inclusa"
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Pastore Serafino di Quadrotta Roberto
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJaWLcESQJJRMRbwCe2jhdfjE
+    notes: "Fattoria con prodotti caseari locali"
+    type: [Ristorante]
+    rating: caratteristico
+
+  # === PIZZERIE ===
+  - name: Pizzeria Posillipo
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJWy3ajlsMJRMRb0PHEvz83SY
+    type: [Pizzeria]
+    rating: consigliato
+
+  - name: BIGAP PIZZA STUDIO
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJYTYA1JcNJRMR4T1cBphwojQ
+    type: [Pizzeria]
+    rating: consigliatissimo
+
+  - name: The Fornaretto
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8_O2ZXgMJRMRE0ji6F5GjDI
+    type: [Pizzeria]
+    rating: consigliato
+
+  - name: Forneria
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJb6HImuMLJRMRlUPNUJOdEoI
+    notes: "Panificio, pizza al taglio e gastronomia"
+    type: [Pizzeria, Pasticceria]
+    rating: consigliato
+
+  # === PUB ===
+  - name: B EastSide Pub
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJWUcnFjENJRMRLI-aaUOtubg
+    type: [Pub]
+    rating: consigliatissimo
+
+  - name: The Scottish
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJRw0eP4cMJRMR_ZFdlawMP2c
+    type: [Pub]
+    rating: consigliato
+
+  - name: Irish Pub Doolin
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJIz_GfocMJRMReUvFlie9R60
+    type: [Pub]
+    rating: consigliato
+
+  - name: Olimpo della Birra
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJPTKBoHkMJRMRQkgktEll8fY
+    type: [Pub]
+    rating: consigliato
+
+  - name: Quarto Lato
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJv3CAVosNJRMR5ZijDNTdqsA
+    notes: "Beer garden in piazza"
+    type: [Pub]
+    rating: consigliato
+
+  # === ENOTECA ===
+  - name: Oberdan23 Enoteca
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJmdo4GnwNJRMRb-ZoiGewfzc
+    type: [Enoteca]
+    rating: consigliatissimo
+
+  - name: Parliamo di Vino
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ0d8rNXwMJRMRRdpRQ795xh0
+    type: [Enoteca]
+    rating: consigliato
+
+  - name: Marco Carpineti
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJlzJdKLVwJRMR5LLKsfN0RPk
+    notes: "Cantina a Cori, degustazioni"
+    type: [Enoteca]
+    rating: consigliatissimo
+
+  # === BAR E PASTICCERIE ===
+  - name: CERBERO - Tattoo, Cocktail, Custom
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ9WdeEMoNJRMRDaRbLHabt2E
+    notes: "Cocktail bar con tattoo shop integrato"
+    type: [Bar]
+    rating: caratteristico
+
+  - name: Dolce Notte Cafè
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJn87BPn8MJRMRG6-4a1Heg40
+    type: [Bar]
+    rating: consigliato
+
+  - name: Bar pasticceria Cifra
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ7024S6ALJRMR-9LoQ8UzhEg
+    notes: "Bar, pasticceria, enoteca ed eventi"
+    type: [Bar, Pasticceria]
+    rating: consigliato
+
+  - name: Central Park Bistrot
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ41iXz2IMJRMRnI2s-a5z3RU
+    type: [Bar]
+    rating: consigliato
+
+  - name: Pasticceria Operá
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8-ke72MMJRMRruxnoQ5RcVA
+    notes: "Pasticceria e scuola di cucina"
+    type: [Pasticceria]
+    rating: consigliato
+
+  - name: Turirizzo
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ0xrygX4MJRMRJ36mTnk7sT8
+    type: [Pasticceria]
+    rating: ok
+
+  - name: 0% Glutine
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJSXzS9mIMJRMRJ4HA2LFUoO8
+    type: [Pasticceria]
+    rating: consigliato
+
+  - name: Gelateria Polo Nord
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJqUjc3XwMJRMRWnPhbdQiMQw
+    type: [Gelateria]
+    rating: consigliato
+
+  # === GITE FUORI PORTA ===
+  - name: Isola di Ponza
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJoW5ij4ryJBMR015shEYeIt0
+    notes: "Calette pittoresche, noleggio barche, ristoranti di pesce"
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Isola Palmarola
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJQR9vLkr0JBMR3mHL1QlprGI
+    notes: "Raggiungibile in barca, acque cristalline e grotte"
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Ventotene
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJLVWeVxS2JBMRC4GawYj-qdA
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Isola Zannone
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJGTTRD-fuJBMR3_2OARD7MlE
+    notes: "Nel Parco del Circeo, rovine di convento e villa"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Sabaudia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8ZBbsPsaJRMRJ-jstXgq62U
+    notes: "Città costiera con architettura razionalista degli anni '30"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Terracina
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJh9nwaPIiJRMRVf3DgZPAsHE
+    notes: "Città antica sulla Via Appia, abitata ininterrottamente dall'antichità"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Sperlonga
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJpfllVm8uJRMRcGK9VlDxSto
+    notes: "Borgo costiero tra Roma e Napoli, grotta romana con sculture"
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Gaeta
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJUf3NODzTOhMRAjZNrY4IFMQ
+    notes: "Parco Monte Orlando, Montagna Spaccata, Grotta del Turco"
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Itri
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ71fYSLoyJRMRhvuG_C0moqE
+    notes: "Centro agricolo nella valle tra i Monti Aurunci e il mare"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Cori
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJqSROnMdwJRMR1KIauUegsFE
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Sermoneta
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJHSN-O3dyJRMRXG8rwF9LjHY
+    notes: "Borgo medievale murato, chiesa romanica del XIII secolo e castello Caetani"
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Norma
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJi1j7wfFxJRMRDGVitMdF-Pg
+    notes: "Nei Monti Lepini, ospita il Giardino di Ninfa"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Sonnino
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJZUsfPsI-JRMRTQBZA2TNDz0
+    type: [Gita fuori porta]
+    rating: ok
+
+  - name: Ariccia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJuW-07iGFJRMRoLCHUyAPliA
+    notes: "Castelli Romani, famosa per la porchetta"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Castel Gandolfo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ5cSYLbyFJRMRvUFOErXDaBc
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Nemi
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ2eciu36DJRMRyod7hXG35nI
+    notes: "Borgo sui Colli Albani affacciato sul lago vulcanico"
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: San Felice Circeo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJmbG0PbMeJRMRTNvlhWZPT5Y
+    notes: "Uno dei Borghi più belli d'Italia, nel Parco Nazionale del Circeo"
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  - name: Nettuno
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ2fZ_96-jJRMRBI71b_lEc5c
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Bassiano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJJ5efy7dtJRMRZ_CTQek3WfY
+    type: [Gita fuori porta]
+    rating: ok
+
+  - name: Fiuggi
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdUhdRZz1LxMRPJnBP_LvmV4
+    type: [Gita fuori porta]
+    rating: consigliato
+
+  - name: Roma
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJu46S-ZZhLxMROG5lkwZ3D7k
+    type: [Gita fuori porta]
+    rating: consigliatissimo
+
+  # === LUOGHI DA VISITARE ===
+  - name: Giardino di Ninfa
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdSVV8AZyJRMR3XwjpGdAtDg
+    notes: "Giardino nelle rovine di una città medievale, visita guidata"
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Lago di Bracciano
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJKQu89TdPLxMRR0H3dcXGFEI
+    notes: "Lago per vela, nuoto e immersioni"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Lago di Bolsena
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJDaR4H_koKRMRwzFD-4RusMc
+    notes: "Lago con 2 isole, sentieri e campeggi"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Parco Archeologico di Norba
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJkXaLSgBxJRMRRtm2S12auhQ
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Tempio di Giove Anxur
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJw4O8OlwjJRMRcDghq5tPCQ8
+    notes: "Rovine romane con vista panoramica su Terracina"
+    type: [Luogo da visitare]
+    rating: consigliatissimo
+
+  - name: Giardino degli Aranci
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ2dxWXTRgLxMR-Ug5hzOYuQM
+    notes: "Piazza nascosta con aranci, mura medievali e vista su Roma"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Grotta delle Capre
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJi1ogkZ0eJRMRC8p1xdOnt_g
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Grotta del Turco
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJtxkRw2jTOhMR65WIOh-7D1M
+    notes: "Grotta marina raggiungibile da Monte Orlando"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Certosa di Trisulti
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ-WKvtR_5LxMRfDT9uTF-sL0
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Lago di Fogliano
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJx-9kp9IOJRMRVMZQhB8qso0
+    notes: "Sentiero costiero per hiking e ciclismo, ricco di avifauna"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Palazzo Pontificio
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJy8kCCbyFJRMR1hy3iIHrHT4
+    notes: "Palazzo del XVII secolo con giardini, residenza estiva del papa"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Monte Ciocci - Belvedere
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ7frlMSZhLxMRtWZLUl8LBw0
+    type: [Luogo da visitare]
+    rating: ok
+
+  - name: Gianicolo Belvedere
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJN-GsUwBhLxMR8GJzcAWRRtE
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  - name: Astura
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8wvF9ASnJRMRAfk33ptPCSY
+    notes: "Penisola con torre medievale sulla costa laziale"
+    type: [Luogo da visitare]
+    rating: consigliato
+
+  # === MUSEI E ATTRAZIONI ===
+  - name: Museo Piana delle Orme
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJpbSsCMQNJRMRp7BrEMWVSt0
+    notes: "Museo all'aperto con veicoli WWII, diorami e storia delle paludi pontine"
+    type: [Museo]
+    rating: consigliatissimo
+
+  - name: Museo Duilio Cambellotti
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJjYPCInwMJRMRZvRCIhkcemE
+    type: [Museo]
+    rating: consigliato
+
+  - name: Museo della Terra Pontina
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAVVLbgANJRMRFPOyHUH6CVc
+    type: [Museo]
+    rating: consigliato
+
+  - name: Castello Caetani di Sermoneta
+    cost: medio-basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ43F2OndyJRMR3WDUthYnRc8
+    notes: "Fortezza del 1200 con affreschi mitologici, visite guidate"
+    type: [Museo]
+    rating: consigliatissimo
+
+  # === HIKING ===
+  - name: Monte Semprevisa
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJH26eKFdpJRMR8Po43ptPCR0
+    type: [Hiking]
+    rating: consigliato
+
+  - name: Picco di Circe
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJaSK9M2YcJRMRE0QSllkU264
+    notes: "Punto panoramico sul Circeo"
+    type: [Hiking]
+    rating: consigliatissimo
+
+  - name: Monte Orlando
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ61iNE27TOhMR54mMyy45jzc
+    notes: "A Gaeta, area protetta con rovine romane"
+    type: [Hiking]
+    rating: consigliato
+
+  - name: Monte delle Fate
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJyQx1mm05JRMRn7cUmKomXmA
+    type: [Hiking]
+    rating: ok
+
+  - name: Cima del Redentore
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJgwhILdTNOhMRKfQTfx2HO7s
+    type: [Hiking]
+    rating: consigliato
+
+  - name: Monte Erdigheta
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJHb4R_NprJRMRQlx7j1INK-M
+    type: [Hiking]
+    rating: ok
+
+  - name: Monte Leano
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJSR3ozyE9JRMRBtKyGCBXQXs
+    type: [Hiking]
+    rating: consigliato
+
+  # === COWORKING ===
+  - name: thespaze Coworking | sede di Latina
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJGaD44ZENJRMRk8Vm2kQ_dlc
+    type: [Coworking]
+    rating: consigliato
+
+  - name: OPENHUB LAZIO Latina
+    cost: medio
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJoy39m74LJRMRek1kMvKbEtk
+    type: [Coworking]
+    rating: consigliato
+
+  - name: Spazio Attivo Latina Lazio Innova
+    cost: basso
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJc6jbdnwMJRMRgSIdNtCWTmA
+    type: [Coworking]
+    rating: ok

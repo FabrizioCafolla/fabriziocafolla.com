@@ -18,4 +18,26 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+const guides = defineCollection({
+  loader: glob({ base: "./src/content/guides", pattern: "**/*.{yaml,yml}" }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    aliases: z.array(z.string()).optional(),
+    description: z.string().optional(),
+    tips: z.string().optional(),
+    places: z.array(
+      z.object({
+        name: z.string(),
+        cost: z.enum(["basso", "medio-basso", "medio", "medio-alto", "alto"]).optional(),
+        maps: z.string().url().optional(),
+        notes: z.string().optional(),
+        hours: z.array(z.string()).optional(),
+        type: z.array(z.string()),
+        rating: z.enum(["ok", "consigliato", "consigliatissimo", "caratteristico"]),
+      })
+    ),
+  }),
+});
+
+export const collections = { posts, guides };

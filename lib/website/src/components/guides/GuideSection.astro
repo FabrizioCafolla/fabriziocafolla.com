@@ -1,0 +1,95 @@
+---
+import PlaceCard from "./PlaceCard.astro";
+
+export interface Place {
+  name: string;
+  cost?: string;
+  maps?: string;
+  notes?: string;
+  hours?: string[];
+  type: string[];
+  rating: string;
+}
+
+export interface Props {
+  id: string;
+  title: string;
+  places: Place[];
+}
+
+const { id, title, places } = Astro.props;
+---
+
+<section class="guide-section" id={id}>
+  <h2 class="guide-section__title">
+    {title}
+    <span class="guide-section__count">{places.length}</span>
+  </h2>
+  <div class="guide-section__grid">
+    {places.map((place) => (
+      <PlaceCard
+        name={place.name}
+        cost={place.cost}
+        maps={place.maps}
+        notes={place.notes}
+        hours={place.hours}
+        type={place.type}
+        rating={place.rating}
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .guide-section {
+    margin-bottom: 48px;
+    scroll-margin-top: 24px;
+  }
+
+  .guide-section__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gray);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .guide-section__count {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-dark);
+  }
+
+  .guide-section__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .guide-section {
+      margin-bottom: 32px;
+    }
+
+    .guide-section__title {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .guide-section__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 768px) {
+    .guide-section__grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+  }
+</style>

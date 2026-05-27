@@ -1,0 +1,100 @@
+---
+export interface Props {
+  title: string;
+  slug: string;
+  placesCount: number;
+}
+
+const { title, slug, placesCount } = Astro.props;
+---
+
+<a href={`/guides/${slug}`} class="guide-card" aria-label={`${title} guide`}>
+  <article class="guide-card__wrapper">
+    <h3 class="guide-card__title">{title}</h3>
+    <p class="guide-card__count">
+      {placesCount} {placesCount === 1 ? "place" : "places"}
+    </p>
+  </article>
+</a>
+
+<style>
+  .guide-card {
+    --card-padding: 20px;
+    --card-border-color: var(--gray);
+    --card-hover-border-color: var(--primary);
+    --card-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+  }
+
+  .guide-card__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--card-padding);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    transition: var(--card-transition);
+  }
+
+  .guide-card:hover .guide-card__wrapper {
+    border-color: var(--card-hover-border-color);
+    box-shadow: 0 8px 16px rgba(0, 70, 173, 0.12);
+  }
+
+  .guide-card:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
+
+  .guide-card__title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--black);
+    transition: color 0.2s ease;
+  }
+
+  .guide-card:hover .guide-card__title {
+    color: var(--primary);
+  }
+
+  .guide-card__count {
+    font-size: 14px;
+    color: var(--gray-dark);
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .guide-card {
+      --card-padding: 16px;
+    }
+
+    .guide-card__title {
+      font-size: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .guide-card__wrapper,
+    .guide-card__title {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .guide-card__wrapper {
+      border: 2px solid var(--black);
+    }
+
+    .guide-card:hover .guide-card__wrapper {
+      border-color: var(--primary-dark);
+    }
+  }
+</style>
