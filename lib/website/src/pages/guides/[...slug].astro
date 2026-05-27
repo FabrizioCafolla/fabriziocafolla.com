@@ -1,0 +1,111 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { BaseLayout } from "@walle/layouts";
+import GuideSection from "../../components/guides/GuideSection.astro";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("guides");
+  const paths: { params: { slug: string }; props: CollectionEntry<"guides"> }[] = [];
+
+  for (const guide of guides) {
+    // Main slug
+    paths.push({ params: { slug: guide.data.slug }, props: guide });
+    // SEO aliases
+    if (guide.data.aliases) {
+      for (const alias of guide.data.aliases) {
+        paths.push({ params: { slug: alias }, props: guide });
+      }
+    }
+  }
+
+  return paths;
+}
+
+type Props = CollectionEntry<"guides">;
+
+const guide = Astro.props;
+const { title, description, places } = guide.data;
+
+// Group places by primary type (type[0])
+const sections = new Map<string, typeof places>();
+for (const place of places) {
+  const primaryType = place.type[0];
+  if (!sections.has(primaryType)) {
+    sections.set(primaryType, []);
+  }
+  sections.get(primaryType)!.push(place);
+}
+
+// Sort sections by number of places (descending)
+const sortedSections = [...sections.entries()].sort((a, b) => b[1].length - a[1].length);
+---
+
+<BaseLayout
+  title={`${title} — Guide`}
+  description={description || `Guida ai posti migliori di ${title}`}
+>
+  <div class="guide-page">
+    <header class="guide-page__header">
+      <a href="/guides" class="guide-page__back">← Tutte le guide</a>
+      <h1>{title}</h1>
+      {description && <p class="guide-page__description">{description}</p>}
+      <p class="guide-page__stats">{places.length} posti · {sortedSections.length} categorie</p>
+    </header>
+
+    <div class="guide-page__content">
+      {
+        sortedSections.map(([sectionTitle, sectionPlaces]) => (
+          <GuideSection title={sectionTitle} places={sectionPlaces} />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .guide-page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .guide-page__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .guide-page__back {
+    font-size: 0.85rem;
+    color: var(--color-text-muted, #64748b);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .guide-page__back:hover {
+    color: var(--color-primary, #0284c7);
+  }
+
+  .guide-page__header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 0.75rem;
+  }
+
+  .guide-page__description {
+    font-size: 1rem;
+    color: var(--color-text-muted, #64748b);
+    margin: 0 0 0.5rem;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  .guide-page__stats {
+    font-size: 0.85rem;
+    color: var(--color-text-muted, #94a3b8);
+    margin: 0;
+  }
+
+  .guide-page__content {
+    margin-top: 1rem;
+  }
+</style>

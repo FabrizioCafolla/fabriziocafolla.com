@@ -1,0 +1,213 @@
+title: Milano
+slug: milano
+aliases: [milan]
+description: |
+  Guida ai posti migliori di Milano — bar, ristoranti, pub, pasticcerie.
+  Posti provati personalmente, con valutazioni oneste.
+
+places:
+  - name: Le Jardin Bistrot
+    cost: medio
+    maps: https://maps.app.goo.gl/JcjNZzxKguU2TzYG8
+    notes: "Location: Intima, Qualità: Ottima, Vibes: Ti senti a casa"
+    hours: [Colazione, Pranzo]
+    type: [Bar]
+    rating: consigliatissimo
+
+  - name: La belle Aurore
+    cost: basso
+    maps: https://maps.app.goo.gl/DN7QaAbnHbtKBsDe8
+    notes: "Vibes: Posto alla mano"
+    hours: [Aperitivo, Pranzo]
+    type: [Bar, Pub]
+    rating: consigliato
+
+  - name: Casa Capitano
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/cnJgPkxPYPvHLQ5n9
+    notes: "Location: Bella, Qualità: Buona"
+    hours: [Colazione]
+    type: [Bar]
+    rating: consigliato
+
+  - name: Lorini
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/8tiiFAKx9Am9f1AY8
+    notes: "Qualità: Ottima, Varietà: Molta"
+    type: [Pasticceria]
+    rating: consigliatissimo
+
+  - name: Long Song Books & Café
+    cost: medio
+    maps: https://maps.app.goo.gl/jiDs2ENYwaGq7RBV9
+    notes: "Location: Accogliente, Vibes: Posto alla mano, Work: area dedicata"
+    hours: [Aperitivo, Colazione]
+    type: [Bar]
+    rating: consigliato
+
+  - name: Fiordilatte Gelaterie
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/vFYLodgU1uXmjTFW6
+    notes: "Gluten Free: Molte opzioni, Location: Bella, Qualità: Buona"
+    hours: [Colazione]
+    type: [Bar, Gelateria]
+    rating: ok
+
+  - name: Egalité
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/CPaFGsrRGsXip1EU9
+    notes: "Qualità: Ottima, Varietà: Molta"
+    hours: [Aperitivo, Colazione]
+    type: [Bar]
+    rating: consigliatissimo
+
+  - name: Gaina miscugli e bolle
+    cost: medio
+    maps: https://maps.app.goo.gl/yamdXeZmGFcPqn4G8
+    notes: "Location: Intima, Qualità: Ottima"
+    hours: [Aperitivo]
+    type: [Pub]
+    rating: consigliatissimo
+
+  - name: Drinc Different
+    cost: alto
+    maps: https://maps.app.goo.gl/193BHSbF6CL1TpDP8
+    notes: "Location: Intima, Qualità: Ottima"
+    hours: [Aperitivo, Dopo cena]
+    type: [Pub]
+    rating: consigliato
+
+  - name: Silvestri Luigia Liviana
+    cost: medio-basso
+    maps: https://maps.app.goo.gl/QrCP3fpWLSte8rW3A
+    notes: "Location: Intima, Qualità: Buona, Stile: Old school, Vibes: Ti senti a casa"
+    hours: [Colazione]
+    type: [Bar, Pasticceria]
+    rating: consigliato
+
+  - name: PanPerMe
+    cost: alto
+    maps: https://maps.app.goo.gl/bCAFmxEih8N1xtSt7
+    notes: "Gluten Free: Tutto"
+    hours: [Colazione]
+    type: [Bar, Forno]
+    rating: consigliato
+
+  - name: Mom Cafè
+    cost: medio-basso
+    maps: https://maps.app.goo.gl/ft1XvQsPvzkMGSAK7
+    notes: "Location: Bella, Qualità: Buona, Vibes: Posto alla mano"
+    hours: [Aperitivo, Dopo cena]
+    type: [Bar]
+    rating: consigliato
+
+  - name: Sicilian Brera Wine & Food Art Milano
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/bVPHRbN5ErCjDquB6
+    notes: "Location: Accogliente, Qualità: Ottima, Varietà: Molta, Vibes: Posto alla mano"
+    hours: [Brunch, Colazione, Pranzo]
+    type: [Bar]
+    rating: consigliatissimo
+
+  - name: Giannasi dal 1967
+    cost: medio-basso
+    maps: https://maps.app.goo.gl/imwHtb4kFy6j8qJ87
+    notes: "Gluten Free: Alcune opzioni, Stile: Old school, Varietà: Molta, Vibes: Posto alla mano"
+    hours: [Cena, Pranzo]
+    type: [Street Food]
+    rating: consigliatissimo
+
+  - name: Rita
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/cHDGj4tZazUzWgwW9
+    notes: "Location: Accogliente, Qualità: Ottima, Vibes: Posto alla mano"
+    hours: [Apericena, Aperitivo, Cena]
+    type: [Pub]
+    rating: consigliato
+
+  - name: Vetra
+    cost: medio-basso
+    maps: https://maps.app.goo.gl/ZAuW5x6dnwGnXoP9A
+    notes: "Location: Bella, Qualità: Buona, Vibes: Posto alla mano"
+    hours: [Aperitivo]
+    type: [Pub]
+    rating: consigliato
+
+  - name: Mag Cafe
+    cost: alto
+    maps: https://maps.app.goo.gl/VQ1vREmAMYAX9Ljt9
+    notes: "Location: Accogliente, Qualità: Buona, Stile: Particolare"
+    hours: [Aperitivo, Dopo cena]
+    type: [Pub]
+    rating: ok
+
+  - name: Frizzi e Lazzi
+    cost: medio-basso
+    maps: https://maps.app.goo.gl/WsH5XbGSjbXEx8JW7
+    notes: "Location: Bella, Qualità: Buona, Vibes: Posto alla mano"
+    hours: [Apericena, Aperitivo]
+    type: [Pub]
+    rating: ok
+
+  - name: Dhole Milano
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/F7KKmJQzoMUCcDJJ9
+    notes: "Location: Accogliente, Location: Intima, Qualità: Ottima, Vibes: Posto alla mano"
+    hours: [Apericena, Aperitivo, Brunch, Cena, Colazione, Dopo cena, Pranzo]
+    type: [Pub, Ristorante]
+    rating: consigliato
+
+  - name: Tunas Pescheria & Bistrot
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/ZazUmG2gNFurwLoH8
+    notes: "Gluten Free: Molte opzioni, Qualità: Ottima, Vibes: Posto alla mano"
+    hours: [Cena, Pranzo]
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Il Ristorantino della carne
+    cost: medio
+    maps: https://maps.app.goo.gl/Yey9Aduif8tXYhvB9
+    notes: "Gluten Free: Molte opzioni, Qualità: Buona, Vibes: Posto alla mano"
+    hours: [Cena, Pranzo]
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Pescaria Via Solari
+    cost: medio-alto
+    maps: https://maps.app.goo.gl/QxeWZQG1B4ta7mhb9
+    notes: "Gluten Free: Molte opzioni, Qualità: Ottima, Vibes: Posto alla mano"
+    hours: [Cena, Pranzo]
+    type: [Ristorante, Vendita diretta]
+    rating: consigliato
+
+  - name: Torrital
+    cost: medio-basso
+    maps: https://maps.app.goo.gl/wNTm6HWF76qi58eR6
+    notes: "Gluten Free: Alcune opzioni, Qualità: Ottima, Stile: Old school, Vibes: Ti senti a casa"
+    hours: [Aperitivo]
+    type: [Bar]
+    rating: caratteristico
+
+  - name: Vineria Eretica
+    cost: medio
+    notes: "Location: Intima, Qualità: Buona, Varietà: Molta, Vibes: Posto alla mano"
+    hours: [Aperitivo, Dopo cena]
+    type: [Pub]
+    rating: ok
+
+  - name: Da Giannino
+    cost: medio-basso
+    maps: https://maps.app.goo.gl/8JHFJc8u56rUvGpT6
+    notes: "Gluten Free: Molte opzioni, Qualità: Ottima, Vibes: Ti senti a casa"
+    hours: [Cena, Pranzo]
+    type: [Osteria]
+    rating: consigliato
+
+  - name: Marco Vino
+    cost: medio
+    maps: https://maps.app.goo.gl/8yQWneMxJeLJhPrm8
+    notes: "Location: Accogliente, Qualità: Ottima, Vibes: Posto alla mano, Vibes: Ti senti a casa"
+    hours: [Apericena, Aperitivo, Dopo cena]
+    type: [Enoteca]
+    rating: consigliatissimo

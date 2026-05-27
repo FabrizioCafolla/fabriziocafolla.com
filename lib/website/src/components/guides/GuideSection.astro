@@ -1,0 +1,62 @@
+---
+import PlaceCard from "./PlaceCard.astro";
+
+interface Place {
+  name: string;
+  cost: string;
+  maps?: string;
+  notes?: string;
+  hours?: string[];
+  type: string[];
+  rating: string;
+}
+
+interface Props {
+  title: string;
+  places: Place[];
+}
+
+const { title, places } = Astro.props;
+---
+
+<section class="guide-section">
+  <h3 class="guide-section__title">
+    {title}
+    <span class="guide-section__count">({places.length})</span>
+  </h3>
+  <div class="guide-section__grid">
+    {places.map((place) => <PlaceCard {...place} />)}
+  </div>
+</section>
+
+<style>
+  .guide-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .guide-section__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-border, #e2e8f0);
+  }
+
+  .guide-section__count {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-text-muted, #64748b);
+  }
+
+  .guide-section__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .guide-section__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

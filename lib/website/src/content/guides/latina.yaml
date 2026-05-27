@@ -1,0 +1,72 @@
+title: Latina
+slug: latina
+description: |
+  Guida ai posti migliori di Latina e provincia.
+  Posti provati personalmente, con valutazioni oneste.
+
+places:
+  - name: Panisperna
+    cost: medio-alto
+    hours: [Apericena, Aperitivo, Cena]
+    type: [Pub]
+    rating: consigliatissimo
+
+  - name: Il norcino
+    cost: medio
+    hours: [Apericena, Aperitivo, Cena]
+    type: [Pub]
+    rating: consigliatissimo
+
+  - name: Egidio
+    cost: medio-basso
+    hours: [Cena, Colazione, Pranzo]
+    type: [Ristorante]
+    rating: ok
+
+  - name: Hotel Fogliano
+    cost: medio-alto
+    hours: [Apericena, Aperitivo, Brunch, Cena, Colazione, Dopo cena, Pranzo]
+    type: [Bar, Ristorante]
+    rating: caratteristico
+
+  - name: Primo piano
+    cost: medio
+    hours: [Cena]
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Cerbero
+    cost: medio
+    hours: [Apericena, Aperitivo, Cena]
+    type: [Pub]
+    rating: consigliato
+
+  - name: Osteria Pontina
+    cost: medio-alto
+    hours: [Cena, Pranzo]
+    type: [Osteria]
+    rating: consigliatissimo
+
+  - name: Per bere
+    cost: medio
+    hours: [Apericena, Aperitivo, Cena]
+    type: [Pub]
+    rating: consigliato
+
+  - name: Quarto lato
+    cost: medio
+    hours: [Apericena, Aperitivo, Cena]
+    type: [Pub]
+    rating: ok
+
+  - name: Greco Sirtakis
+    cost: medio
+    hours: [Cena, Pranzo]
+    type: [Ristorante]
+    rating: consigliato
+
+  - name: Osteria Dalí
+    cost: medio
+    hours: [Cena, Pranzo]
+    type: [Ristorante]
+    rating: consigliato

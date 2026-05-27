@@ -23,6 +23,10 @@
       ]
     },
     {
+      "name": "Guides",
+      "url": "/guides"
+    },
+    {
       "icon": "mdi:link-variant",
       "url": "https://linktr.ee/fabriziocafolla"
     }

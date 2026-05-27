@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import { BaseLayout } from "@walle/layouts";
+import GuideCard from "../../components/guides/GuideCard.astro";
+
+const guides = await getCollection("guides");
+---
+
+<BaseLayout title="Guides" description="Guide ai posti migliori delle città che ho visitato.">
+  <div class="guides-index">
+    <header class="guides-index__header">
+      <h1>Guides</h1>
+      <p>
+        Guide ai posti migliori delle città che ho visitato — bar, ristoranti, pub, e altro. Posti
+        provati personalmente.
+      </p>
+    </header>
+    <div class="guides-index__grid">
+      {
+        guides.map((guide) => (
+          <GuideCard
+            title={guide.data.title}
+            slug={guide.data.slug}
+            description={guide.data.description}
+            placeCount={guide.data.places.length}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .guides-index {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .guides-index__header {
+    margin-bottom: 2rem;
+  }
+
+  .guides-index__header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+  }
+
+  .guides-index__header p {
+    font-size: 1rem;
+    color: var(--color-text-muted, #64748b);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .guides-index__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+</style>

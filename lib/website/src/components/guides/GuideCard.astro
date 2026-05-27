@@ -1,0 +1,60 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  description?: string;
+  placeCount: number;
+}
+
+const { title, slug, description, placeCount } = Astro.props;
+---
+
+<a href={`/guides/${slug}`} class="guide-card">
+  <div class="guide-card__content">
+    <h3 class="guide-card__title">{title}</h3>
+    {description && <p class="guide-card__description">{description.split("\n")[0]}</p>}
+    <span class="guide-card__count">{placeCount} posti</span>
+  </div>
+</a>
+
+<style>
+  .guide-card {
+    display: block;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .guide-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .guide-card__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+
+  .guide-card__description {
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #64748b);
+    margin: 0 0 0.75rem;
+    line-height: 1.4;
+  }
+
+  .guide-card__count {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    background: var(--color-primary-light, #e0f2fe);
+    color: var(--color-primary, #0284c7);
+    border-radius: 1rem;
+  }
+</style>
