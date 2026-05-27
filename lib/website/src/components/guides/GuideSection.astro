@@ -8,6 +8,7 @@ export interface Place {
   notes?: string;
   hours?: string[];
   type: string[];
+  tags?: string[];
   rating: string;
 }
 
@@ -26,17 +27,20 @@ const { id, title, places } = Astro.props;
     <span class="guide-section__count">{places.length}</span>
   </h2>
   <div class="guide-section__grid">
-    {places.map((place) => (
-      <PlaceCard
-        name={place.name}
-        cost={place.cost}
-        maps={place.maps}
-        notes={place.notes}
-        hours={place.hours}
-        type={place.type}
-        rating={place.rating}
-      />
-    ))}
+    {
+      places.map((place) => (
+        <PlaceCard
+          name={place.name}
+          cost={place.cost}
+          maps={place.maps}
+          notes={place.notes}
+          hours={place.hours}
+          type={place.type}
+          tags={place.tags}
+          rating={place.rating}
+        />
+      ))
+    }
   </div>
 </section>
 

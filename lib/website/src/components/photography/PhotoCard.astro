@@ -1,0 +1,112 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  location: string;
+  date: string;
+  path: string;
+}
+
+const { title, description, location, date, path } = Astro.props;
+---
+
+<figure class="photo-card">
+  <img src={path} alt={title} loading="lazy" decoding="async" />
+  <figcaption class="photo-card__overlay">
+    <h3 class="photo-card__title">{title}</h3>
+    <p class="photo-card__description">{description}</p>
+    <div class="photo-card__meta">
+      <span class="photo-card__location">{location}</span>
+      <span class="photo-card__date">{date}</span>
+    </div>
+  </figcaption>
+</figure>
+
+<style>
+  .photo-card {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    break-inside: avoid;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .photo-card__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.35) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.03);
+  }
+
+  .photo-card:hover .photo-card__overlay {
+    opacity: 1;
+  }
+
+  .photo-card__title {
+    font-family: "NectoMono", monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .photo-card__description {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 10px;
+    line-height: 1.4;
+  }
+
+  .photo-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .photo-card__location,
+  .photo-card__date {
+    font-family: "NectoMono", monospace;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .photo-card img,
+    .photo-card__overlay {
+      transition: none !important;
+    }
+
+    .photo-card:hover img {
+      transform: none;
+    }
+
+    .photo-card__overlay {
+      opacity: 1;
+    }
+  }
+</style>

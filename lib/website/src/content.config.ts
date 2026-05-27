@@ -1,5 +1,6 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { z } from "astro/zod";
+import { defineCollection } from "astro:content";
 
 const posts = defineCollection({
   // Load Markdown and MDX files in the `src/content/posts/` directory.
@@ -29,15 +30,31 @@ const guides = defineCollection({
     places: z.array(
       z.object({
         name: z.string(),
-        cost: z.enum(["basso", "medio-basso", "medio", "medio-alto", "alto"]).optional(),
-        maps: z.string().url().optional(),
+        cost: z.enum(["low", "mid-low", "middle", "mid-high", "high"]).optional(),
+        maps: z.url().optional(),
         notes: z.string().optional(),
         hours: z.array(z.string()).optional(),
         type: z.array(z.string()),
-        rating: z.enum(["ok", "consigliato", "consigliatissimo", "caratteristico"]),
+        tags: z.array(z.string()).optional(),
+        rating: z.enum(["good", "recommended", "top", "unique"]),
       })
     ),
   }),
 });
 
-export const collections = { posts, guides };
+const photos = defineCollection({
+  loader: glob({ base: "./src/content/photos", pattern: "**/*.{yaml,yml}" }),
+  schema: z.object({
+    photos: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        location: z.string(),
+        date: z.string(),
+        path: z.string(),
+      })
+    ),
+  }),
+});
+
+export const collections = { posts, guides, photos };

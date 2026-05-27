@@ -8,11 +8,12 @@ export interface Props {
 const { title, slug, placesCount } = Astro.props;
 ---
 
-<a href={`/guides/${slug}`} class="guide-card" aria-label={`${title} guide`}>
+<a href={`/blog/guides/${slug}`} class="guide-card" aria-label={`${title} guide`}>
   <article class="guide-card__wrapper">
     <h3 class="guide-card__title">{title}</h3>
     <p class="guide-card__count">
-      {placesCount} {placesCount === 1 ? "place" : "places"}
+      {placesCount}
+      {placesCount === 1 ? "place" : "places"}
     </p>
   </article>
 </a>

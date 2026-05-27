@@ -2,7 +2,7 @@
 import { BaseLayout } from "@walle/layouts";
 import { SectionHeaderStandard } from "@walle/components";
 import { getCollection } from "astro:content";
-import GuideSection from "../../components/guides/GuideSection.astro";
+import GuideSection from "@components/guides/GuideSection.astro";
 
 export async function getStaticPaths() {
   const guides = await getCollection("guides");
@@ -33,19 +33,25 @@ const { guide } = Astro.props;
 const { title, description, tips, places } = guide.data;
 
 // Group places by primary type (type[0])
-const grouped = places.reduce((acc: Record<string, Place[]>, place: Place) => {
-  const key = place.type[0] || "Other";
-  if (!acc[key]) acc[key] = [];
-  acc[key].push(place);
-  return acc;
-}, {} as Record<string, Place[]>);
+const grouped = places.reduce(
+  (acc: Record<string, Place[]>, place: Place) => {
+    const key = place.type[0] || "Other";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(place);
+    return acc;
+  },
+  {} as Record<string, Place[]>
+);
 
 // Sort sections by frequency (most places first)
 const sections = Object.entries(grouped)
   .sort(([, a], [, b]) => (b as Place[]).length - (a as Place[]).length)
   .map(([type, places]) => ({
     type,
-    slug: type.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""),
+    slug: type
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, ""),
     places: places as Place[],
   }));
 
@@ -72,37 +78,47 @@ const tipsHtml = tips ? parseTips(tips) : null;
       variant="secondary"
     />
 
-    {description && (
-      <div class="guide-page__description-wrapper">
-        <p class="guide-page__description">{description}</p>
-      </div>
-    )}
+    {
+      description && (
+        <div class="guide-page__description-wrapper">
+          <p class="guide-page__description">{description}</p>
+        </div>
+      )
+    }
 
     <div class="guide-page__container">
       <nav class="guide-nav" aria-label="Guide sections">
-        {sections.map(({ type, slug, places }) => (
-          <a href={`#${slug}`} class="guide-nav__item">
-            <span class="guide-nav__label">{type}</span>
-            <span class="guide-nav__count">{places.length}</span>
-          </a>
-        ))}
-        {tipsHtml && (
-          <a href="#tips" class="guide-nav__item guide-nav__item--tips">
-            <span class="guide-nav__label">Tips</span>
-          </a>
-        )}
+        {
+          sections.map(({ type, slug, places }) => (
+            <a href={`#${slug}`} class="guide-nav__item">
+              <span class="guide-nav__label">{type}</span>
+              <span class="guide-nav__count">{places.length}</span>
+            </a>
+          ))
+        }
+        {
+          tipsHtml && (
+            <a href="#tips" class="guide-nav__item guide-nav__item--tips">
+              <span class="guide-nav__label">Tips</span>
+            </a>
+          )
+        }
       </nav>
 
-      {sections.map(({ type, slug, places }) => (
-        <GuideSection id={slug} title={type} places={places} />
-      ))}
+      {
+        sections.map(({ type, slug, places }) => (
+          <GuideSection id={slug} title={type} places={places} />
+        ))
+      }
 
-      {tipsHtml && (
-        <section class="guide-tips" id="tips">
-          <h2 class="guide-tips__title">Tips</h2>
-          <ul class="guide-tips__list" set:html={tipsHtml} />
-        </section>
-      )}
+      {
+        tipsHtml && (
+          <section class="guide-tips" id="tips">
+            <h2 class="guide-tips__title">Tips</h2>
+            <ul class="guide-tips__list" set:html={tipsHtml} />
+          </section>
+        )
+      }
     </div>
   </div>
 </BaseLayout>
@@ -124,7 +140,6 @@ const tipsHtml = tips ? parseTips(tips) : null;
     line-height: 1.6;
     color: var(--gray-dark);
     margin: 0 0 32px 0;
-    max-width: 600px;
     white-space: pre-line;
   }
 

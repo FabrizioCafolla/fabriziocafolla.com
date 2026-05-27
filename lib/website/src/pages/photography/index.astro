@@ -1,0 +1,71 @@
+---
+import { BaseLayout } from "@walle/layouts";
+import { SectionHeaderStandard } from "@walle/components";
+import PhotoCard from "../../components/photography/PhotoCard.astro";
+import { getCollection } from "astro:content";
+
+const photosCollection = await getCollection("photos");
+
+interface Photo {
+  title: string;
+  description: string;
+  location: string;
+  date: string;
+  path: string;
+}
+
+const photos: Photo[] = photosCollection.flatMap((entry) => entry.data.photos);
+---
+
+<BaseLayout headerTitle="Photography">
+  <div class="photography">
+    <SectionHeaderStandard
+      title="Photography"
+      subtitle="Moments, places, silence"
+      variant="secondary"
+    />
+
+    <div class="photography__masonry">
+      {
+        photos.map((photo) => (
+          <PhotoCard
+            title={photo.title}
+            description={photo.description}
+            location={photo.location}
+            date={photo.date}
+            path={photo.path}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .photography {
+    width: 100%;
+    min-height: 60vh;
+  }
+
+  .photography__masonry {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px 64px;
+    columns: 3;
+    column-gap: 16px;
+  }
+
+  @media (max-width: 1024px) {
+    .photography__masonry {
+      columns: 2;
+      padding: 0 24px 48px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .photography__masonry {
+      columns: 1;
+      padding: 0 16px 40px;
+    }
+  }
+</style>

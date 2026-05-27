@@ -2,27 +2,29 @@
 import { BaseLayout } from "@walle/layouts";
 import { SectionHeaderStandard } from "@walle/components";
 import { getCollection } from "astro:content";
-import GuideCard from "../../components/guides/GuideCard.astro";
+import GuideCard from "@components/guides/GuideCard.astro";
 
 const guides = await getCollection("guides");
 ---
 
-<BaseLayout headerTitle="Guides">
+<BaseLayout headerTitle="Travel Guides">
   <div class="guides-index">
     <SectionHeaderStandard
-      title="Guides"
-      subtitle="Recommended places, city by city"
+      title="Travel Guides"
+      subtitle="My personal recommendations for places and cities"
       variant="secondary"
     />
 
     <div class="guides-index__grid">
-      {guides.map((guide) => (
-        <GuideCard
-          title={guide.data.title}
-          slug={guide.data.slug}
-          placesCount={guide.data.places.length}
-        />
-      ))}
+      {
+        guides.map((guide) => (
+          <GuideCard
+            title={guide.data.title}
+            slug={guide.data.slug}
+            placesCount={guide.data.places.length}
+          />
+        ))
+      }
     </div>
   </div>
 </BaseLayout>

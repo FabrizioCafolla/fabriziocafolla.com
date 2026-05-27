@@ -1,23 +1,904 @@
 ---
 import { SectionHeaderStandard } from "@walle/components";
-import { BlogPostsLayout } from "@walle/layouts";
+import { BaseLayout } from "@walle/layouts";
+import { Icon } from "astro-icon/components";
+
+interface OSSProject {
+  name: string;
+  description: string;
+  language: string;
+  githubUrl: string;
+}
+
+interface FeaturedProject {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  githubUrl?: string;
+  websiteUrl?: string;
+  linkedinUrl?: string;
+}
+
+interface TalkPodcast {
+  title: string;
+  description: string;
+  image: string;
+  url?: string;
+  embedUrl?: string;
+  slidesUrl?: string;
+  type: "podcast" | "talk";
+  date: string;
+}
+
+function formatDate(dateString: string): string {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+  return new Date(dateString).toLocaleDateString("en-US", options);
+}
+
+function isEventPast(dateString: string): boolean {
+  const eventDate = new Date(dateString);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return eventDate < today;
+}
+
+const ossProjects: OSSProject[] = [
+  {
+    name: "scaffold-ai",
+    description:
+      "Devcontainer feature that scaffolds AI agent and skill assets (Claude, GitHub Copilot) into a workspace. Each asset is assembled from tool-agnostic content files with per-tool YAML frontmatter injected at runtime.",
+    language: "Shell",
+    githubUrl: "https://github.com/FabrizioCafolla/scaffold-ai",
+  },
+  {
+    name: "vscode-dev-setup",
+    description:
+      "A GitHub template repository for consistent, fast, and modular DevContainer environments with AI tooling built in. Designed to bootstrap development workspaces without manual configuration.",
+    language: "Shell",
+    githubUrl: "https://github.com/FabrizioCafolla/vscode-dev-setup",
+  },
+  {
+    name: "openai-crawlers-ip-ranges",
+    description:
+      "Complete and always-updated lists of OpenAI crawler IP addresses (GPTBot, SearchGPT, OAI-SearchBot). Useful for firewall rules, rate limiting, and bot traffic management.",
+    language: "Shell",
+    githubUrl: "https://github.com/FabrizioCafolla/openai-crawlers-ip-ranges",
+  },
+];
+
+const featuredProjects: FeaturedProject[] = [
+  {
+    title: "European OpenSource",
+    subtitle: "Founder",
+    description:
+      "European OpenSource is a community-driven platform connecting developers, companies, and institutions across Europe to build a transparent and sovereign digital future through open-source innovation. We provide a comprehensive catalog of European open-source projects, fostering collaboration and strengthening digital independence.",
+    image: "/img/projects/logo-european-opensource.png",
+    githubUrl: "https://github.com/european-opensource",
+    websiteUrl: "https://europeanopensource.eu",
+    linkedinUrl: "https://www.linkedin.com/company/european-opensource",
+  },
+  {
+    title: "Italia Open-Source",
+    subtitle: "Founder",
+    description:
+      "The first platform dedicated to Italian open-source world. A community-driven project connecting Italian developers, companies, and open-source enthusiasts to collaborate and build together.",
+    image: "/img/projects/logo-italia-opensource.png",
+    githubUrl: "https://github.com/italia-opensource",
+    websiteUrl: "https://italiaopensource.com",
+    linkedinUrl: "https://www.linkedin.com/company/italia-open-source",
+  },
+  {
+    title: "Latina in Tech",
+    subtitle: "Community Manager",
+    description:
+      "LiT (Latina in Tech) is a local tech community focused on knowledge sharing, networking, and bringing quality events to the city. The goal is to connect companies and developers and foster an environment based on collaboration.",
+    image: "/img/projects/logo-latina-in-tech.png",
+    websiteUrl: "https://www.latinaintech.org/it",
+    linkedinUrl: "https://www.linkedin.com/company/latina-in-tech/",
+  },
+];
+
+const talksAndPodcasts: TalkPodcast[] = [
+  {
+    title: "Platform Engineering and AI Agents: Spec-Driven development for IaC",
+    description:
+      "In Platform Engineering, AI agents can speed up IaC management, but without clear boundaries, they can also amplify errors and operational impact. In this talk, we'll look at a spec-driven approach in which dedicated agents operate with specific identities, explicit guardrails, and a purpose-built toolchain (MCP, prompts, and focused skills). The goal is to use AI reliably to manage cloud-native infrastructure with greater control, traceability, and security.",
+    image: "/img/talks/cloudnativedaysitaly_19052026.jpg",
+    url: "https://sessionize.com/cloud-native-days-italy-2026/",
+    type: "talk",
+    date: "2026-05-19",
+  },
+  {
+    title: "European OpenSource: open code, shared future!",
+    description:
+      "What is the state of the tech ecosystem in Europe? In this talk we will analyze the main problems and current challenges of the sector and the key role of Open Source. We will also talk about European OpenSource, presenting the project and the concrete contribution we want to make to communities and the European market.",
+    image: "/img/talks/latina_in_tech_26022026.jpg",
+    url: "https://www.eventbrite.it/e/biglietti-european-opensource-open-code-shared-future-1983249203756",
+    slidesUrl:
+      "https://github.com/FabrizioCafolla/fabriziocafolla.com/blob/43ee56bab6c3f11f461ecd1c32ef4f89f6f505a3/lib/website/public/slides/European-OpenSource_open-code-shared-future.pdf",
+    type: "talk",
+    date: "2026-02-26",
+  },
+  {
+    title: "European OpenSource: open code, shared future!",
+    description:
+      "What is the state of the tech ecosystem in Europe? In this talk we will analyze the main problems and current challenges of the sector and the key role of Open Source. We will also talk about European OpenSource, presenting the project and the concrete contribution we want to make to communities and the European market.",
+    image: "/img/talks/opensearch_milan_13112025.jpeg",
+    url: "https://www.meetup.com/it-it/opensearch-project-milan/events/311566107",
+    slidesUrl:
+      "https://github.com/FabrizioCafolla/fabriziocafolla.com/blob/e8fa50e599e533b0bebe0425947a8f560ab82cf2/lib/website/public/slides/European-OpenSource_open-code-shared-future.pdf",
+    type: "talk",
+    date: "2025-11-13",
+  },
+  {
+    title: "Spotify Podcast Episode",
+    description:
+      "An insightful conversation about open-source, tech ecosystem and Italia Open-Source",
+    image: "/img/talks/continuous_delivery_podcast_14052024.png",
+    embedUrl:
+      "https://open.spotify.com/embed/episode/6qF1w5mwLTfExRxAQcMHEO/video?utm_source=generator&theme=0",
+    url: "https://open.spotify.com/episode/6qF1w5mwLTfExRxAQcMHEO",
+    type: "podcast",
+    date: "2024-05-14",
+  },
+];
+
+const metaDescription =
+  "Fabrizio Cafolla is a DevOps & Platform Engineer specializing in cloud architecture (AWS, GCP), CI/CD automation, and infrastructure as code with Terraform. Founder of European OpenSource and Italia Open-Source. Community Manager at Latina in Tech.";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Fabrizio Cafolla",
+  jobTitle: "DevOps & Platform Engineer",
+  description: metaDescription,
+  url: "https://fabriziocafolla.com",
+  image: "https://fabriziocafolla.com/img/profile.jpg",
+  sameAs: [
+    "https://www.linkedin.com/in/fabrizio-cafolla/",
+    "https://github.com/FabrizioCafolla",
+    "https://sessionize.com/fabrizio-cafolla/",
+  ],
+  knowsAbout: [
+    "DevOps",
+    "Platform Engineering",
+    "Cloud Architecture",
+    "AWS",
+    "GCP",
+    "CI/CD",
+    "Terraform",
+    "Infrastructure as Code",
+    "Kubernetes",
+    "Open Source",
+  ],
+};
 ---
 
-<BlogPostsLayout headerTitle="Home" clickableCard={true}>
-  <SectionHeaderStandard
-    title="Fabrizio Cafolla"
-    subtitle="DevOps & Platform Engineer | Cloud Architecture | Open Source"
-    variant="secondary"
-  >
-    <div>
-      <p>
-        Platform Engineer @ SparkFabrik, working on cloud infrastructure, CI/CD automation, and
-        developer tooling.
-        <br />
-        Founder of <a href="https://europeanopensource.eu">European OpenSource</a> and <a
-          href="https://italiaopensource.com">Italia Open-Source</a
-        >. Community Manager of <a href="https://www.latinaintech.org/it">Latina in Tech</a>
-      </p>
+<BaseLayout headerTitle="Home" headerDescription={metaDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+  <SectionHeaderStandard title="Fabrizio Cafolla" variant="white" />
+
+  <!-- Bio -->
+  <section class="bio-section">
+    <div class="container">
+      <div class="bio-grid">
+        <div class="bio-text">
+          <p>
+            My name is <strong>Fabrizio Cafolla</strong> and I'm a <strong
+              >DevOps &amp; Platform Engineer</strong
+            >. I design cloud architectures, automate CI/CD pipelines, and build the infrastructure
+            that lets development teams ship reliably and move faster.
+          </p>
+          <p>
+            I work primarily with <strong>AWS</strong> and <strong>GCP</strong>, managing
+            infrastructure as code through <strong>Terraform</strong>. My main languages are
+            <strong>Python</strong> and <strong>Bash</strong>, with some TypeScript and Go. Over the
+            years I've worked across very different contexts small and medium businesses, corporate
+            banking, startup ecosystems which taught me that tools and processes need to adapt to
+            the people and the context, not the other way around.
+          </p>
+          <p>
+            I believe open source is the real engine of technological progress, and I try to live
+            that through projects and community work. I founded <strong>Italia Open-Source</strong>
+            and its European spin-off, <strong>European OpenSource</strong>: a community-driven
+            platform to map and connect open-source projects, developers, and organizations across
+            Europe. I also serve as Community Manager of <strong>Latina in Tech</strong>, bringing
+            quality tech events to my city and building connections between developers and
+            companies.
+          </p>
+          <p>
+            Outside of work, I travel whenever I can often as a digital nomad. Many of these trips
+            turn into guides and stories on my blog, where the technical side meets the personal
+            one.
+          </p>
+        </div>
+
+        <div class="bio-photo-wrap">
+          <img
+            src="/img/profile.jpg"
+            alt="Fabrizio Cafolla DevOps & Platform Engineer"
+            class="bio-photo"
+            width="400"
+            height="400"
+            loading="eager"
+          />
+        </div>
+      </div>
     </div>
-  </SectionHeaderStandard>
-</BlogPostsLayout>
+  </section>
+
+  <!-- All project groups -->
+  <section class="projects-section">
+    <div class="container">
+      <!-- OSS Projects -->
+      <div class="projects-group">
+        <div class="group-header">
+          <h2>Open Source projects</h2>
+          <p class="group-description">Code projects I maintain publicly on GitHub</p>
+        </div>
+        <div class="projects-grid">
+          {
+            ossProjects.map((project) => (
+              <article class="featured-project-card">
+                <div class="featured-project-content">
+                  <h3 class="featured-project-title">{project.name}</h3>
+                  <p class="featured-project-subtitle">{project.language}</p>
+                  <p class="featured-project-description">{project.description}</p>
+
+                  <div class="featured-project-footer">
+                    <div class="featured-project-links">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link-button github-button"
+                        title="View on GitHub"
+                      >
+                        <Icon name="mdi:github" class="link-icon" />
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Community Projects -->
+      <div class="projects-group">
+        <div class="group-header">
+          <h2>Community Projects</h2>
+          <p class="group-description">Initiatives and communities I'm actively involved in</p>
+        </div>
+        <div class="projects-grid">
+          {
+            featuredProjects.map((project) => (
+              <article class="featured-project-card">
+                <div class="featured-project-image-wrapper">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="featured-project-image"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="featured-project-content">
+                  <h3 class="featured-project-title">{project.title}</h3>
+                  <p class="featured-project-subtitle">{project.subtitle}</p>
+                  <p class="featured-project-description">{project.description}</p>
+
+                  <div class="featured-project-footer">
+                    <div class="featured-project-links">
+                      {project.websiteUrl && (
+                        <a
+                          href={project.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="project-link-button website-button"
+                          title="Visit Website"
+                        >
+                          <Icon name="mdi:web" class="link-icon" />
+                          Website
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="project-link-button github-button"
+                          title="View on GitHub"
+                        >
+                          <Icon name="mdi:github" class="link-icon" />
+                          GitHub
+                        </a>
+                      )}
+                      {project.linkedinUrl && (
+                        <a
+                          href={project.linkedinUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="project-link-button linkedin-button"
+                          title="View on LinkedIn"
+                        >
+                          <Icon name="mdi:linkedin" class="link-icon" />
+                          LinkedIn
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Talks and Podcasts -->
+      <div class="projects-group">
+        <div class="group-header">
+          <h2>Talks and Podcasts</h2>
+          <p class="group-description">Public appearances, conferences, and podcast episodes</p>
+        </div>
+        <div class="projects-grid">
+          {
+            talksAndPodcasts.map((item) => (
+              <article class="talk-card">
+                <div class="talk-image-wrapper">
+                  <img src={item.image} alt={item.title} class="talk-image" loading="lazy" />
+                  <div class="talk-type-badge">
+                    <Icon
+                      name={item.type === "podcast" ? "mdi:microphone" : "mdi:presentation"}
+                      class="badge-icon"
+                    />
+                    <span>{item.type === "podcast" ? "Podcast" : "Talk"}</span>
+                  </div>
+                  {item.type === "talk" && !isEventPast(item.date) && (
+                    <div class="event-status-badge upcoming">Upcoming</div>
+                  )}
+                </div>
+
+                <div class="talk-content">
+                  <h3 class="talk-title">{item.title}</h3>
+                  <p class="talk-description">{item.description}</p>
+
+                  <div class="talk-footer">
+                    <div class="talk-date">
+                      <Icon name="mdi:calendar" class="date-icon" />
+                      <span>{formatDate(item.date)}</span>
+                    </div>
+
+                    <div class="talk-actions">
+                      {item.type === "podcast" && item.embedUrl && (
+                        <a
+                          href={item.url || item.embedUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="action-button watch-button"
+                        >
+                          <Icon name="mdi:play-circle" class="button-icon" />
+                          Watch
+                        </a>
+                      )}
+
+                      {item.type === "talk" && (
+                        <>
+                          {item.url && (
+                            <a
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="action-button event-button"
+                            >
+                              <Icon name="mdi:calendar-star" class="button-icon" />
+                              Event
+                            </a>
+                          )}
+                          {item.slidesUrl && (
+                            <a
+                              href={item.slidesUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="action-button slides-button"
+                            >
+                              <Icon name="mdi:presentation-play" class="button-icon" />
+                              Slides
+                            </a>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Bio section ───────────────────────────────────────── */
+  .bio-section {
+    padding: var(--space-4xl) var(--space-xl);
+    background-color: var(--white);
+  }
+
+  .bio-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .bio-photo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bio-photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    border: 3px solid var(--gray);
+    display: block;
+  }
+
+  .bio-text p {
+    color: var(--gray-dark);
+    line-height: 1.7;
+  }
+
+  /* ── Projects section (shared layout) ─────────────────── */
+  .projects-section {
+    padding: var(--space-3xl) var(--space-lg) var(--space-4xl);
+    background-color: var(--gray-light);
+  }
+
+  .projects-section > .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .projects-group {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .projects-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .group-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .group-header h2 {
+    color: var(--primary-dark);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.02em;
+  }
+
+  .group-description {
+    color: var(--gray-dark);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  /* ── Featured project card ─────────────────────────────── */
+  .featured-project-card {
+    background: var(--white);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-project-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--box-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .featured-project-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .featured-project-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: calc(100% - 4rem);
+    max-height: calc(100% - 4rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .featured-project-card:hover .featured-project-image {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  .featured-project-content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .featured-project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0 0 0.375rem 0;
+    line-height: 1.3;
+  }
+
+  .featured-project-subtitle {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--secondary);
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .featured-project-description {
+    color: var(--gray-dark);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0 0 var(--space-lg) 0;
+    flex: 1;
+  }
+
+  .featured-project-footer {
+    margin-top: auto;
+    padding-top: var(--space-md);
+    border-top: 1px solid #f3f4f6;
+  }
+
+  .featured-project-links {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .project-link-button {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem var(--space-md);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .link-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .website-button {
+    background: var(--primary);
+    color: var(--white);
+  }
+
+  .website-button:hover {
+    background: var(--primary-dark);
+    color: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 70, 173, 0.2);
+  }
+
+  .github-button {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .github-button:hover {
+    background: var(--gray-darker);
+    color: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .linkedin-button {
+    background: #0077b5;
+    color: var(--white);
+  }
+
+  .linkedin-button:hover {
+    background: #005582;
+    color: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 119, 181, 0.2);
+  }
+
+  /* ── Talk card ─────────────────────────────────────────── */
+  .talk-card {
+    background: var(--white);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .talk-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--box-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .talk-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .talk-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .talk-card:hover .talk-image {
+    transform: scale(1.05);
+  }
+
+  .talk-type-badge {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: var(--space-xs) 0.875rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-status-badge {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    padding: var(--space-xs) 0.875rem;
+    border-radius: 20px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-status-badge.upcoming {
+    background: var(--secondary);
+  }
+
+  .badge-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--primary);
+  }
+
+  .talk-content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .talk-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0 0 var(--space-sm) 0;
+    line-height: 1.4;
+  }
+
+  .talk-description {
+    color: var(--gray-dark);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0 0 var(--space-md) 0;
+    flex: 1;
+  }
+
+  .talk-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-md);
+    border-top: 1px solid #f3f4f6;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .talk-date {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--gray-dark);
+    font-size: 0.875rem;
+  }
+
+  .date-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .talk-actions {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+  }
+
+  .action-button {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: var(--space-xs) 0.875rem;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .button-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .watch-button {
+    background: var(--primary);
+    color: var(--white);
+  }
+
+  .watch-button:hover {
+    background: var(--primary-dark);
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  .event-button {
+    background: var(--secondary);
+    color: var(--white);
+  }
+
+  .event-button:hover {
+    background: var(--secondary-dark);
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  .slides-button {
+    background: var(--alternative);
+    color: var(--black);
+  }
+
+  .slides-button:hover {
+    background: var(--alternative-dark);
+    color: var(--black);
+    transform: translateY(-1px);
+  }
+
+  /* ── Responsive ────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .bio-section {
+      padding: var(--space-3xl) var(--space-md);
+    }
+
+    .bio-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .bio-photo-wrap {
+      order: -1;
+    }
+
+    .bio-photo {
+      width: 160px;
+      height: 160px;
+    }
+
+    .projects-section {
+      padding: var(--space-3xl) var(--space-md);
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .projects-group {
+      margin-bottom: var(--space-3xl);
+    }
+
+    .group-header {
+      margin-bottom: var(--space-xl);
+    }
+
+    .group-header h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bio-photo {
+      width: 120px;
+      height: 120px;
+    }
+
+    .group-header h2 {
+      font-size: 1.5rem;
+    }
+
+    .project-link-button {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .featured-project-card,
+    .talk-card,
+    .featured-project-image,
+    .talk-image,
+    .project-link-button,
+    .action-button {
+      transition: none;
+      transform: none !important;
+    }
+  }
+</style>

@@ -6,31 +6,32 @@ export interface Props {
   notes?: string;
   hours?: string[];
   type: string[];
+  tags?: string[];
   rating: string;
 }
 
-const { name, cost, maps, notes, hours, type, rating } = Astro.props;
+const { name, cost, maps, notes, hours, type, rating, tags } = Astro.props;
 
 const ratingLabel: Record<string, string> = {
-  ok: "Ok",
-  consigliato: "Recommended",
-  consigliatissimo: "Top pick",
-  caratteristico: "Unique",
+  good: "Good",
+  recommended: "Recommended",
+  top: "Top pick",
+  unique: "Unique",
 };
 
 const ratingClass: Record<string, string> = {
-  ok: "place-card__badge--ok",
-  consigliato: "place-card__badge--primary",
-  consigliatissimo: "place-card__badge--secondary",
-  caratteristico: "place-card__badge--unique",
+  good: "place-card__badge--good",
+  recommended: "place-card__badge--primary",
+  top: "place-card__badge--secondary",
+  unique: "place-card__badge--unique",
 };
 
 const costLabel: Record<string, string> = {
-  basso: "€",
-  "medio-basso": "€€",
-  medio: "€€€",
-  "medio-alto": "€€€€",
-  alto: "€€€€€",
+  low: "€",
+  "mid-low": "€€",
+  middle: "€€€",
+  "mid-high": "€€€€",
+  high: "€€€€€",
 };
 ---
 
@@ -40,32 +41,40 @@ const costLabel: Record<string, string> = {
       <span class={`place-card__badge ${ratingClass[rating] || ""}`}>
         {ratingLabel[rating] || rating}
       </span>
+
+      {
+        tags &&
+          tags.map((tag) => <span class="place-card__badge place-card__badge--tag">{tag}</span>)
+      }
+
       {cost && <span class="place-card__cost">{costLabel[cost] || cost}</span>}
     </div>
 
     <h3 class="place-card__title">{name}</h3>
 
-    {type.length > 1 && (
-      <div class="place-card__types">
-        {type.slice(1).map((t) => (
-          <span class="place-card__type">{t}</span>
-        ))}
-      </div>
-    )}
+    {
+      type.length > 1 && (
+        <div class="place-card__types">
+          {type.slice(1).map((t) => (
+            <span class="place-card__type">{t}</span>
+          ))}
+        </div>
+      )
+    }
 
     {notes && <p class="place-card__notes">{notes}</p>}
 
-    {hours && hours.length > 0 && (
-      <p class="place-card__hours">{hours.join(" · ")}</p>
-    )}
+    {hours && hours.length > 0 && <p class="place-card__hours">{hours.join(" · ")}</p>}
 
-    {maps && (
-      <div class="place-card__footer">
-        <a href={maps} target="_blank" rel="noopener noreferrer" class="place-card__maps">
-          Open in Maps ↗
-        </a>
-      </div>
-    )}
+    {
+      maps && (
+        <div class="place-card__footer">
+          <a href={maps} target="_blank" rel="noopener noreferrer" class="place-card__maps">
+            Open in Maps ↗
+          </a>
+        </div>
+      )
+    }
   </div>
 </article>
 
@@ -100,6 +109,7 @@ const costLabel: Record<string, string> = {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap; /* Aggiunto per evitare che i tag sbordino su schermi piccoli */
   }
 
   .place-card__badge {
@@ -111,7 +121,7 @@ const costLabel: Record<string, string> = {
     border-radius: 4px;
   }
 
-  .place-card__badge--ok {
+  .place-card__badge--good {
     color: var(--gray-dark);
     background: var(--gray-light);
   }
@@ -129,6 +139,12 @@ const costLabel: Record<string, string> = {
   .place-card__badge--unique {
     color: #b45309;
     background: rgba(180, 83, 9, 0.08);
+  }
+
+  /* Nuova classe per i tag in giallino */
+  .place-card__badge--tag {
+    color: #854d0e; /* Marrone scuro per garantire leggibilità e contrasto */
+    background: #fef08a; /* Giallino chiaro */
   }
 
   .place-card__cost {
