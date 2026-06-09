@@ -29,3 +29,172 @@
     padding: 0.125rem;
   }
 }
+
+:root {
+  /* Refined deep blue palette */
+  --primary: #1b3a5c;
+  --primary-light: #2a5078;
+  --primary-dark: #0e2240;
+  --secondary: #4a6fa5;
+  --secondary-light: #5a82b8;
+  --secondary-dark: #3a5c8a;
+
+  /* Squared radius system */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 5px;
+
+  /* Tighter shadows */
+  --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --box-shadow-hover: 0 2px 8px rgba(27, 58, 92, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Global border-radius flattening for walle components */
+img:not(.bio-photo) {
+  border-radius: 2px !important;
+}
+
+/* Preserve circular profile photo on about page */
+img.bio-photo,
+.bio-photo-wrap img {
+  border-radius: 50% !important;
+}
+
+pre {
+  border-radius: 3px !important;
+}
+
+/* Navbar */
+[data-component="Navbar"] .nav-link,
+[data-component="Navbar"] .dropdown-menu,
+.main-nav .nav-link,
+.main-nav .dropdown-menu,
+.main-nav .mobile-menu-overlay {
+  border-radius: 3px !important;
+}
+
+.main-nav .mobile-menu-content {
+  border-radius: 0 !important;
+}
+
+/* Cards */
+.card__wrapper {
+  border-radius: 3px !important;
+}
+
+.card__image {
+  border-radius: 2px !important;
+}
+
+.card__badge {
+  border-radius: 3px !important;
+}
+
+/* Badges & buttons */
+.badge,
+[data-walle-badge] {
+  border-radius: 3px !important;
+}
+
+.button,
+[data-walle-button],
+button {
+  border-radius: 3px !important;
+}
+
+/* Header image containers */
+.image-container {
+  border-radius: 3px !important;
+}
+
+.header-image {
+  border-radius: 2px !important;
+}
+
+/* Blog article navigation */
+[data-walle-article-nav],
+.article-navigation a {
+  border-radius: 3px !important;
+}
+
+/* Table of contents */
+.toc-container,
+[data-walle-toc] {
+  border-radius: 3px !important;
+}
+
+/* Section containers */
+.section-card {
+  border-radius: 4px !important;
+}
+
+/* Blog post hero images */
+.blog-post__hero img,
+.post-hero img {
+  border-radius: 2px !important;
+}
+
+/* Footer social icons — keep circular */
+.footer-social a {
+  border-radius: 50% !important;
+}
+
+/* Blog filters */
+.filter-tag,
+.blog-filter button,
+.blog-filter a {
+  border-radius: 3px !important;
+}
+
+/* Guide card hover shadow aligned to new palette */
+.guide-card:hover .guide-card__wrapper {
+  box-shadow: 0 4px 12px rgba(27, 58, 92, 0.1) !important;
+}
+
+/* Card hover shadow aligned to new palette */
+.card:hover .card__wrapper {
+  box-shadow: 0 4px 12px rgba(27, 58, 92, 0.1) !important;
+}
+.article-content blockquote {
+  border-radius: 0 3px 3px 0 !important;
+}
+
+.article-content pre {
+  border-radius: 3px !important;
+}
+
+.article-content img {
+  border-radius: 2px !important;
+}
+
+.article-content code {
+  border-radius: 2px !important;
+}
+
+/* Blog post tags */
+.tag {
+  border-radius: 3px !important;
+}
+
+/* Draft message */
+.draft-message {
+  border-radius: 3px !important;
+}
+
+/* Table of contents */
+.toc-panel,
+.toc-mobile {
+  border-radius: 3px !important;
+}
+
+/* Blog article navigation */
+.article-navigation a,
+.nav-card {
+  border-radius: 3px !important;
+}
+
+/* Breadcrumbs */
+.breadcrumb-item {
+  border-radius: 2px !important;
+}

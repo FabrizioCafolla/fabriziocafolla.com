@@ -1,0 +1,61 @@
+---
+import { BaseLayout } from "@walle/layouts";
+import { SectionHeaderStandard } from "@walle/components";
+import { getCollection } from "astro:content";
+import GuideCard from "@components/guides/GuideCard.astro";
+
+const guides = await getCollection("guides");
+---
+
+<BaseLayout headerTitle="Travel Guides">
+  <div class="guides-index">
+    <SectionHeaderStandard
+      title="Travel Guides"
+      subtitle="My personal recommendations for places and cities"
+      variant="secondary"
+    />
+
+    <div class="guides-index__grid">
+      {
+        guides.map((guide) => (
+          <GuideCard
+            title={guide.data.title}
+            slug={guide.data.slug}
+            placesCount={guide.data.places.length}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .guides-index {
+    width: 100%;
+    min-height: 60vh;
+  }
+
+  .guides-index__grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px 64px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  @media (max-width: 640px) {
+    .guides-index__grid {
+      padding: 0 16px 40px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 768px) {
+    .guides-index__grid {
+      padding: 0 24px 48px;
+      gap: 20px;
+    }
+  }
+</style>

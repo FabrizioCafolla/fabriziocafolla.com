@@ -1,0 +1,302 @@
+---
+import { BaseLayout } from "@walle/layouts";
+import { SectionHeaderStandard } from "@walle/components";
+import { getCollection } from "astro:content";
+import GuideSection from "@components/guides/GuideSection.astro";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("guides");
+
+  const paths = guides.flatMap((guide) => {
+    const mainPath = { params: { slug: guide.data.slug }, props: { guide } };
+    const aliasPaths = (guide.data.aliases || []).map((alias: string) => ({
+      params: { slug: alias },
+      props: { guide },
+    }));
+    return [mainPath, ...aliasPaths];
+  });
+
+  return paths;
+}
+
+interface Place {
+  name: string;
+  cost?: string;
+  maps?: string;
+  notes?: string;
+  hours?: string[];
+  type: string[];
+  rating: string;
+}
+
+const { guide } = Astro.props;
+const { title, description, tips, places } = guide.data;
+
+// Group places by primary type (type[0])
+const grouped = places.reduce(
+  (acc: Record<string, Place[]>, place: Place) => {
+    const key = place.type[0] || "Other";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(place);
+    return acc;
+  },
+  {} as Record<string, Place[]>
+);
+
+// Sort sections by frequency (most places first)
+const sections = Object.entries(grouped)
+  .sort(([, a], [, b]) => (b as Place[]).length - (a as Place[]).length)
+  .map(([type, places]) => ({
+    type,
+    slug: type
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, ""),
+    places: places as Place[],
+  }));
+
+// Parse tips markdown into HTML
+function parseTips(md: string): string {
+  return md
+    .split("\n")
+    .filter((line) => line.trim())
+    .map((line) => {
+      const content = line.replace(/^-\s*/, "").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      return `<li>${content}</li>`;
+    })
+    .join("\n");
+}
+
+const tipsHtml = tips ? parseTips(tips) : null;
+---
+
+<BaseLayout headerTitle={title}>
+  <div class="guide-page">
+    <SectionHeaderStandard
+      title={title}
+      subtitle={`${places.length} places · ${sections.length} sections`}
+      variant="secondary"
+    />
+
+    {
+      description && (
+        <div class="guide-page__description-wrapper">
+          <p class="guide-page__description">{description}</p>
+        </div>
+      )
+    }
+
+    <div class="guide-page__container">
+      <nav class="guide-nav" aria-label="Guide sections">
+        {
+          sections.map(({ type, slug, places }) => (
+            <a href={`#${slug}`} class="guide-nav__item">
+              <span class="guide-nav__label">{type}</span>
+              <span class="guide-nav__count">{places.length}</span>
+            </a>
+          ))
+        }
+        {
+          tipsHtml && (
+            <a href="#tips" class="guide-nav__item guide-nav__item--tips">
+              <span class="guide-nav__label">Tips</span>
+            </a>
+          )
+        }
+      </nav>
+
+      {
+        sections.map(({ type, slug, places }) => (
+          <GuideSection id={slug} title={type} places={places} />
+        ))
+      }
+
+      {
+        tipsHtml && (
+          <section class="guide-tips" id="tips">
+            <h2 class="guide-tips__title">Tips</h2>
+            <ul class="guide-tips__list" set:html={tipsHtml} />
+          </section>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .guide-page {
+    width: 100%;
+    min-height: 80vh;
+  }
+
+  .guide-page__description-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .guide-page__description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gray-dark);
+    margin: 0 0 32px 0;
+    white-space: pre-line;
+  }
+
+  .guide-page__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px 64px;
+  }
+
+  /* Navigation */
+  .guide-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 0 40px;
+    border-bottom: 1px solid var(--gray);
+    margin-bottom: 40px;
+  }
+
+  .guide-nav__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid var(--gray);
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--gray-darker);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+  }
+
+  .guide-nav__item:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(0, 70, 173, 0.04);
+  }
+
+  .guide-nav__item--tips {
+    border-color: var(--gray-medium);
+  }
+
+  .guide-nav__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: var(--gray-light);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-dark);
+  }
+
+  .guide-nav__item:hover .guide-nav__count {
+    background: rgba(0, 70, 173, 0.08);
+    color: var(--primary);
+  }
+
+  /* Tips section */
+  .guide-tips {
+    margin-top: 48px;
+    padding: 28px;
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray);
+  }
+
+  .guide-tips__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 0 0 16px 0;
+  }
+
+  .guide-tips__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .guide-tips__list :global(li) {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-darker);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .guide-tips__list :global(li)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .guide-tips__list :global(strong) {
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  /* Responsive - smartphones */
+  @media (max-width: 640px) {
+    .guide-page__description-wrapper {
+      padding: 0 16px;
+    }
+
+    .guide-page__container {
+      padding: 0 16px 40px;
+    }
+
+    .guide-nav {
+      gap: 8px;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+
+    .guide-nav__item {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .guide-tips {
+      padding: 20px;
+      margin-top: 32px;
+    }
+
+    .guide-tips__title {
+      font-size: 18px;
+    }
+  }
+
+  /* Tablet portrait */
+  @media (min-width: 641px) and (max-width: 768px) {
+    .guide-page__description-wrapper {
+      padding: 0 24px;
+    }
+
+    .guide-page__container {
+      padding: 0 24px 48px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .guide-nav__item {
+      transition: none;
+    }
+  }
+</style>

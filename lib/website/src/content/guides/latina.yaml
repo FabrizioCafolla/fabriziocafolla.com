@@ -1,0 +1,492 @@
+title: Latina
+slug: latina
+description: ""
+tips: |
+  - **Best time to visit**: April through September. Summers are hot, coast gets packed in August.
+  - **You need a car**: Public transport between towns is slow and unreliable. Rent a car or bring yours.
+  - **Festivals**: Most towns run sagre (food festivals) from June to September. Check local calendars.
+  - **Beaches**: The most beautiful beaches with crystal-clear water are found in Sabaudia, Gaeta, Sperlonga, and San Felice Circeo
+
+places:
+  # === RISTORANTI ===
+  - name: Cincinnato Wine Resort
+    cost: mid-high
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJOeZ__sVwJRMR3Rm0uCVGUgA
+    type: [Restaurant]
+    rating: top
+
+  - name: Panisperna
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJq8SxouUNJRMRI91d2_F8BrI
+    type: [Restaurant]
+    rating: top
+
+  - name: Il Golfo
+    cost: mid-high
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJtahMG6YJJRMRduUbLx8HYsI
+    type: [Restaurant]
+    rating: top
+
+  - name: Osteria Pontina Latina
+    cost: mid-high
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJYTpMT4YMJRMRzAx9EGUVMTI
+    type: [Restaurant, Enoteca]
+    rating: top
+
+  - name: Restaurant L'AMO
+    cost: mid-high
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJZ07IwxYJJRMRY9IyA1O-Rv8
+    type: [Restaurant]
+    rating: top
+
+  - name: Pastore Serafino di Quadrotta Roberto
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJaWLcESQJJRMRbwCe2jhdfjE
+    type: [Restaurant]
+    tags: [Shops]
+    rating: top
+
+  - name: Il Fogliano Hotel New Life
+    cost: mid-high
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAZDSTRYJJRMRd_Pb9R40qxE
+    type: [Restaurant]
+    rating: top
+
+  - name: Posillipo
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJWy3ajlsMJRMRb0PHEvz83SY
+    type: [Restaurant]
+    rating: top
+
+  - name: BIGAP
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJYTYA1JcNJRMR4T1cBphwojQ
+    type: [Restaurant]
+    rating: top
+
+  - name: B EastSide Pub
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJWUcnFjENJRMRLI-aaUOtubg
+    type: [Restaurant]
+    tags: [Pub]
+    rating: top
+
+  - name: Parliamo di Vino
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ0d8rNXwMJRMRRdpRQ795xh0
+    type: [Restaurant]
+    tags: [Enoteca]
+    rating: top
+
+  - name: Marco Carpineti
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJlzJdKLVwJRMR5LLKsfN0RPk
+    type: [Restaurant]
+    tags: [Enoteca]
+    rating: top
+
+  - name: Cerbero
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ9WdeEMoNJRMRDaRbLHabt2E
+    type: [Restaurant]
+    tags: [Pub]
+    rating: top
+
+  - name: Bar Cifra
+    cost: mid-high
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ7024S6ALJRMR-9LoQ8UzhEg
+    type: [Restaurant]
+    tags: [Bar, Pastry]
+    rating: top
+
+  - name: Osteria Dalí
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJvQriB2ANJRMRxBScVHvY0gU
+    type: [Restaurant]
+    rating: recommended
+
+  - name: Al Primo Piano
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJbb6IbIMLJRMRTzDds3fDqqc
+    type: [Restaurant]
+    rating: recommended
+
+  - name: L' Euro & gluten free
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ-Uy4_xEMJRMRMcrSPIHdiOs
+    type: [Restaurant]
+    rating: recommended
+
+  - name: Osteria Nicolosi
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdTes138LJRMRL9F2DZNsJrs
+    type: [Restaurant]
+    rating: recommended
+
+  - name: Restaurant Il Quadrato
+    cost: mid-high
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJDUBZi38MJRMRMzcTQL645ko
+    type: [Restaurant]
+    rating: recommended
+
+  - name: Il Vulcano
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJhRrqxg4MJRMRr0QNLadYcjw
+    type: [Restaurant]
+    rating: recommended
+
+  - name: Restaurant Greco Sirtakis Latina
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdfu6Hw8NJRMR9dGfo2vjguY
+    type: [Restaurant]
+    rating: recommended
+
+  - name: The Fornaretto
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8_O2ZXgMJRMRE0ji6F5GjDI
+    type: [Restaurant]
+    rating: recommended
+
+  - name: Forneria
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJb6HImuMLJRMRlUPNUJOdEoI
+    type: [Restaurant]
+    tags: [Pastry]
+    rating: recommended
+
+  - name: The Scottish
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJRw0eP4cMJRMR_ZFdlawMP2c
+    type: [Restaurant]
+    tags: [Pub]
+    rating: recommended
+
+  - name: Irish Pub Doolin
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJIz_GfocMJRMReUvFlie9R60
+    type: [Restaurant]
+    tags: [Pub]
+    rating: recommended
+
+  - name: Olimpo della Birra
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJPTKBoHkMJRMRQkgktEll8fY
+    type: [Restaurant]
+    tags: [Pub]
+    rating: recommended
+
+  - name: Quarto Lato
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJv3CAVosNJRMR5ZijDNTdqsA
+    type: [Restaurant]
+    tags: [Pub]
+    rating: recommended
+
+  - name: Oberdan23
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJmdo4GnwNJRMRb-ZoiGewfzc
+    type: [Restaurant]
+    tags: [Enoteca]
+    rating: recommended
+
+  - name: Central Park Bistrot
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ41iXz2IMJRMRnI2s-a5z3RU
+    type: [Restaurant]
+    tags: [Bar]
+    rating: recommended
+
+  - name: Pastry Operá
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8-ke72MMJRMRruxnoQ5RcVA
+    type: [Restaurant]
+    tags: [Bar, Pastry]
+    rating: recommended
+
+  - name: 0% Glutine
+    cost: middle
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJSXzS9mIMJRMRJ4HA2LFUoO8
+    type: [Restaurant]
+    tags: [Pastry]
+    rating: recommended
+
+  - name: Gelateria Polo Nord
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJqUjc3XwMJRMRWnPhbdQiMQw
+    type: [Restaurant]
+    tags: [Gelateria]
+    rating: recommended
+
+  - name: Dolce Notte Cafè
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJn87BPn8MJRMRG6-4a1Heg40
+    type: [Restaurant]
+    tags: [Bar, Pastry]
+    rating: good
+
+  - name: Da Giorgione
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJU-6Ein8MJRMRUaMP6m1S4xY
+    type: [Restaurant]
+    rating: good
+
+  - name: Turirizzo
+    cost: mid-low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ0xrygX4MJRMRJ36mTnk7sT8
+    type: [Restaurant]
+    tags: [Bar, Pastry]
+    rating: good
+
+  # === GITE FUORI PORTA ===
+  - name: Isola di Ponza
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJoW5ij4ryJBMR015shEYeIt0
+    type: [Day Trip]
+    rating: unique
+
+  - name: Roma
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJu46S-ZZhLxMROG5lkwZ3D7k
+    type: [Day Trip]
+    rating: unique
+
+  - name: Isola Palmarola
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJQR9vLkr0JBMR3mHL1QlprGI
+    type: [Day Trip]
+    rating: unique
+
+  - name: Ventotene
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJLVWeVxS2JBMRC4GawYj-qdA
+    type: [Day Trip]
+    rating: top
+
+  - name: Sperlonga
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJpfllVm8uJRMRcGK9VlDxSto
+    type: [Day Trip]
+    rating: top
+
+  - name: Sermoneta
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJHSN-O3dyJRMRXG8rwF9LjHY
+    type: [Day Trip]
+    rating: top
+
+  - name: San Felice Circeo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJmbG0PbMeJRMRTNvlhWZPT5Y
+    type: [Day Trip]
+    rating: top
+
+  - name: Sabaudia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8ZBbsPsaJRMRJ-jstXgq62U
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Terracina
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJh9nwaPIiJRMRVf3DgZPAsHE
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Gaeta
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJUf3NODzTOhMRAjZNrY4IFMQ
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Itri
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ71fYSLoyJRMRhvuG_C0moqE
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Ariccia
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJuW-07iGFJRMRoLCHUyAPliA
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Castel Gandolfo
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ5cSYLbyFJRMRvUFOErXDaBc
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Nemi
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ2eciu36DJRMRyod7hXG35nI
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Nettuno
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ2fZ_96-jJRMRBI71b_lEc5c
+    type: [Day Trip]
+    rating: recommended
+
+  - name: Cori
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJqSROnMdwJRMR1KIauUegsFE
+    type: [Day Trip]
+    rating: good
+
+  - name: Norma
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJi1j7wfFxJRMRDGVitMdF-Pg
+    type: [Day Trip]
+    rating: good
+
+  - name: Bassiano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJJ5efy7dtJRMRZ_CTQek3WfY
+    type: [Day Trip]
+    rating: good
+
+  - name: Fiuggi
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdUhdRZz1LxMRPJnBP_LvmV4
+    type: [Day Trip]
+    rating: good
+
+  - name: Sonnino
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJZUsfPsI-JRMRTQBZA2TNDz0
+    type: [Day Trip]
+    rating: good
+
+  # === LUOGHI DA VISITARE ===
+  - name: Giardino di Ninfa
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJdSVV8AZyJRMR3XwjpGdAtDg
+    type: [Places to visit]
+    rating: unique
+
+  - name: Giardino degli Aranci
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ2dxWXTRgLxMR-Ug5hzOYuQM
+    type: [Places to visit]
+    rating: top
+
+  - name: Tempio di Giove Anxur
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJw4O8OlwjJRMRcDghq5tPCQ8
+    type: [Places to visit]
+    rating: top
+
+  - name: Lago di Bracciano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJKQu89TdPLxMRR0H3dcXGFEI
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Lago di Bolsena
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJDaR4H_koKRMRwzFD-4RusMc
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Parco Archeologico di Norba
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJkXaLSgBxJRMRRtm2S12auhQ
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Grotta delle Capre
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJi1ogkZ0eJRMRC8p1xdOnt_g
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Grotta del Turco
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJtxkRw2jTOhMR65WIOh-7D1M
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Certosa di Trisulti
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ-WKvtR_5LxMRfDT9uTF-sL0
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Lago di Fogliano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJx-9kp9IOJRMRVMZQhB8qso0
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Gianicolo Belvedere
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJN-GsUwBhLxMR8GJzcAWRRtE
+    type: [Places to visit]
+    rating: recommended
+
+  - name: Palazzo Pontificio
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJy8kCCbyFJRMR1hy3iIHrHT4
+    type: [Places to visit]
+    rating: good
+
+  - name: Monte Ciocci - Belvedere
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ7frlMSZhLxMRtWZLUl8LBw0
+    type: [Places to visit]
+    rating: good
+
+  - name: Astura
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ8wvF9ASnJRMRAfk33ptPCSY
+    type: [Places to visit]
+    rating: good
+
+  # === MUSEI E ATTRAZIONI ===
+  - name: Castello Caetani di Sermoneta
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ43F2OndyJRMR3WDUthYnRc8
+    type: [Museum]
+    rating: top
+
+  - name: Museo Piana delle Orme
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJpbSsCMQNJRMRp7BrEMWVSt0
+    type: [Museum]
+    rating: top
+
+  - name: Museo Duilio Cambellotti
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJjYPCInwMJRMRZvRCIhkcemE
+    type: [Museum]
+    rating: recommended
+
+  - name: Museo della Terra Pontina
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJAVVLbgANJRMRFPOyHUH6CVc
+    type: [Museum]
+    rating: recommended
+
+  # === HIKING ===
+  - name: Picco di Circe
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJaSK9M2YcJRMRE0QSllkU264
+    type: [Hiking]
+    rating: top
+
+  - name: Monte Semprevisa
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJH26eKFdpJRMR8Po43ptPCR0
+    type: [Hiking]
+    rating: recommended
+
+  - name: Monte Orlando
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJ61iNE27TOhMR54mMyy45jzc
+    type: [Hiking]
+    rating: recommended
+
+  - name: Cima del Redentore
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJgwhILdTNOhMRKfQTfx2HO7s
+    type: [Hiking]
+    rating: recommended
+
+  - name: Monte Leano
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJSR3ozyE9JRMRBtKyGCBXQXs
+    type: [Hiking]
+    rating: recommended
+
+  - name: Monte delle Fate
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJyQx1mm05JRMRn7cUmKomXmA
+    type: [Hiking]
+    rating: recommended
+
+  - name: Monte Erdigheta
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJHb4R_NprJRMRQlx7j1INK-M
+    type: [Hiking]
+    rating: recommended
+
+  # === COWORKING ===
+  - name: thespaze Coworking | sede di Latina
+    cost: low
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJGaD44ZENJRMRk8Vm2kQ_dlc
+    type: [Coworking]
+    rating: good
+
+  - name: OPENHUB LAZIO Latina
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJoy39m74LJRMRek1kMvKbEtk
+    type: [Coworking]
+    rating: good
+
+  - name: Spazio Attivo Latina Lazio Innova
+    maps: https://www.google.com/maps/place/?q=place_id:ChIJc6jbdnwMJRMRgSIdNtCWTmA
+    type: [Coworking]
+    rating: good

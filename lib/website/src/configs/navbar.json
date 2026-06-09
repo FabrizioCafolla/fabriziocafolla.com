@@ -11,16 +11,21 @@
       "url": "/"
     },
     {
-      "name": "About Me",
-      "url": "/about"
-    },
-    {
       "name": "Blog",
       "url": "/blog",
       "dropdown": [
-        { "name": "Tech", "url": "/blog/tech" },
-        { "name": "On the Road", "url": "/blog/on-the-road" }
+        { "name": "All", "url": "/blog" },
+        { "name": "# Tech", "url": "/blog/tech" },
+        { "name": "# On the Road", "url": "/blog/on-the-road" },
+        {
+          "name": "# Travel Guides",
+          "url": "/blog/guides"
+        }
       ]
+    },
+    {
+      "name": "Photography",
+      "url": "/photography"
     },
     {
       "icon": "mdi:link-variant",

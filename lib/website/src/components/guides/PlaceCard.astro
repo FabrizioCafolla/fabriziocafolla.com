@@ -1,0 +1,244 @@
+---
+export interface Props {
+  name: string;
+  cost?: string;
+  maps?: string;
+  notes?: string;
+  hours?: string[];
+  type: string[];
+  tags?: string[];
+  rating: string;
+}
+
+const { name, cost, maps, notes, hours, type, rating, tags } = Astro.props;
+
+const ratingLabel: Record<string, string> = {
+  good: "Good",
+  recommended: "Recommended",
+  top: "Top pick",
+  unique: "Unique",
+};
+
+const ratingClass: Record<string, string> = {
+  good: "place-card__badge--good",
+  recommended: "place-card__badge--primary",
+  top: "place-card__badge--secondary",
+  unique: "place-card__badge--unique",
+};
+
+const costLabel: Record<string, string> = {
+  low: "€",
+  "mid-low": "€€",
+  middle: "€€€",
+  "mid-high": "€€€€",
+  high: "€€€€€",
+};
+---
+
+<article class="place-card">
+  <div class="place-card__content">
+    <div class="place-card__meta">
+      <span class={`place-card__badge ${ratingClass[rating] || ""}`}>
+        {ratingLabel[rating] || rating}
+      </span>
+
+      {
+        tags &&
+          tags.map((tag) => <span class="place-card__badge place-card__badge--tag">{tag}</span>)
+      }
+
+      {cost && <span class="place-card__cost">{costLabel[cost] || cost}</span>}
+    </div>
+
+    <h3 class="place-card__title">{name}</h3>
+
+    {
+      type.length > 1 && (
+        <div class="place-card__types">
+          {type.slice(1).map((t) => (
+            <span class="place-card__type">{t}</span>
+          ))}
+        </div>
+      )
+    }
+
+    {notes && <p class="place-card__notes">{notes}</p>}
+
+    {hours && hours.length > 0 && <p class="place-card__hours">{hours.join(" · ")}</p>}
+
+    {
+      maps && (
+        <div class="place-card__footer">
+          <a href={maps} target="_blank" rel="noopener noreferrer" class="place-card__maps">
+            Open in Maps ↗
+          </a>
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .place-card {
+    --card-padding: 20px;
+    --card-border-color: var(--gray);
+    --card-hover-border-color: var(--primary);
+    --card-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: block;
+    width: 100%;
+  }
+
+  .place-card__content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--card-padding);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    transition: var(--card-transition);
+    gap: 10px;
+  }
+
+  .place-card__content:hover {
+    border-color: var(--card-hover-border-color);
+    box-shadow: 0 8px 16px rgba(0, 70, 173, 0.12);
+  }
+
+  .place-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap; /* Aggiunto per evitare che i tag sbordino su schermi piccoli */
+  }
+
+  .place-card__badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .place-card__badge--good {
+    color: var(--gray-dark);
+    background: var(--gray-light);
+  }
+
+  .place-card__badge--primary {
+    color: var(--primary);
+    background: rgba(0, 70, 173, 0.08);
+  }
+
+  .place-card__badge--secondary {
+    color: var(--secondary);
+    background: rgba(189, 17, 120, 0.08);
+  }
+
+  .place-card__badge--unique {
+    color: #b45309;
+    background: rgba(180, 83, 9, 0.08);
+  }
+
+  /* Nuova classe per i tag in giallino */
+  .place-card__badge--tag {
+    color: #854d0e; /* Marrone scuro per garantire leggibilità e contrasto */
+    background: #fef08a; /* Giallino chiaro */
+  }
+
+  .place-card__cost {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-darker);
+  }
+
+  .place-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--black);
+    margin: 0;
+  }
+
+  .place-card__footer {
+    margin-top: auto;
+    padding-top: 4px;
+  }
+
+  .place-card__maps {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .place-card__maps:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+
+  .place-card__types {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .place-card__type {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--gray-light);
+    color: var(--gray-darker);
+  }
+
+  .place-card__notes {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--gray-dark);
+    margin: 0;
+  }
+
+  .place-card__hours {
+    font-size: 12px;
+    color: var(--gray-dark);
+    margin: 0;
+    margin-top: auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .place-card {
+      --card-padding: 16px;
+    }
+
+    .place-card__title {
+      font-size: 15px;
+    }
+
+    .place-card__badge {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .place-card__content,
+    .place-card__maps {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .place-card__content {
+      border: 2px solid var(--black);
+    }
+
+    .place-card__content:hover {
+      border-color: var(--primary-dark);
+    }
+  }
+</style>
