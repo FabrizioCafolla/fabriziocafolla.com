@@ -102,14 +102,14 @@ const costLabel: Record<string, string> = {
 
   .place-card__content:hover {
     border-color: var(--card-hover-border-color);
-    box-shadow: 0 8px 16px rgba(0, 70, 173, 0.12);
+    box-shadow: 0 8px 16px rgba(13, 31, 60, 0.12);
   }
 
   .place-card__meta {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-wrap: wrap; /* Aggiunto per evitare che i tag sbordino su schermi piccoli */
+    flex-wrap: wrap;
   }
 
   .place-card__badge {
@@ -128,12 +128,12 @@ const costLabel: Record<string, string> = {
 
   .place-card__badge--primary {
     color: var(--primary);
-    background: rgba(0, 70, 173, 0.08);
+    background: rgba(13, 31, 60, 0.07);
   }
 
   .place-card__badge--secondary {
     color: var(--secondary);
-    background: rgba(189, 17, 120, 0.08);
+    background: rgba(45, 90, 142, 0.09);
   }
 
   .place-card__badge--unique {
@@ -141,10 +141,9 @@ const costLabel: Record<string, string> = {
     background: rgba(180, 83, 9, 0.08);
   }
 
-  /* Nuova classe per i tag in giallino */
   .place-card__badge--tag {
-    color: #854d0e; /* Marrone scuro per garantire leggibilità e contrasto */
-    background: #fef08a; /* Giallino chiaro */
+    color: var(--gray-darker);
+    background: var(--gray);
   }
 
   .place-card__cost {

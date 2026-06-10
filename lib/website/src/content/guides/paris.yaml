@@ -1,0 +1,412 @@
+title: Paris
+slug: paris
+aliases: [parigi]
+description: ""
+tips: |
+  - **Museums**: Many museums and cultural sites offer free or discounted admission if you are under 26 and a citizen of a European Union member state.
+  - **Getting around**: I recommend buying the Navigo Pass. This rechargeable card allows you to travel on the metro, the RER, the funicular, the buses and trams in Paris and Ile-de-France, or the Orlybus and Roissybus airport buses. This ticket does not require photo identification, is quick to obtain, is rechargeable, is non-nominal, and can be purchased online before departure. You can load single tickets, a carnet, or a season ticket onto the pass at any time.
+  - **Coworking**: Specified coworkings have free admissions but with mandatory consumption, while others have an admission charge.
+
+places:
+  # === MUSEI E CULTURA ===
+  - name: Musée du Louvre
+    lat: 48.8606
+    lng: 2.3376
+    cost: mid-low
+    type: [Museum]
+    rating: unique
+    maps: https://www.google.com/maps/search/Musée+du+Louvre/@48.8606,2.3376,17z
+
+  - name: Musée d'Orsay
+    lat: 48.8600
+    lng: 2.3266
+    cost: mid-low
+    type: [Museum]
+    rating: unique
+    maps: https://www.google.com/maps/search/Musée+d'Orsay/@48.8600,2.3266,17z
+
+  - name: Shakespeare and Company
+    lat: 48.8527
+    lng: 2.3470
+    type: [Museum]
+    tags: [Bookstore]
+    rating: top
+    maps: https://www.google.com/maps/search/Shakespeare+and+Company+Paris/@48.8527,2.3470,17z
+
+  - name: Musée Marmottan Monet
+    lat: 48.8581
+    lng: 2.2749
+    cost: mid-low
+    type: [Museum]
+    rating: top
+    maps: https://www.google.com/maps/search/Musée+Marmottan+Monet/@48.8581,2.2749,17z
+
+  - name: 59 Rivoli
+    lat: 48.8604
+    lng: 2.3473
+    type: [Museum]
+    tags: [Art gallery]
+    rating: top
+    maps: https://www.google.com/maps/search/59+Rivoli+Paris/@48.8604,2.3473,17z
+
+  - name: Musée de la Vie romantique
+    lat: 48.8828
+    lng: 2.3389
+    cost: low
+    type: [Museum]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Musée+de+la+Vie+romantique/@48.8828,2.3389,17z
+
+  - name: San-Francisco Book Co
+    lat: 48.8532
+    lng: 2.3414
+    type: [Museum]
+    tags: [Bookstore]
+    rating: good
+    maps: https://www.google.com/maps/search/San-Francisco+Book+Co+Paris/@48.8532,2.3414,17z
+
+  - name: Librairie François Chanut
+    lat: 48.8545
+    lng: 2.3447
+    type: [Museum]
+    tags: [Bookstore]
+    rating: good
+    maps: https://www.google.com/maps/search/Librairie+François+Chanut+Paris/@48.8545,2.3447,17z
+
+  # === LUOGHI DA VISITARE ===
+  - name: Notre Dame
+    lat: 48.8530
+    lng: 2.3499
+    type: [Places to visit]
+    rating: unique
+    maps: https://www.google.com/maps/search/Notre+Dame+de+Paris/@48.8530,2.3499,16z
+
+  - name: Montmartre
+    lat: 48.8867
+    lng: 2.3431
+    type: [Places to visit]
+    rating: unique
+    maps: https://www.google.com/maps/search/Montmartre+Paris/@48.8867,2.3431,15z
+
+  - name: Reggia di Versailles
+    lat: 48.8049
+    lng: 2.1204
+    cost: mid-low
+    type: [Places to visit]
+    rating: unique
+    maps: https://www.google.com/maps/search/Palace+of+Versailles/@48.8049,2.1204,15z
+
+  - name: Champs-Élysées
+    lat: 48.8698
+    lng: 2.3078
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Champs-Élysées+Paris/@48.8698,2.3078,15z
+
+  - name: Le Marais
+    lat: 48.8566
+    lng: 2.3522
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Le+Marais+Paris/@48.8566,2.3522,15z
+
+  - name: Quartiere Latino
+    lat: 48.8500
+    lng: 2.3441
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Latin+Quarter+Paris/@48.8500,2.3441,15z
+
+  - name: Sacré-Cœur
+    lat: 48.8867
+    lng: 2.3431
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Sacré-Cœur+Basilica+Paris/@48.8867,2.3431,17z
+
+  - name: Champ de Mars
+    lat: 48.8562
+    lng: 2.2980
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Champ+de+Mars+Paris/@48.8562,2.2980,16z
+
+  - name: Catacombs of Paris
+    lat: 48.8337
+    lng: 2.3321
+    cost: mid-low
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Catacombs+of+Paris/@48.8337,2.3321,17z
+
+  - name: Jardin des Tuileries
+    lat: 48.8635
+    lng: 2.3274
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Jardin+des+Tuileries+Paris/@48.8635,2.3274,16z
+
+  - name: Jardin du Luxembourg
+    lat: 48.8462
+    lng: 2.3372
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Jardin+du+Luxembourg+Paris/@48.8462,2.3372,16z
+
+  - name: Abbazia di Saint-Denis
+    lat: 48.9352
+    lng: 2.3588
+    cost: low
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Basilique+Saint-Denis+Paris/@48.9352,2.3588,16z
+
+  - name: Marché aux Fleurs Reine Elizabeth II
+    lat: 48.8545
+    lng: 2.3469
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Marché+aux+Fleurs+Paris/@48.8545,2.3469,17z
+
+  # === COWORKING ===
+  - name: MAIF Social Club
+    lat: 48.8588
+    lng: 2.3583
+    type: [Coworking]
+    rating: top
+    maps: https://www.google.com/maps/search/MAIF+Social+Club+Paris/@48.8588,2.3583,17z
+
+  - name: Food Market La Felicità
+    lat: 48.8381
+    lng: 2.3750
+    cost: mid-low
+    type: [Coworking]
+    tags: [Bar]
+    rating: top
+    maps: https://www.google.com/maps/search/La+Felicità+Paris/@48.8381,2.3750,17z
+
+  - name: Climbing District Saint-Lazare
+    lat: 48.8785
+    lng: 2.3236
+    type: [Coworking]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Climbing+District+Saint-Lazare+Paris/@48.8785,2.3236,17z
+
+  - name: Climbing District Bastille
+    lat: 48.8533
+    lng: 2.3735
+    type: [Coworking]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Climbing+District+Bastille+Paris/@48.8533,2.3735,17z
+
+  - name: Quartier Jeunes
+    lat: 48.8566
+    lng: 2.3522
+    type: [Coworking]
+    rating: good
+    maps: https://www.google.com/maps/search/Quartier+Jeunes+Paris/@48.8566,2.3522,17z
+
+  # === RISTORANTI ===
+  - name: Café de Flore
+    lat: 48.8539
+    lng: 2.3330
+    cost: middle
+    type: [Restaurant]
+    tags: [Bar]
+    rating: unique
+    maps: https://www.google.com/maps/search/Café+de+Flore+Paris/@48.8539,2.3330,17z
+
+  - name: Bouillon Pigalle
+    lat: 48.8822
+    lng: 2.3341
+    cost: mid-low
+    type: [Restaurant]
+    rating: top
+    maps: https://www.google.com/maps/search/Bouillon+Pigalle+Paris/@48.8822,2.3341,17z
+
+  - name: Bouillon Julien
+    lat: 48.8731
+    lng: 2.3501
+    cost: mid-low
+    type: [Restaurant]
+    rating: top
+    maps: https://www.google.com/maps/search/Bouillon+Julien+Paris/@48.8731,2.3501,17z
+
+  - name: Bouillon Chartier
+    lat: 48.8725
+    lng: 2.3445
+    cost: mid-low
+    type: [Restaurant]
+    rating: top
+    maps: https://www.google.com/maps/search/Bouillon+Chartier+Paris/@48.8725,2.3445,17z
+
+  - name: Laïa
+    lat: 48.8545
+    lng: 2.3300
+    cost: middle
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Laïa+Restaurant+Paris/@48.8545,2.3300,17z
+
+  - name: Restaurant Loulou Paris
+    lat: 48.8599
+    lng: 2.3339
+    cost: mid-low
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Restaurant+Loulou+Paris/@48.8599,2.3339,17z
+
+  - name: Riz Riz
+    lat: 48.8650
+    lng: 2.3450
+    cost: mid-low
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Riz+Riz+Paris/@48.8650,2.3450,17z
+
+  - name: Café Cassette
+    lat: 48.8530
+    lng: 2.3292
+    cost: mid-low
+    type: [Restaurant]
+    tags: [Bar]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Café+Cassette+Paris/@48.8530,2.3292,17z
+
+  - name: Copains
+    lat: 48.8700
+    lng: 2.3480
+    cost: low
+    type: [Restaurant]
+    tags: [Pastry]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Copains+Boulangerie+Paris/@48.8700,2.3480,17z
+
+  - name: Boulangerie Chambelland
+    lat: 48.8578
+    lng: 2.3739
+    cost: low
+    type: [Restaurant]
+    tags: [Pastry]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Boulangerie+Chambelland+Paris/@48.8578,2.3739,17z
+
+  - name: Maison Plume
+    lat: 48.8560
+    lng: 2.3430
+    cost: low
+    type: [Restaurant]
+    tags: [Pastry]
+    rating: good
+    maps: https://www.google.com/maps/search/Maison+Plume+Paris/@48.8560,2.3430,17z
+
+  - name: Tascabio senza glutine
+    lat: 48.8610
+    lng: 2.3520
+    cost: mid-low
+    type: [Restaurant]
+    rating: good
+    maps: https://www.google.com/maps/search/Tascabio+gluten+free+Paris/@48.8610,2.3520,17z
+
+  - name: La Manufacture du Sans Gluten
+    lat: 48.8590
+    lng: 2.3440
+    cost: low
+    type: [Restaurant]
+    tags: [Pastry]
+    rating: good
+    maps: https://www.google.com/maps/search/La+Manufacture+du+Sans+Gluten+Paris/@48.8590,2.3440,17z
+
+  # === CLUB ===
+  - name: Moulin Rouge
+    lat: 48.8841
+    lng: 2.3322
+    cost: mid-high
+    type: [Club]
+    rating: unique
+    maps: https://www.google.com/maps/search/Moulin+Rouge+Paris/@48.8841,2.3322,17z
+
+  - name: Little Red Door
+    lat: 48.8571
+    lng: 2.3574
+    cost: middle
+    type: [Club]
+    tags: [Cocktail bar]
+    rating: top
+    maps: https://www.google.com/maps/search/Little+Red+Door+Paris/@48.8571,2.3574,17z
+
+  - name: Rex Club
+    lat: 48.8711
+    lng: 2.3493
+    cost: mid-low
+    type: [Club]
+    rating: top
+    maps: https://www.google.com/maps/search/Rex+Club+Paris/@48.8711,2.3493,17z
+
+  - name: Le Caveau des Oubliettes
+    lat: 48.8527
+    lng: 2.3469
+    cost: mid-low
+    type: [Club]
+    tags: [Jazz club]
+    rating: top
+    maps: https://www.google.com/maps/search/Le+Caveau+des+Oubliettes+Paris/@48.8527,2.3469,17z
+
+  - name: 38Riv Jazz Club
+    lat: 48.8563
+    lng: 2.3520
+    cost: mid-low
+    type: [Club]
+    tags: [Jazz club]
+    rating: top
+    maps: https://www.google.com/maps/search/38Riv+Jazz+Club+Paris/@48.8563,2.3520,17z
+
+  - name: No Entry
+    lat: 48.8573
+    lng: 2.3611
+    type: [Club]
+    tags: [Cocktail bar]
+    rating: recommended
+    maps: https://www.google.com/maps/search/No+Entry+Bar+Paris/@48.8573,2.3611,17z
+
+  - name: Supersonic
+    lat: 48.8497
+    lng: 2.3697
+    cost: low
+    type: [Club]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Supersonic+Paris/@48.8497,2.3697,17z
+
+  - name: La Gare - Le Gore
+    lat: 48.8817
+    lng: 2.3852
+    cost: low
+    type: [Club]
+    tags: [Pub]
+    rating: recommended
+    maps: https://www.google.com/maps/search/La+Gare+Le+Gore+Paris/@48.8817,2.3852,17z
+
+  - name: T7 Club
+    lat: 48.8490
+    lng: 2.3760
+    cost: mid-low
+    type: [Club]
+    rating: recommended
+    maps: https://www.google.com/maps/search/T7+Club+Paris/@48.8490,2.3760,17z
+
+  - name: Les Caves Saint-Sabin
+    lat: 48.8573
+    lng: 2.3680
+    cost: mid-low
+    type: [Club]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Les+Caves+Saint-Sabin+Paris/@48.8573,2.3680,17z
+
+  - name: Aux Trois Mailletz
+    lat: 48.8527
+    lng: 2.3469
+    cost: mid-low
+    type: [Club]
+    tags: [Jazz club]
+    rating: good
+    maps: https://www.google.com/maps/search/Aux+Trois+Mailletz+Paris/@48.8527,2.3469,17z

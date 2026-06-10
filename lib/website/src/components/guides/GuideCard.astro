@@ -35,7 +35,6 @@ const { title, slug, placesCount } = Astro.props;
   .guide-card__wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;
     padding: var(--card-padding);
     border: 1px solid var(--card-border-color);
     border-radius: var(--radius-md);
@@ -45,13 +44,16 @@ const { title, slug, placesCount } = Astro.props;
 
   .guide-card:hover .guide-card__wrapper {
     border-color: var(--card-hover-border-color);
-    box-shadow: 0 8px 16px rgba(0, 70, 173, 0.12);
+    box-shadow: 0 8px 16px rgba(13, 31, 60, 0.12);
   }
 
-  .guide-card:focus-visible {
+  .guide-card:focus {
+    outline: none;
+  }
+
+  .guide-card:focus-visible .guide-card__wrapper {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
-    border-radius: var(--radius-md);
   }
 
   .guide-card__title {

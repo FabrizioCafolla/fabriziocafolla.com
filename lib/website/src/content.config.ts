@@ -32,6 +32,8 @@ const guides = defineCollection({
         name: z.string(),
         cost: z.enum(["low", "mid-low", "middle", "mid-high", "high"]).optional(),
         maps: z.url().optional(),
+        lat: z.number().optional(),
+        lng: z.number().optional(),
         notes: z.string().optional(),
         hours: z.array(z.string()).optional(),
         type: z.array(z.string()),

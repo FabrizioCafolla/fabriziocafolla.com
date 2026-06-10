@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap");
+
 @font-face {
   font-family: "NectoMono";
   src: url("/fonts/NectoMono-Regular.woff2") format("woff2");
@@ -6,56 +8,122 @@
   font-display: swap;
 }
 
+/* ── Brand / Logo ─────────────────────────────────────────── */
 .logo-text-footer,
 .header-title {
-  font-family: "NectoMono", sans-serif !important;
+  font-family: "NectoMono", monospace !important;
 }
 
-.logo-img-navbar {
-  width: 150px;
-  margin: 0;
-  padding: 0;
-}
-
-.logo-text-footer {
+.logo-text-footer,
+footer .brand-link {
   font-size: 1rem;
   margin: 0;
   padding: 0;
+  color: var(--primary) !important;
+}
+
+.logo-img-navbar {
+  height: 52px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar: flush with page, no border or shadow */
+.site-header,
+.site-header.scrolled {
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 @media screen and (max-width: 768px) {
   .logo-img-navbar {
-    width: 125px;
+    height: 38px;
+    width: auto;
     padding: 0.125rem;
   }
 }
 
+/* ── Design tokens ────────────────────────────────────────── */
 :root {
-  /* Refined deep blue palette */
-  --primary: #1b3a5c;
-  --primary-light: #2a5078;
-  --primary-dark: #0e2240;
-  --secondary: #4a6fa5;
-  --secondary-light: #5a82b8;
-  --secondary-dark: #3a5c8a;
+  /* Navy ink — primary brand color */
+  --primary: #0d1f3c;
+  --primary-light: #1e3a5f;
+  --primary-dark: #060f1f;
 
-  /* Squared radius system */
+  /* Mid-navy — secondary interactive, labels */
+  --secondary: #2d5a8e;
+  --secondary-light: #3b6fa8;
+  --secondary-dark: #1e3f63;
+
+  /* Neutral surfaces */
+  --white: #ffffff;
+  --black: #0d1f3c;
+  --gray: #eef1f5;
+  --gray-light: #f4f6f9;
+  --gray-medium: #c8d4e0;
+  --gray-dark: #5e6e7e;
+  --gray-darker: #3d4f64;
+  --gray-gradient: rgba(244, 246, 249, 0.5), var(--white);
+
+  /* Radius — architectural, flat */
   --radius-sm: 2px;
   --radius-md: 3px;
   --radius-lg: 4px;
   --radius-xl: 5px;
 
-  /* Tighter shadows */
-  --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.06);
-  --box-shadow-hover: 0 2px 8px rgba(27, 58, 92, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+  /* Navy-tinted shadows */
+  --box-shadow: 0 1px 2px rgba(6, 15, 31, 0.04), 0 2px 8px rgba(6, 15, 31, 0.06);
+  --box-shadow-hover: 0 4px 16px rgba(13, 31, 60, 0.12), 0 8px 24px rgba(13, 31, 60, 0.06);
+
+  /* Typography stacks */
+  --font-body: "Lora", Georgia, serif;
+  --font-heading: "NectoMono", monospace;
 }
 
-/* Global border-radius flattening for walle components */
+/* ── Typography ───────────────────────────────────────────── */
+body {
+  font-family: "Lora", Georgia, serif;
+  line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "NectoMono", monospace;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* ── Walle component overrides ────────────────────────────── */
+
+/* Blog card badges — !important beats walle's scoped data-astro-cid selectors */
+.card__badge--primary {
+  color: var(--primary) !important;
+  background: rgba(13, 31, 60, 0.07) !important;
+}
+
+.card__badge--secondary {
+  color: var(--secondary) !important;
+  background: rgba(45, 90, 142, 0.09) !important;
+}
+
+/* Blog card: hover shadow */
+.card:hover .card__wrapper {
+  box-shadow: 0 4px 12px rgba(13, 31, 60, 0.1) !important;
+}
+
+/* Guide card: hover shadow */
+.guide-card:hover .guide-card__wrapper {
+  box-shadow: 0 4px 12px rgba(13, 31, 60, 0.1) !important;
+}
+
+/* ── Border radius: flatten walle defaults ────────────────── */
 img:not(.bio-photo) {
   border-radius: 2px !important;
 }
 
-/* Preserve circular profile photo on about page */
 img.bio-photo,
 .bio-photo-wrap img {
   border-radius: 50% !important;
@@ -65,7 +133,6 @@ pre {
   border-radius: 3px !important;
 }
 
-/* Navbar */
 [data-component="Navbar"] .nav-link,
 [data-component="Navbar"] .dropdown-menu,
 .main-nav .nav-link,
@@ -78,7 +145,6 @@ pre {
   border-radius: 0 !important;
 }
 
-/* Cards */
 .card__wrapper {
   border-radius: 3px !important;
 }
@@ -91,7 +157,6 @@ pre {
   border-radius: 3px !important;
 }
 
-/* Badges & buttons */
 .badge,
 [data-walle-badge] {
   border-radius: 3px !important;
@@ -103,7 +168,6 @@ button {
   border-radius: 3px !important;
 }
 
-/* Header image containers */
 .image-container {
   border-radius: 3px !important;
 }
@@ -112,50 +176,36 @@ button {
   border-radius: 2px !important;
 }
 
-/* Blog article navigation */
 [data-walle-article-nav],
 .article-navigation a {
   border-radius: 3px !important;
 }
 
-/* Table of contents */
 .toc-container,
 [data-walle-toc] {
   border-radius: 3px !important;
 }
 
-/* Section containers */
 .section-card {
   border-radius: 4px !important;
 }
 
-/* Blog post hero images */
 .blog-post__hero img,
 .post-hero img {
   border-radius: 2px !important;
 }
 
-/* Footer social icons — keep circular */
+/* Footer social icons remain circular */
 .footer-social a {
   border-radius: 50% !important;
 }
 
-/* Blog filters */
 .filter-tag,
 .blog-filter button,
 .blog-filter a {
   border-radius: 3px !important;
 }
 
-/* Guide card hover shadow aligned to new palette */
-.guide-card:hover .guide-card__wrapper {
-  box-shadow: 0 4px 12px rgba(27, 58, 92, 0.1) !important;
-}
-
-/* Card hover shadow aligned to new palette */
-.card:hover .card__wrapper {
-  box-shadow: 0 4px 12px rgba(27, 58, 92, 0.1) !important;
-}
 .article-content blockquote {
   border-radius: 0 3px 3px 0 !important;
 }
@@ -172,29 +222,29 @@ button {
   border-radius: 2px !important;
 }
 
-/* Blog post tags */
 .tag {
   border-radius: 3px !important;
 }
 
-/* Draft message */
 .draft-message {
   border-radius: 3px !important;
 }
 
-/* Table of contents */
 .toc-panel,
 .toc-mobile {
   border-radius: 3px !important;
 }
 
-/* Blog article navigation */
-.article-navigation a,
 .nav-card {
   border-radius: 3px !important;
 }
 
-/* Breadcrumbs */
 .breadcrumb-item {
   border-radius: 2px !important;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+footer {
+  background: var(--white) !important;
+  border-top: none !important;
 }

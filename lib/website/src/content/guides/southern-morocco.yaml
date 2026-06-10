@@ -1,0 +1,265 @@
+title: Southern Morocco
+slug: southern-morocco
+aliases: [morocco-south, marocco-sud]
+description: ""
+tips: |
+  - **Cuisine**: Moroccan culinary tradition is rich and varies from region to region. Mint tea is by far the most common drink and is usually offered upon check-in at riads. Tajine is a must-try dish found everywhere, made with a combination of vegetables and meat, typically lamb, chicken, or beef, and cooked with a blend of spices, especially cumin. As for sweets, Morocco offers a wide variety of desserts, so you're sure to find something you love.
+  - **Guides**: To get the most out of your trip, I recommend hiring a guide to handle your riad bookings and transportation into the desert (or beyond). With the right guide, you'll experience hidden gems without having to worry about the logistics.
+  - **Argan**: The argan tree is unique in that its fruits grow only in a specific area of southwestern Morocco. The fruits are used to make argan oil, a versatile product used as a condiment (or in recipes like Amlou) as well as in natural cosmetics. Often, the collection and refinement of argan oil is managed by women's cooperatives that open their shops for tours and direct sales.
+  - **Driving and getting around**: I didn't rent a car, but from all the miles we traveled, I can tell you that there are many police checkpoints, complete with radar speed checks (often unmarked). Be sure to obey the speed limits. City driving can be chaotic, but it's manageable, and the major highways are generally quiet. There are no trains in the south; buses are available, and along the coast, the souk2surf.com shuttle service is a convenient option that can be booked online.
+  - **eSIM**: If possible, I highly recommend using an eSIM instead of a local SIM card. You can activate it before your trip so you're connected as soon as you land. It's easy to reload, requires no SIM card removal (just disable your regular SIM to avoid unwanted charges), and creates no waste since there's no physical SIM to discard afterward. The downside is that it costs about 30% more than a standard SIM.
+  - **Download offline maps**: Even if you have Internet access, download offline maps from Google Maps or use Organic Maps. This will ensure that you can navigate safely and reach your destination.
+  - **Water and Alcohol**: As you may know, Morocco is a Muslim country, which means that alcohol is restricted. You'll only find it in certain tourist areas or certain places. Always drink bottled water instead of tap water, and avoid cocktails with ice whenever possible.
+
+places:
+  # === LUOGHI DA VISITARE ===
+  - name: Jemaa el-Fnaa
+    lat: 31.6258
+    lng: -7.9891
+    type: [Places to visit]
+    rating: unique
+    maps: https://www.google.com/maps/search/Jemaa+el-Fnaa/@31.6258,-7.9891,16z
+
+  - name: Marrakesh
+    lat: 31.6295
+    lng: -7.9811
+    type: [Places to visit]
+    rating: unique
+    maps: https://www.google.com/maps/search/Marrakesh+Medina/@31.6295,-7.9811,14z
+
+  - name: Kasbah Ait Ben Haddou
+    lat: 31.0471
+    lng: -7.1309
+    cost: low
+    type: [Places to visit]
+    rating: unique
+    maps: https://www.google.com/maps/search/Kasbah+Ait+Ben+Haddou/@31.0471,-7.1309,16z
+
+  - name: Merzouga Desert
+    lat: 31.1500
+    lng: -3.9600
+    type: [Places to visit]
+    rating: unique
+    maps: https://www.google.com/maps/search/Merzouga+Erg+Chebbi/@31.1500,-3.9600,13z
+
+  - name: Le Jardin Secret
+    lat: 31.6330
+    lng: -7.9929
+    cost: low
+    type: [Museum]
+    rating: top
+    maps: https://www.google.com/maps/search/Le+Jardin+Secret+Marrakech/@31.6330,-7.9929,17z
+
+  - name: Dadès Gorges
+    lat: 31.4189
+    lng: -5.9600
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Dad%C3%A8s+Gorges/@31.4189,-5.9600,13z
+
+  - name: Roses Valley
+    lat: 31.2640
+    lng: -6.1500
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Vall%C3%A9e+des+Roses+Morocco/@31.2640,-6.1500,13z
+
+  - name: Paradise Valley
+    lat: 30.5100
+    lng: -9.7200
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Paradise+Valley+Taghazout/@30.5100,-9.7200,14z
+
+  - name: Essaouira
+    lat: 31.5085
+    lng: -9.7595
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Essaouira+Medina/@31.5085,-9.7595,15z
+
+  - name: Taghazout
+    lat: 30.5444
+    lng: -9.7180
+    type: [Places to visit]
+    rating: top
+    maps: https://www.google.com/maps/search/Taghazout/@30.5444,-9.7180,15z
+
+  - name: Sunrise Sahara Camp
+    lat: 31.0800
+    lng: -4.0100
+    type: [Places to visit]
+    tags: [Camp]
+    rating: top
+    maps: https://www.google.com/maps/search/Sunrise+Sahara+Camp+Merzouga/@31.0800,-4.0100,14z
+
+  - name: Ben Youssef Madrasa
+    lat: 31.6354
+    lng: -7.9891
+    cost: low
+    type: [Museum]
+    rating: top
+    maps: https://www.google.com/maps/search/Ben+Youssef+Madrasa/@31.6354,-7.9891,17z
+
+  - name: Kasbah Taourirt
+    lat: 30.9198
+    lng: -6.8938
+    cost: low
+    type: [Museum]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Kasbah+Taourirt+Ouarzazate/@30.9198,-6.8938,16z
+
+  - name: Atlas Studios
+    lat: 30.9192
+    lng: -6.8977
+    cost: low
+    type: [Museum]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Atlas+Studios+Ouarzazate/@30.9192,-6.8977,16z
+
+  - name: Todra River
+    lat: 31.5893
+    lng: -5.5767
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Todra+Gorge/@31.5893,-5.5767,14z
+
+  - name: Tinghir
+    lat: 31.5148
+    lng: -5.5264
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Tinghir+Morocco/@31.5148,-5.5264,14z
+
+  - name: Taliouine
+    lat: 30.5305
+    lng: -7.9127
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Taliouine+Morocco/@30.5305,-7.9127,14z
+
+  - name: Ouarzazate
+    lat: 30.9197
+    lng: -6.8940
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Ouarzazate/@30.9197,-6.8940,14z
+
+  - name: Kalaat M'Gouna
+    lat: 31.2387
+    lng: -6.1252
+    type: [Places to visit]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Kalaat+M%27Gouna/@31.2387,-6.1252,14z
+
+  # === RISTORANTI ===
+  - name: Pepe Nero
+    lat: 31.6310
+    lng: -7.9823
+    cost: high
+    type: [Restaurant]
+    tags: [Pizzeria]
+    rating: top
+    maps: https://www.google.com/maps/search/Pepe+Nero+Marrakech/@31.6310,-7.9823,17z
+
+  - name: Taros
+    lat: 31.5085
+    lng: -9.7596
+    cost: high
+    type: [Restaurant]
+    tags: [Bar]
+    rating: top
+    maps: https://www.google.com/maps/search/Taros+Essaouira/@31.5085,-9.7596,17z
+
+  - name: Mandala Society
+    lat: 30.5444
+    lng: -9.7180
+    cost: mid-low
+    type: [Restaurant]
+    tags: [Bar, Pastry]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Mandala+Society+Taghazout/@30.5444,-9.7180,17z
+
+  - name: Dfrost Almugar - Kitchen Club
+    lat: 30.5500
+    lng: -9.7300
+    cost: mid-low
+    type: [Restaurant]
+    tags: [Bar]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Dfrost+Almugar+Kitchen+Club/@30.5500,-9.7300,17z
+
+  - name: KSOU Restaurant Rooftop
+    lat: 31.5091
+    lng: -9.7590
+    cost: middle
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/KSOU+Restaurant+Rooftop+Essaouira/@31.5091,-9.7590,17z
+
+  - name: Dar Josephine
+    lat: 31.6295
+    lng: -7.9811
+    cost: middle
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Dar+Josephine+Marrakech/@31.6295,-7.9811,17z
+
+  - name: La Coupole Essaouira Beach
+    lat: 31.5000
+    lng: -9.7700
+    cost: mid-low
+    type: [Restaurant]
+    tags: [Bar]
+    rating: recommended
+    maps: https://www.google.com/maps/search/La+Coupole+Essaouira+Beach/@31.5000,-9.7700,17z
+
+  - name: Dar Baba Restaurant & More
+    lat: 31.5095
+    lng: -9.7595
+    cost: mid-low
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Dar+Baba+Restaurant+Essaouira/@31.5095,-9.7595,17z
+
+  - name: Seafood Corner
+    lat: 31.5085
+    lng: -9.7597
+    cost: mid-low
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Seafood+Corner+Essaouira/@31.5085,-9.7597,17z
+
+  - name: The Loft
+    lat: 30.5444
+    lng: -9.7185
+    cost: mid-low
+    type: [Restaurant]
+    rating: recommended
+    maps: https://www.google.com/maps/search/The+Loft+Taghazout/@30.5444,-9.7185,17z
+
+  - name: Sisterhood Coffee & Shop
+    lat: 30.5440
+    lng: -9.7182
+    cost: low
+    type: [Restaurant]
+    tags: [Bar]
+    rating: recommended
+    maps: https://www.google.com/maps/search/Sisterhood+Coffee+Shop+Taghazout/@30.5440,-9.7182,17z
+
+  - name: Teapot Cafe
+    lat: 31.6260
+    lng: -7.9888
+    cost: low
+    type: [Restaurant]
+    tags: [Bar]
+    rating: good
+    maps: https://www.google.com/maps/search/Teapot+Cafe+Marrakech/@31.6260,-7.9888,17z
+
+  - name: Beytt Mogador Essaouira
+    lat: 31.5095
+    lng: -9.7600
+    cost: mid-low
+    type: [Restaurant]
+    rating: good
+    maps: https://www.google.com/maps/search/Beytt+Mogador+Essaouira/@31.5095,-9.7600,17z

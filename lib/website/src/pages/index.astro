@@ -462,13 +462,25 @@ const personSchema = {
 
   .bio-text p {
     color: var(--gray-dark);
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   /* ── Projects section (shared layout) ─────────────────── */
   .projects-section {
     padding: var(--space-3xl) var(--space-lg) var(--space-4xl);
-    background-color: var(--gray-light);
+    background-color: var(--white);
+    position: relative;
+  }
+
+  .projects-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
   }
 
   .projects-section > .container {
@@ -492,7 +504,7 @@ const personSchema = {
   .group-header h2 {
     color: var(--primary-dark);
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: var(--space-xs);
     letter-spacing: -0.02em;
   }
@@ -512,8 +524,8 @@ const personSchema = {
   /* ── Featured project card ─────────────────────────────── */
   .featured-project-card {
     background: var(--white);
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border: 1px solid var(--gray-medium);
+    border-radius: 3px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     height: 100%;
@@ -590,7 +602,7 @@ const personSchema = {
   .featured-project-footer {
     margin-top: auto;
     padding-top: var(--space-md);
-    border-top: 1px solid #f3f4f6;
+    border-top: 1px solid var(--gray);
   }
 
   .featured-project-links {
@@ -604,7 +616,7 @@ const personSchema = {
     align-items: center;
     gap: 0.375rem;
     padding: 0.625rem var(--space-md);
-    border-radius: 6px;
+    border-radius: 3px;
     font-size: 0.875rem;
     font-weight: 600;
     text-decoration: none;
@@ -616,47 +628,27 @@ const personSchema = {
     height: 1.125rem;
   }
 
-  .website-button {
+  .website-button,
+  .github-button,
+  .linkedin-button {
     background: var(--primary);
     color: var(--white);
   }
 
-  .website-button:hover {
-    background: var(--primary-dark);
-    color: var(--white);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 70, 173, 0.2);
-  }
-
-  .github-button {
-    background: var(--black);
-    color: var(--white);
-  }
-
-  .github-button:hover {
-    background: var(--gray-darker);
-    color: var(--white);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .linkedin-button {
-    background: #0077b5;
-    color: var(--white);
-  }
-
+  .website-button:hover,
+  .github-button:hover,
   .linkedin-button:hover {
-    background: #005582;
+    background: var(--primary-light);
     color: var(--white);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 119, 181, 0.2);
+    box-shadow: 0 2px 8px rgba(13, 31, 60, 0.2);
   }
 
   /* ── Talk card ─────────────────────────────────────────── */
   .talk-card {
     background: var(--white);
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border: 1px solid var(--gray-medium);
+    border-radius: 3px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     height: 100%;
@@ -675,7 +667,7 @@ const personSchema = {
     width: 100%;
     padding-top: 56.25%;
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gray-light);
   }
 
   .talk-image {
@@ -699,14 +691,14 @@ const personSchema = {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     padding: var(--space-xs) 0.875rem;
-    border-radius: 20px;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     gap: 0.375rem;
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--primary-dark);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(13, 31, 60, 0.1);
   }
 
   .event-status-badge {
@@ -714,11 +706,11 @@ const personSchema = {
     top: var(--space-md);
     left: var(--space-md);
     padding: var(--space-xs) 0.875rem;
-    border-radius: 20px;
+    border-radius: 3px;
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--white);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(13, 31, 60, 0.1);
   }
 
   .event-status-badge.upcoming {
@@ -759,7 +751,7 @@ const personSchema = {
     align-items: center;
     justify-content: space-between;
     padding-top: var(--space-md);
-    border-top: 1px solid #f3f4f6;
+    border-top: 1px solid var(--gray);
     gap: var(--space-sm);
     flex-wrap: wrap;
   }
@@ -788,7 +780,7 @@ const personSchema = {
     align-items: center;
     gap: 0.375rem;
     padding: var(--space-xs) 0.875rem;
-    border-radius: 6px;
+    border-radius: 3px;
     font-size: 0.8125rem;
     font-weight: 600;
     text-decoration: none;
@@ -800,22 +792,13 @@ const personSchema = {
     height: 1rem;
   }
 
-  .watch-button {
-    background: var(--primary);
-    color: var(--white);
-  }
-
-  .watch-button:hover {
-    background: var(--primary-dark);
-    color: var(--white);
-    transform: translateY(-1px);
-  }
-
+  .watch-button,
   .event-button {
     background: var(--secondary);
     color: var(--white);
   }
 
+  .watch-button:hover,
   .event-button:hover {
     background: var(--secondary-dark);
     color: var(--white);
@@ -823,13 +806,14 @@ const personSchema = {
   }
 
   .slides-button {
-    background: var(--alternative);
-    color: var(--black);
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
   }
 
   .slides-button:hover {
-    background: var(--alternative-dark);
-    color: var(--black);
+    background: var(--primary);
+    color: var(--white);
     transform: translateY(-1px);
   }
 
@@ -890,6 +874,30 @@ const personSchema = {
     }
   }
 
+  /* ── Entrance animation ────────────────────────────────── */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  :global(.header-section) {
+    animation: fadeUp 0.65s ease-out both;
+  }
+
+  .bio-section {
+    animation: fadeUp 0.65s ease-out 0.12s both;
+  }
+
+  .projects-section {
+    animation: fadeUp 0.65s ease-out 0.22s both;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .featured-project-card,
     .talk-card,
@@ -899,6 +907,12 @@ const personSchema = {
     .action-button {
       transition: none;
       transform: none !important;
+    }
+
+    :global(.header-section),
+    .bio-section,
+    .projects-section {
+      animation: none;
     }
   }
 </style>

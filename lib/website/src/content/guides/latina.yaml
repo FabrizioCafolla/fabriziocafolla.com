@@ -10,18 +10,24 @@ tips: |
 places:
   # === RISTORANTI ===
   - name: Cincinnato Wine Resort
+    lat: 41.6398
+    lng: 12.9075657
     cost: mid-high
     maps: https://www.google.com/maps/place/?q=place_id:ChIJOeZ__sVwJRMR3Rm0uCVGUgA
     type: [Restaurant]
     rating: top
 
   - name: Panisperna
+    lat: 41.8971483
+    lng: 12.4945832
     cost: middle
     maps: https://www.google.com/maps/place/?q=place_id:ChIJq8SxouUNJRMRI91d2_F8BrI
     type: [Restaurant]
     rating: top
 
   - name: Il Golfo
+    lat: 41.4123018
+    lng: 12.8540279
     cost: mid-high
     maps: https://www.google.com/maps/place/?q=place_id:ChIJtahMG6YJJRMRduUbLx8HYsI
     type: [Restaurant]
@@ -34,6 +40,8 @@ places:
     rating: top
 
   - name: Restaurant L'AMO
+    lat: 41.4066111
+    lng: 12.8701392
     cost: mid-high
     maps: https://www.google.com/maps/place/?q=place_id:ChIJZ07IwxYJJRMRY9IyA1O-Rv8
     type: [Restaurant]
@@ -53,6 +61,8 @@ places:
     rating: top
 
   - name: Posillipo
+    lat: 41.2839329
+    lng: 13.0318937
     cost: mid-low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJWy3ajlsMJRMRb0PHEvz83SY
     type: [Restaurant]
@@ -65,6 +75,8 @@ places:
     rating: top
 
   - name: B EastSide Pub
+    lat: 41.471698
+    lng: 12.9026955
     cost: mid-low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJWUcnFjENJRMRLI-aaUOtubg
     type: [Restaurant]
@@ -72,6 +84,8 @@ places:
     rating: top
 
   - name: Parliamo di Vino
+    lat: 41.4658559
+    lng: 12.9045652
     cost: mid-low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ0d8rNXwMJRMRRdpRQ795xh0
     type: [Restaurant]
@@ -79,6 +93,8 @@ places:
     rating: top
 
   - name: Marco Carpineti
+    lat: 41.648921
+    lng: 12.8972937
     cost: middle
     maps: https://www.google.com/maps/place/?q=place_id:ChIJlzJdKLVwJRMR5LLKsfN0RPk
     type: [Restaurant]
@@ -100,12 +116,16 @@ places:
     rating: top
 
   - name: Osteria Dalí
+    lat: 41.4734375
+    lng: 12.9076441
     cost: middle
     maps: https://www.google.com/maps/place/?q=place_id:ChIJvQriB2ANJRMRxBScVHvY0gU
     type: [Restaurant]
     rating: recommended
 
   - name: Al Primo Piano
+    lat: 41.4658384
+    lng: 12.8872069
     cost: middle
     maps: https://www.google.com/maps/place/?q=place_id:ChIJbb6IbIMLJRMRTzDds3fDqqc
     type: [Restaurant]
@@ -118,12 +138,16 @@ places:
     rating: recommended
 
   - name: Osteria Nicolosi
+    lat: 41.4679226
+    lng: 12.8977325
     cost: middle
     maps: https://www.google.com/maps/place/?q=place_id:ChIJdTes138LJRMRL9F2DZNsJrs
     type: [Restaurant]
     rating: recommended
 
   - name: Restaurant Il Quadrato
+    lat: 41.4507995
+    lng: 12.7986591
     cost: mid-high
     maps: https://www.google.com/maps/place/?q=place_id:ChIJDUBZi38MJRMRMzcTQL645ko
     type: [Restaurant]
@@ -155,6 +179,8 @@ places:
     rating: recommended
 
   - name: The Scottish
+    lat: 41.4698301
+    lng: 12.9044238
     cost: mid-low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJRw0eP4cMJRMR_ZFdlawMP2c
     type: [Restaurant]
@@ -162,6 +188,8 @@ places:
     rating: recommended
 
   - name: Irish Pub Doolin
+    lat: 41.4711239
+    lng: 12.9050097
     cost: mid-low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJIz_GfocMJRMReUvFlie9R60
     type: [Restaurant]
@@ -176,6 +204,8 @@ places:
     rating: recommended
 
   - name: Quarto Lato
+    lat: 41.4662287
+    lng: 12.8990219
     cost: mid-low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJv3CAVosNJRMR5ZijDNTdqsA
     type: [Restaurant]
@@ -211,6 +241,8 @@ places:
     rating: recommended
 
   - name: Gelateria Polo Nord
+    lat: 41.356798
+    lng: 13.4312791
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJqUjc3XwMJRMRWnPhbdQiMQw
     type: [Restaurant]
@@ -218,6 +250,8 @@ places:
     rating: recommended
 
   - name: Dolce Notte Cafè
+    lat: 41.5917425
+    lng: 12.6449334
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJn87BPn8MJRMRG6-4a1Heg40
     type: [Restaurant]
@@ -225,12 +259,16 @@ places:
     rating: good
 
   - name: Da Giorgione
+    lat: 41.4679226
+    lng: 12.8977325
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJU-6Ein8MJRMRUaMP6m1S4xY
     type: [Restaurant]
     rating: good
 
   - name: Turirizzo
+    lat: 41.4658685
+    lng: 12.9032162
     cost: mid-low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ0xrygX4MJRMRJ36mTnk7sT8
     type: [Restaurant]
@@ -239,129 +277,179 @@ places:
 
   # === GITE FUORI PORTA ===
   - name: Isola di Ponza
+    lat: 40.9063305
+    lng: 12.9522144
     maps: https://www.google.com/maps/place/?q=place_id:ChIJoW5ij4ryJBMR015shEYeIt0
     type: [Day Trip]
     rating: unique
 
   - name: Roma
+    lat: 41.8967068
+    lng: 12.4822025
     maps: https://www.google.com/maps/place/?q=place_id:ChIJu46S-ZZhLxMROG5lkwZ3D7k
     type: [Day Trip]
     rating: unique
 
   - name: Isola Palmarola
+    lat: 40.9372444
+    lng: 12.8580744
     maps: https://www.google.com/maps/place/?q=place_id:ChIJQR9vLkr0JBMR3mHL1QlprGI
     type: [Day Trip]
     rating: unique
 
   - name: Ventotene
+    lat: 40.796002
+    lng: 13.431213
     maps: https://www.google.com/maps/place/?q=place_id:ChIJLVWeVxS2JBMRC4GawYj-qdA
     type: [Day Trip]
     rating: top
 
   - name: Sperlonga
+    lat: 41.260212
+    lng: 13.433107
     maps: https://www.google.com/maps/place/?q=place_id:ChIJpfllVm8uJRMRcGK9VlDxSto
     type: [Day Trip]
     rating: top
 
   - name: Sermoneta
+    lat: 41.549314
+    lng: 12.984893
     maps: https://www.google.com/maps/place/?q=place_id:ChIJHSN-O3dyJRMRXG8rwF9LjHY
     type: [Day Trip]
     rating: top
 
   - name: San Felice Circeo
+    lat: 41.2326171
+    lng: 13.0893977
     maps: https://www.google.com/maps/place/?q=place_id:ChIJmbG0PbMeJRMRTNvlhWZPT5Y
     type: [Day Trip]
     rating: top
 
   - name: Sabaudia
+    lat: 41.3015672
+    lng: 13.0258726
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ8ZBbsPsaJRMRJ-jstXgq62U
     type: [Day Trip]
     rating: recommended
 
   - name: Terracina
+    lat: 41.2871196
+    lng: 13.2492009
     maps: https://www.google.com/maps/place/?q=place_id:ChIJh9nwaPIiJRMRVf3DgZPAsHE
     type: [Day Trip]
     rating: recommended
 
   - name: Gaeta
+    lat: 41.218312
+    lng: 13.56281
     maps: https://www.google.com/maps/place/?q=place_id:ChIJUf3NODzTOhMRAjZNrY4IFMQ
     type: [Day Trip]
     rating: recommended
 
   - name: Itri
+    lat: 41.2910946
+    lng: 13.5304238
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ71fYSLoyJRMRhvuG_C0moqE
     type: [Day Trip]
     rating: recommended
 
   - name: Ariccia
+    lat: 41.720709
+    lng: 12.6713481
     maps: https://www.google.com/maps/place/?q=place_id:ChIJuW-07iGFJRMRoLCHUyAPliA
     type: [Day Trip]
     rating: recommended
 
   - name: Castel Gandolfo
+    lat: 41.7425222
+    lng: 12.6488774
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ5cSYLbyFJRMRvUFOErXDaBc
     type: [Day Trip]
     rating: recommended
 
   - name: Nemi
+    lat: 41.7190104
+    lng: 12.7159131
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ2eciu36DJRMRyod7hXG35nI
     type: [Day Trip]
     rating: recommended
 
   - name: Nettuno
+    lat: 41.4573
+    lng: 12.6608412
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ2fZ_96-jJRMRBI71b_lEc5c
     type: [Day Trip]
     rating: recommended
 
   - name: Cori
+    lat: 41.6431038
+    lng: 12.9158514
     maps: https://www.google.com/maps/place/?q=place_id:ChIJqSROnMdwJRMR1KIauUegsFE
     type: [Day Trip]
     rating: good
 
   - name: Norma
+    lat: 41.585964
+    lng: 12.9744412
     maps: https://www.google.com/maps/place/?q=place_id:ChIJi1j7wfFxJRMRDGVitMdF-Pg
     type: [Day Trip]
     rating: good
 
   - name: Bassiano
+    lat: 41.5497551
+    lng: 13.032233
     maps: https://www.google.com/maps/place/?q=place_id:ChIJJ5efy7dtJRMRZ_CTQek3WfY
     type: [Day Trip]
     rating: good
 
   - name: Fiuggi
+    lat: 41.7985608
+    lng: 13.2204887
     maps: https://www.google.com/maps/place/?q=place_id:ChIJdUhdRZz1LxMRPJnBP_LvmV4
     type: [Day Trip]
     rating: good
 
   - name: Sonnino
+    lat: 41.4142596
+    lng: 13.2415221
     maps: https://www.google.com/maps/place/?q=place_id:ChIJZUsfPsI-JRMRTQBZA2TNDz0
     type: [Day Trip]
     rating: good
 
   # === LUOGHI DA VISITARE ===
   - name: Giardino di Ninfa
+    lat: 41.5812105
+    lng: 12.9544802
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJdSVV8AZyJRMR3XwjpGdAtDg
     type: [Places to visit]
     rating: unique
 
   - name: Giardino degli Aranci
+    lat: 41.5480644
+    lng: 12.985897
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ2dxWXTRgLxMR-Ug5hzOYuQM
     type: [Places to visit]
     rating: top
 
   - name: Tempio di Giove Anxur
+    lat: 41.2916451
+    lng: 13.2598558
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJw4O8OlwjJRMRcDghq5tPCQ8
     type: [Places to visit]
     rating: top
 
   - name: Lago di Bracciano
+    lat: 42.1195255
+    lng: 12.2433477
     maps: https://www.google.com/maps/place/?q=place_id:ChIJKQu89TdPLxMRR0H3dcXGFEI
     type: [Places to visit]
     rating: recommended
 
   - name: Lago di Bolsena
+    lat: 42.6060008
+    lng: 11.9576317
     maps: https://www.google.com/maps/place/?q=place_id:ChIJDaR4H_koKRMRwzFD-4RusMc
     type: [Places to visit]
     rating: recommended
@@ -372,32 +460,44 @@ places:
     rating: recommended
 
   - name: Grotta delle Capre
+    lat: 41.2240598
+    lng: 13.0827789
     maps: https://www.google.com/maps/place/?q=place_id:ChIJi1ogkZ0eJRMRC8p1xdOnt_g
     type: [Places to visit]
     rating: recommended
 
   - name: Grotta del Turco
+    lat: 41.2048523
+    lng: 13.5714093
     maps: https://www.google.com/maps/place/?q=place_id:ChIJtxkRw2jTOhMR65WIOh-7D1M
     type: [Places to visit]
     rating: recommended
 
   - name: Certosa di Trisulti
+    lat: 41.7795128
+    lng: 13.3972962
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ-WKvtR_5LxMRfDT9uTF-sL0
     type: [Places to visit]
     rating: recommended
 
   - name: Lago di Fogliano
+    lat: 41.399601
+    lng: 12.9027709
     maps: https://www.google.com/maps/place/?q=place_id:ChIJx-9kp9IOJRMRVMZQhB8qso0
     type: [Places to visit]
     rating: recommended
 
   - name: Gianicolo Belvedere
+    lat: 41.8966665
+    lng: 12.4616204
     maps: https://www.google.com/maps/place/?q=place_id:ChIJN-GsUwBhLxMR8GJzcAWRRtE
     type: [Places to visit]
     rating: recommended
 
   - name: Palazzo Pontificio
+    lat: 41.7472553
+    lng: 12.6501383
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJy8kCCbyFJRMR1hy3iIHrHT4
     type: [Places to visit]
@@ -409,30 +509,40 @@ places:
     rating: good
 
   - name: Astura
+    lat: 41.4253735
+    lng: 12.7803834
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ8wvF9ASnJRMRAfk33ptPCSY
     type: [Places to visit]
     rating: good
 
   # === MUSEI E ATTRAZIONI ===
   - name: Castello Caetani di Sermoneta
+    lat: 41.5502046
+    lng: 12.9854575
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ43F2OndyJRMR3WDUthYnRc8
     type: [Museum]
     rating: top
 
   - name: Museo Piana delle Orme
+    lat: 41.4425655
+    lng: 12.9858013
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJpbSsCMQNJRMRp7BrEMWVSt0
     type: [Museum]
     rating: top
 
   - name: Museo Duilio Cambellotti
+    lat: 41.4649992
+    lng: 12.9035808
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJjYPCInwMJRMRZvRCIhkcemE
     type: [Museum]
     rating: recommended
 
   - name: Museo della Terra Pontina
+    lat: 41.4667261
+    lng: 12.898309
     cost: low
     maps: https://www.google.com/maps/place/?q=place_id:ChIJAVVLbgANJRMRFPOyHUH6CVc
     type: [Museum]
@@ -445,31 +555,43 @@ places:
     rating: top
 
   - name: Monte Semprevisa
+    lat: 41.5666667
+    lng: 13.0833333
     maps: https://www.google.com/maps/place/?q=place_id:ChIJH26eKFdpJRMR8Po43ptPCR0
     type: [Hiking]
     rating: recommended
 
   - name: Monte Orlando
+    lat: 41.2070926
+    lng: 13.5767251
     maps: https://www.google.com/maps/place/?q=place_id:ChIJ61iNE27TOhMR54mMyy45jzc
     type: [Hiking]
     rating: recommended
 
   - name: Cima del Redentore
+    lat: 41.3052568
+    lng: 13.6381214
     maps: https://www.google.com/maps/place/?q=place_id:ChIJgwhILdTNOhMRKfQTfx2HO7s
     type: [Hiking]
     rating: recommended
 
   - name: Monte Leano
+    lat: 41.3329038
+    lng: 13.2191604
     maps: https://www.google.com/maps/place/?q=place_id:ChIJSR3ozyE9JRMRBtKyGCBXQXs
     type: [Hiking]
     rating: recommended
 
   - name: Monte delle Fate
+    lat: 41.4027885
+    lng: 13.3052702
     maps: https://www.google.com/maps/place/?q=place_id:ChIJyQx1mm05JRMRn7cUmKomXmA
     type: [Hiking]
     rating: recommended
 
   - name: Monte Erdigheta
+    lat: 41.5544964
+    lng: 13.1136611
     maps: https://www.google.com/maps/place/?q=place_id:ChIJHb4R_NprJRMRQlx7j1INK-M
     type: [Hiking]
     rating: recommended
@@ -477,16 +599,22 @@ places:
   # === COWORKING ===
   - name: thespaze Coworking | sede di Latina
     cost: low
+    lat: 41.4706131
+    lng: 12.9055775
     maps: https://www.google.com/maps/place/?q=place_id:ChIJGaD44ZENJRMRk8Vm2kQ_dlc
     type: [Coworking]
     rating: good
 
   - name: OPENHUB LAZIO Latina
+    lat: 41.4753549
+    lng: 12.8973749
     maps: https://www.google.com/maps/place/?q=place_id:ChIJoy39m74LJRMRek1kMvKbEtk
     type: [Coworking]
     rating: good
 
   - name: Spazio Attivo Latina Lazio Innova
+    lat: 41.4634732
+    lng: 12.9051128
     maps: https://www.google.com/maps/place/?q=place_id:ChIJc6jbdnwMJRMRgSIdNtCWTmA
     type: [Coworking]
     rating: good

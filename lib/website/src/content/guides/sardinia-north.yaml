@@ -1,0 +1,462 @@
+title: North Sardinia
+slug: sardinia-north
+aliases:
+  - north-sardinia
+  - sardegna-nord
+description: ""
+tips: >-
+  - **Rent the car (or camper, motorcycle)**: It's not advisable to visit Sardinia without your own transportation. You can only reach the most beautiful beaches with a vehicle, and public transport
+  doesn't guarantee access to the best places.
+
+  - **Boat experience**: Highly recommended many companies across the island offer a variety of boat trips to experience the Sardinian sea. Book in advance if you're traveling in July or August.
+
+  - **Download offline maps**: Even with internet access, download offline maps from Google Maps or use Organic Maps. This ensures safe navigation and helps you reach your destination.
+
+  - **Beaches**: Arrive early (before 9am) at La Pelosa and Is Arutas access is limited and they fill up fast in summer.
+
+  - **Food**: Try porceddu (roast suckling pig), culurgiones (stuffed pasta), pecorino sardo, bottarga, and seadas (fried honey pastry).
+
+  - **Alghero**: A Catalan enclave the local dialect is still Catalan and the architecture reflects it. Stay at least two nights.
+places:
+  - name: La Pelosa
+    lat: 40.9564
+    lng: 8.2017
+    type:
+      - Beach
+    rating: unique
+    maps: https://www.google.com/maps/search/La%20Pelosa/@40.9564,8.2017,16z
+  - name: Cala Luna
+    lat: 40.1663
+    lng: 9.644
+    type:
+      - Beach
+    rating: unique
+    maps: https://www.google.com/maps/search/Cala%20Luna/@40.1663,9.644,16z
+  - name: Is Arutas Beach
+    lat: 40.0022
+    lng: 8.5555
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Is%20Arutas%20Beach/@40.0022,8.5555,16z
+  - name: La Cinta Beach
+    lat: 40.7718
+    lng: 9.6744
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/La%20Cinta%20Beach/@40.7718,9.6744,16z
+  - name: Brandinchi Beach
+    lat: 40.8074
+    lng: 9.6681
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Brandinchi%20Beach/@40.8074,9.6681,16z
+  - name: Spiaggia lu Impostu
+    lat: 40.848
+    lng: 9.5889
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20lu%20Impostu/@40.848,9.5889,16z
+  - name: Bombarde Beach
+    lat: 40.5834
+    lng: 8.2444
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Bombarde%20Beach/@40.5834,8.2444,16z
+  - name: Caletta del Lazzaretto
+    lat: 40.5875
+    lng: 8.2672
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Caletta%20del%20Lazzaretto/@40.5875,8.2672,16z
+  - name: Argentiera Beach and Cove
+    lat: 40.739
+    lng: 8.1476
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Argentiera%20Beach%20and%20Cove/@40.739,8.1476,16z
+  - name: Spiaggia di Porto Ferro
+    lat: 40.6568
+    lng: 8.22
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20di%20Porto%20Ferro/@40.6568,8.22,16z
+  - name: Costa Paradiso
+    lat: 41.0119
+    lng: 8.8402
+    type:
+      - Beach
+    rating: unique
+    maps: https://www.google.com/maps/search/Costa%20Paradiso/@41.0119,8.8402,16z
+  - name: Spiaggia di S'Abba Druche
+    lat: 40.8099
+    lng: 9.6208
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20di%20S'Abba%20Druche/@40.8099,9.6208,16z
+  - name: Spiaggia Pittulongu
+    lat: 40.9444
+    lng: 9.5372
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20Pittulongu/@40.9444,9.5372,16z
+  - name: Spiaggia di Porto Istana
+    lat: 40.9572
+    lng: 9.5847
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20di%20Porto%20Istana/@40.9572,9.5847,16z
+  - name: Spiaggia Bianca
+    lat: 40.9697
+    lng: 9.6319
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20Bianca/@40.9697,9.6319,16z
+  - name: Spiaggia di Cala Sabina
+    lat: 41.1843
+    lng: 9.2173
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20di%20Cala%20Sabina/@41.1843,9.2173,16z
+  - name: Spiaggia Cumpoltittu
+    lat: 41.0067
+    lng: 8.8583
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Spiaggia%20Cumpoltittu/@41.0067,8.8583,16z
+  - name: Cala 'e Moro
+    lat: 40.94
+    lng: 9.59
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Cala%20'e%20Moro/@40.94,9.59,16z
+  - name: Maria Pia
+    lat: 40.5957
+    lng: 8.2978
+    type:
+      - Beach
+    rating: top
+    maps: https://www.google.com/maps/search/Maria%20Pia/@40.5957,8.2978,16z
+  - name: Azienda Agrituristica Sa Mandra
+    lat: 40.6017
+    lng: 8.265
+    cost: mid-high
+    type:
+      - Restaurant
+    tags:
+      - Agriturismo
+    rating: unique
+    maps: https://www.google.com/maps/search/Azienda%20Agrituristica%20Sa%20Mandra/@40.6017,8.265,16z
+  - name: Agriturismo Boltei
+    lat: 40.9214
+    lng: 9.0453
+    cost: mid-low
+    type:
+      - Restaurant
+    tags:
+      - Agriturismo
+    rating: top
+    maps: https://www.google.com/maps/search/Agriturismo%20Boltei/@40.9214,9.0453,16z
+  - name: Agriturismo L'Alculiciu Cucina Tipica Sarda
+    lat: 40.8997
+    lng: 9.102
+    cost: mid-low
+    type:
+      - Restaurant
+    tags:
+      - Agriturismo
+    rating: top
+    maps: https://www.google.com/maps/search/Agriturismo%20L'Alculiciu%20Cucina%20Tipica%20Sarda/@40.8997,9.102,16z
+  - name: Bal Harbour Restaurant Entertainment
+    lat: 41.1365
+    lng: 9.5354
+    cost: high
+    type:
+      - Restaurant
+    tags:
+      - Bar
+    rating: top
+    maps: https://www.google.com/maps/search/Bal%20Harbour%20Restaurant%20Entertainment/@41.1365,9.5354,16z
+  - name: Da Nardino
+    lat: 41.2373
+    lng: 9.1857
+    cost: middle
+    type:
+      - Restaurant
+    rating: top
+    maps: https://www.google.com/maps/search/Da%20Nardino/@41.2373,9.1857,16z
+  - name: Ristorante Mabrouk
+    lat: 40.56
+    lng: 8.321
+    cost: middle
+    type:
+      - Restaurant
+    rating: top
+    maps: https://www.google.com/maps/search/Ristorante%20Mabrouk/@40.56,8.321,16z
+  - name: Ristorante Pizzeria Aragon
+    lat: 40.5592
+    lng: 8.3198
+    cost: mid-low
+    type:
+      - Restaurant
+    rating: top
+    maps: https://www.google.com/maps/search/Ristorante%20Pizzeria%20Aragon/@40.5592,8.3198,16z
+  - name: Bar Focacceria Milese
+    lat: 40.5597
+    lng: 8.3172
+    cost: low
+    type:
+      - Restaurant
+    tags:
+      - Bar
+    rating: top
+    maps: https://www.google.com/maps/search/Bar%20Focacceria%20Milese/@40.5597,8.3172,16z
+  - name: Agriturismo Casteddu
+    lat: 40.9
+    lng: 9.08
+    cost: mid-low
+    type:
+      - Restaurant
+    tags:
+      - Agriturismo
+    rating: top
+    maps: https://www.google.com/maps/search/Agriturismo%20Casteddu/@40.9,9.08,16z
+  - name: Bar Ristorante L'Esagono
+    lat: 40.9236
+    lng: 9.4981
+    cost: mid-low
+    type:
+      - Restaurant
+    rating: good
+    maps: https://www.google.com/maps/search/Bar%20Ristorante%20L'Esagono/@40.9236,9.4981,16z
+  - name: Ristorante Fronte Mare
+    lat: 40.7698
+    lng: 9.6717
+    cost: middle
+    type:
+      - Restaurant
+    rating: good
+    maps: https://www.google.com/maps/search/Ristorante%20Fronte%20Mare/@40.7698,9.6717,16z
+  - name: Alghero
+    lat: 40.5597
+    lng: 8.3204
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Alghero/@40.5597,8.3204,16z
+  - name: Neptune's Grotto
+    lat: 40.5851
+    lng: 8.2083
+    cost: low
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Neptune's%20Grotto/@40.5851,8.2083,16z
+  - name: Bosa
+    lat: 40.2993
+    lng: 8.4975
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Bosa/@40.2993,8.4975,16z
+  - name: Castelsardo
+    lat: 40.9139
+    lng: 8.7161
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Castelsardo/@40.9139,8.7161,16z
+  - name: Capo Caccia
+    lat: 40.5638
+    lng: 8.1669
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Capo%20Caccia/@40.5638,8.1669,16z
+  - name: Santa Teresa Gallura
+    lat: 41.2362
+    lng: 9.183
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Santa%20Teresa%20Gallura/@41.2362,9.183,16z
+  - name: Porto Cervo
+    lat: 41.1365
+    lng: 9.5354
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Porto%20Cervo/@41.1365,9.5354,16z
+  - name: Stintino
+    lat: 40.9484
+    lng: 8.2212
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Stintino/@40.9484,8.2212,16z
+  - name: Aggius
+    lat: 40.9276
+    lng: 9.0553
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Aggius/@40.9276,9.0553,16z
+  - name: Tempio Pausania
+    lat: 40.8997
+    lng: 9.102
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/Tempio%20Pausania/@40.8997,9.102,16z
+  - name: San Pantaleo
+    lat: 41.1214
+    lng: 9.4828
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/San%20Pantaleo/@41.1214,9.4828,16z
+  - name: San Teodoro
+    lat: 40.7698
+    lng: 9.6717
+    type:
+      - Places to visit
+    rating: top
+    maps: https://www.google.com/maps/search/San%20Teodoro/@40.7698,9.6717,16z
+  - name: Olbia
+    lat: 40.9236
+    lng: 9.4981
+    type:
+      - Places to visit
+    rating: good
+    maps: https://www.google.com/maps/search/Olbia/@40.9236,9.4981,16z
+  - name: Golfo Aranci
+    lat: 40.9862
+    lng: 9.6195
+    type:
+      - Places to visit
+    rating: good
+    maps: https://www.google.com/maps/search/Golfo%20Aranci/@40.9862,9.6195,16z
+  - name: Baja Sardinia
+    lat: 41.1633
+    lng: 9.5067
+    type:
+      - Places to visit
+    rating: good
+    maps: https://www.google.com/maps/search/Baja%20Sardinia/@41.1633,9.5067,16z
+  - name: Tinnura
+    lat: 40.2539
+    lng: 8.5497
+    type:
+      - Places to visit
+    rating: good
+    maps: https://www.google.com/maps/search/Tinnura/@40.2539,8.5497,16z
+  - name: Nuraghe Santu Antine
+    lat: 40.4956
+    lng: 8.804
+    cost: low
+    type:
+      - Museum
+    tags:
+      - Archaeological site
+    rating: unique
+    maps: https://www.google.com/maps/search/Nuraghe%20Santu%20Antine/@40.4956,8.804,16z
+  - name: Church of the Holy Trinity Saccargia
+    lat: 40.5818
+    lng: 8.7498
+    cost: low
+    type:
+      - Museum
+    tags:
+      - Church
+    rating: top
+    maps: https://www.google.com/maps/search/Church%20of%20the%20Holy%20Trinity%20Saccargia/@40.5818,8.7498,16z
+  - name: San Pietro di Sorres
+    lat: 40.3917
+    lng: 8.7583
+    cost: low
+    type:
+      - Museum
+    tags:
+      - Church
+    rating: top
+    maps: https://www.google.com/maps/search/San%20Pietro%20di%20Sorres/@40.3917,8.7583,16z
+  - name: Castello di Pedres
+    lat: 40.927
+    lng: 9.513
+    type:
+      - Museum
+    tags:
+      - Castle
+    rating: top
+    maps: https://www.google.com/maps/search/Castello%20di%20Pedres/@40.927,9.513,16z
+  - name: Nuraghe Riu Mulinu Cabu Abbas
+    lat: 40.93
+    lng: 9.51
+    cost: low
+    type:
+      - Museum
+    tags:
+      - Archaeological site
+    rating: top
+    maps: https://www.google.com/maps/search/Nuraghe%20Riu%20Mulinu%20Cabu%20Abbas/@40.93,9.51,16z
+  - name: Pozzo Sacro Sa Testa
+    lat: 40.9308
+    lng: 9.5214
+    cost: low
+    type:
+      - Museum
+    tags:
+      - Archaeological site
+    rating: top
+    maps: https://www.google.com/maps/search/Pozzo%20Sacro%20Sa%20Testa/@40.9308,9.5214,16z
+  - name: Torre Argentina
+    lat: 40.839
+    lng: 8.208
+    type:
+      - Museum
+    tags:
+      - Tower
+    rating: good
+    maps: https://www.google.com/maps/search/Torre%20Argentina/@40.839,8.208,16z
+  - name: Punta Est - Puntaldia
+    lat: 40.8467
+    lng: 9.61
+    type:
+      - Places to visit
+    rating: good
+    maps: https://www.google.com/maps/search/Punta%20Est%20-%20Puntaldia/@40.8467,9.61,16z
+  - name: Maddalena Island
+    lat: 41.2171
+    lng: 9.4072
+    type:
+      - Day Trip
+    rating: unique
+    maps: https://www.google.com/maps/search/Maddalena%20Island/@41.2171,9.4072,16z
+  - name: Asinara
+    lat: 41.0623
+    lng: 8.2652
+    type:
+      - Day Trip
+    rating: top
+    maps: https://www.google.com/maps/search/Asinara/@41.0623,8.2652,16z
+  - name: Tavolara Island
+    lat: 40.9032
+    lng: 9.7282
+    type:
+      - Day Trip
+    rating: top
+    maps: https://www.google.com/maps/search/Tavolara%20Island/@40.9032,9.7282,16z
