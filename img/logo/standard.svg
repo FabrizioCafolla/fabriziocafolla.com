@@ -7,7 +7,7 @@
 	</defs>
 	<style>
 		tspan { white-space:pre } 
-		.s0 { fill: #00216e } 
+		.s0 { fill: #0d1f3c } 
 	</style>
 	<g clip-path="url(#cp1)">
 		<path id="Livello 5" fill-rule="evenodd" class="s0" d="m648 1296c-358.34 0-648-289.66-648-648 0-358.34 289.66-648 648-648 358.34 0 648 289.66 648 648 0 358.34-289.66 648-648 648z"/>
