@@ -1,6 +1,6 @@
 {
   "logo": {
-    "src": "/img/logo/standard-with-text.svg",
+    "src": "/img/logo/standard.svg",
     "alt": "Fabrizio Cafolla Logo",
     "url": "/",
     "cssClasses": "logo-img-navbar"

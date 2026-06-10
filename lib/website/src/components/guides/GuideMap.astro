@@ -1,0 +1,268 @@
+---
+export interface MapPlace {
+  name: string;
+  lat: number;
+  lng: number;
+  type: string[];
+  rating: string;
+  maps?: string;
+}
+
+interface Props {
+  places: {
+    name: string;
+    lat?: number;
+    lng?: number;
+    type: string[];
+    rating: string;
+    maps?: string;
+  }[];
+}
+
+const { places } = Astro.props;
+const mapPlaces: MapPlace[] = places.filter(
+  (p): p is MapPlace => typeof p.lat === "number" && typeof p.lng === "number"
+);
+---
+
+{
+  mapPlaces.length > 1 && (
+    <div class="guide-map-wrap">
+      <div id="guide-map" class="guide-map-canvas" data-places={JSON.stringify(mapPlaces)} />
+    </div>
+  )
+}
+
+<script>
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
+
+  const el = document.getElementById("guide-map") as HTMLElement | null;
+  if (el) {
+    const places: {
+      name: string;
+      lat: number;
+      lng: number;
+      type: string[];
+      rating: string;
+      maps?: string;
+    }[] = JSON.parse(el.dataset.places || "[]");
+
+    const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      attribution:
+        '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
+      subdomains: "abcd",
+      maxZoom: 19,
+    }).addTo(map);
+
+    const ratingColor: Record<string, string> = {
+      unique: "#0d1f3c",
+      top: "#2d5a8e",
+      recommended: "#3b6fa8",
+      good: "#8fa8c0",
+    };
+
+    // markers grouped by primary type for filter support
+    const markersByType = new Map<string, L.Marker[]>();
+    const allMarkers: L.Marker[] = [];
+
+    places.forEach((place) => {
+      const primaryType = place.type[0] ?? "";
+      const color = ratingColor[place.rating] ?? "#5e6e7e";
+
+      const icon = L.divIcon({
+        className: "",
+        html: `<span class="gm-dot" style="background:${color}"></span>`,
+        iconSize: [12, 12],
+        iconAnchor: [6, 6],
+        popupAnchor: [0, -10],
+      });
+
+      const typeLabel = place.type.join(", ");
+      const ratingLabel = place.rating.charAt(0).toUpperCase() + place.rating.slice(1);
+
+      const mapsLink = place.maps
+        ? `<a class="gm-popup__link" href="${place.maps}" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>`
+        : "";
+
+      const popup = `
+        <div class="gm-popup">
+          <p class="gm-popup__name">${place.name}</p>
+          <p class="gm-popup__meta">${typeLabel} · ${ratingLabel}</p>
+          ${mapsLink}
+        </div>
+      `;
+
+      const marker = L.marker([place.lat, place.lng], { icon }).bindPopup(popup, {
+        maxWidth: 240,
+        closeButton: false,
+      });
+      marker.addTo(map);
+      allMarkers.push(marker);
+
+      if (!markersByType.has(primaryType)) markersByType.set(primaryType, []);
+      markersByType.get(primaryType)!.push(marker);
+    });
+
+    if (allMarkers.length > 0) {
+      const group = L.featureGroup(allMarkers);
+      map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 14 });
+    }
+
+    // Respond to filter events from the guide nav
+    document.addEventListener("guide-filter", (e: Event) => {
+      const { types } = (e as CustomEvent<{ types: string[] }>).detail;
+      const hasFilter = types.length > 0;
+
+      markersByType.forEach((markers, type) => {
+        const visible = !hasFilter || types.includes(type);
+        markers.forEach((marker) => {
+          if (visible && !map.hasLayer(marker)) marker.addTo(map);
+          else if (!visible && map.hasLayer(marker)) map.removeLayer(marker);
+        });
+      });
+
+      // Refit to visible markers
+      const visible = hasFilter
+        ? [...markersByType.entries()]
+            .filter(([type]) => types.includes(type))
+            .flatMap(([, ms]) => ms)
+        : allMarkers;
+
+      if (visible.length > 0) {
+        map.fitBounds(L.featureGroup(visible).getBounds(), {
+          padding: [40, 40],
+          maxZoom: 14,
+        });
+      }
+    });
+
+    // Invalidate size when map container becomes visible again after being hidden
+    document.addEventListener("guide-map-visible", () => {
+      requestAnimationFrame(() => map.invalidateSize());
+    });
+  }
+</script>
+
+<style is:global>
+  /* Tile layer */
+  .leaflet-container {
+    font-family: "Lora", Georgia, serif;
+  }
+
+  /* Popup shell */
+  .leaflet-popup-content-wrapper {
+    border-radius: 3px !important;
+    box-shadow:
+      0 2px 8px rgba(13, 31, 60, 0.12),
+      0 1px 2px rgba(13, 31, 60, 0.06) !important;
+    border: 1px solid #c8d4e0 !important;
+    padding: 0 !important;
+  }
+
+  .leaflet-popup-tip-container {
+    display: none !important;
+  }
+
+  .leaflet-popup-close-button {
+    display: none !important;
+  }
+
+  .leaflet-popup-content {
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+
+  /* Popup content */
+  .gm-popup {
+    padding: 10px 13px 11px;
+  }
+
+  .gm-popup__name {
+    font-family: "NectoMono", monospace;
+    font-size: 13px;
+    font-weight: 400;
+    color: #0d1f3c;
+    margin: 0 0 4px;
+    line-height: 1.3;
+  }
+
+  .gm-popup__meta {
+    font-size: 11px;
+    color: #5e6e7e;
+    margin: 0 0 7px;
+    line-height: 1.2;
+  }
+
+  .gm-popup__link {
+    display: inline-block;
+    font-size: 11px;
+    color: #2d5a8e;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .gm-popup__link:hover {
+    text-decoration: underline;
+  }
+
+  /* Custom marker dot */
+  .gm-dot {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .gm-dot:hover {
+    transform: scale(1.4);
+  }
+
+  /* Zoom controls */
+  .leaflet-control-zoom {
+    border: 1px solid #c8d4e0 !important;
+    border-radius: 3px !important;
+    box-shadow: 0 1px 4px rgba(13, 31, 60, 0.08) !important;
+  }
+
+  .leaflet-control-zoom a {
+    color: #0d1f3c !important;
+    border-radius: 0 !important;
+  }
+
+  .leaflet-control-zoom-in {
+    border-bottom: 1px solid #c8d4e0 !important;
+  }
+
+  /* Attribution */
+  .leaflet-control-attribution {
+    font-size: 10px !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+  }
+</style>
+
+<style>
+  .guide-map-wrap {
+    margin-bottom: 40px;
+    border: 1px solid var(--gray-medium);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .guide-map-canvas {
+    height: 440px;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .guide-map-canvas {
+      height: 300px;
+    }
+  }
+</style>

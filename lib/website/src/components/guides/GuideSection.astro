@@ -21,7 +21,7 @@ export interface Props {
 const { id, title, places } = Astro.props;
 ---
 
-<section class="guide-section" id={id}>
+<section class="guide-section" id={id} data-type={title}>
   <h2 class="guide-section__title">
     {title}
     <span class="guide-section__count">{places.length}</span>
@@ -56,10 +56,21 @@ const { id, title, places } = Astro.props;
     color: var(--black);
     margin: 0 0 20px 0;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--gray);
     display: flex;
     align-items: baseline;
     gap: 8px;
+    position: relative;
+  }
+
+  .guide-section__title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
   }
 
   .guide-section__count {

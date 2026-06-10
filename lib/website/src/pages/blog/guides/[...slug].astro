@@ -3,6 +3,7 @@ import { BaseLayout } from "@walle/layouts";
 import { SectionHeaderStandard } from "@walle/components";
 import { getCollection } from "astro:content";
 import GuideSection from "@components/guides/GuideSection.astro";
+import GuideMap from "@components/guides/GuideMap.astro";
 
 export async function getStaticPaths() {
   const guides = await getCollection("guides");
@@ -87,22 +88,28 @@ const tipsHtml = tips ? parseTips(tips) : null;
     }
 
     <div class="guide-page__container">
+      <GuideMap places={places} />
+
       <nav class="guide-nav" aria-label="Guide sections">
         {
-          sections.map(({ type, slug, places }) => (
-            <a href={`#${slug}`} class="guide-nav__item">
+          sections.map(({ type, places }) => (
+            <button class="guide-nav__item" data-type={type}>
               <span class="guide-nav__label">{type}</span>
               <span class="guide-nav__count">{places.length}</span>
-            </a>
+            </button>
           ))
         }
         {
           tipsHtml && (
-            <a href="#tips" class="guide-nav__item guide-nav__item--tips">
+            <button class="guide-nav__item guide-nav__item--tips" data-type="tips">
               <span class="guide-nav__label">Tips</span>
-            </a>
+            </button>
           )
         }
+        <button class="guide-nav__reset" id="guide-filter-reset" aria-label="Reset filters">
+          <span>×</span>
+          <span>Reset</span>
+        </button>
       </nav>
 
       {
@@ -153,10 +160,22 @@ const tipsHtml = tips ? parseTips(tips) : null;
   .guide-nav {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     padding: 0 0 40px;
-    border-bottom: 1px solid var(--gray);
     margin-bottom: 40px;
+    position: relative;
+  }
+
+  .guide-nav::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gray-medium), transparent);
   }
 
   .guide-nav__item {
@@ -166,22 +185,62 @@ const tipsHtml = tips ? parseTips(tips) : null;
     padding: 8px 14px;
     border: 1px solid var(--gray);
     border-radius: 100px;
-    text-decoration: none;
+    background: transparent;
     color: var(--gray-darker);
+    font-family: inherit;
     font-size: 13px;
     font-weight: 500;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
   }
 
   .guide-nav__item:hover {
     border-color: var(--primary);
     color: var(--primary);
-    background: rgba(0, 70, 173, 0.04);
+    background: rgba(13, 31, 60, 0.04);
+  }
+
+  .guide-nav__item.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+  }
+
+  .guide-nav__item.active:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+    color: var(--white);
   }
 
   .guide-nav__item--tips {
     border-color: var(--gray-medium);
+  }
+
+  .guide-nav__reset {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    border-radius: 100px;
+    border: 1.5px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+  }
+
+  .guide-nav__reset.visible {
+    display: inline-flex;
+  }
+
+  .guide-nav__reset:hover {
+    background: var(--primary);
+    color: var(--white);
   }
 
   .guide-nav__count {
@@ -196,27 +255,30 @@ const tipsHtml = tips ? parseTips(tips) : null;
     font-size: 11px;
     font-weight: 700;
     color: var(--gray-dark);
+    transition: all 0.2s ease;
+  }
+
+  .guide-nav__item.active .guide-nav__count {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
   }
 
   .guide-nav__item:hover .guide-nav__count {
-    background: rgba(0, 70, 173, 0.08);
+    background: rgba(13, 31, 60, 0.08);
     color: var(--primary);
   }
 
   /* Tips section */
   .guide-tips {
     margin-top: 48px;
-    padding: 28px;
-    background: var(--gray-light);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--gray);
+    padding: 0;
   }
 
   .guide-tips__title {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--black);
-    margin: 0 0 16px 0;
+    margin: 0 0 24px 0;
   }
 
   .guide-tips__list {
@@ -225,14 +287,15 @@ const tipsHtml = tips ? parseTips(tips) : null;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+    max-width: 720px;
   }
 
   .guide-tips__list :global(li) {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.75;
     color: var(--gray-darker);
-    padding-left: 16px;
+    padding-left: 20px;
     position: relative;
   }
 
@@ -240,11 +303,12 @@ const tipsHtml = tips ? parseTips(tips) : null;
     content: "";
     position: absolute;
     left: 0;
-    top: 9px;
+    top: 11px;
     width: 5px;
     height: 5px;
     border-radius: 50%;
     background: var(--primary);
+    opacity: 0.5;
   }
 
   .guide-tips__list :global(strong) {
@@ -274,7 +338,6 @@ const tipsHtml = tips ? parseTips(tips) : null;
     }
 
     .guide-tips {
-      padding: 20px;
       margin-top: 32px;
     }
 
@@ -295,8 +358,76 @@ const tipsHtml = tips ? parseTips(tips) : null;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .guide-nav__item {
+    .guide-nav__item,
+    .guide-nav__reset {
       transition: none;
     }
   }
 </style>
+
+<script>
+  const navItems = document.querySelectorAll<HTMLButtonElement>(".guide-nav__item");
+  const resetBtn = document.getElementById("guide-filter-reset");
+  const activeTypes = new Set<string>();
+
+  navItems.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const type = btn.dataset.type;
+      if (!type) return;
+
+      if (activeTypes.has(type)) {
+        activeTypes.delete(type);
+        btn.classList.remove("active");
+      } else {
+        activeTypes.add(type);
+        btn.classList.add("active");
+      }
+
+      applyFilter();
+    });
+  });
+
+  resetBtn?.addEventListener("click", () => {
+    activeTypes.clear();
+    navItems.forEach((btn) => btn.classList.remove("active"));
+    applyFilter();
+  });
+
+  function applyFilter() {
+    const hasFilter = activeTypes.size > 0;
+
+    // Reset button visibility
+    resetBtn?.classList.toggle("visible", hasFilter);
+
+    // Show/hide guide sections
+    document.querySelectorAll<HTMLElement>(".guide-section").forEach((section) => {
+      const type = section.dataset.type ?? "";
+      section.style.display = !hasFilter || activeTypes.has(type) ? "" : "none";
+    });
+
+    // Show/hide tips section
+    const tips = document.querySelector<HTMLElement>(".guide-tips");
+    if (tips) {
+      tips.style.display = !hasFilter || activeTypes.has("tips") ? "" : "none";
+    }
+
+    // Hide map when only "tips" is selected (no location-based types active)
+    const locationTypes = [...activeTypes].filter((t) => t !== "tips");
+    const mapWrap = document.querySelector<HTMLElement>(".guide-map-wrap");
+    if (mapWrap) {
+      const showMap = !hasFilter || locationTypes.length > 0;
+      const wasHidden = mapWrap.style.display === "none";
+      mapWrap.style.display = showMap ? "" : "none";
+      if (showMap && wasHidden) {
+        document.dispatchEvent(new CustomEvent("guide-map-visible"));
+      }
+    }
+
+    // Notify map (only with location types)
+    document.dispatchEvent(
+      new CustomEvent("guide-filter", {
+        detail: { types: locationTypes },
+      })
+    );
+  }
+</script>
