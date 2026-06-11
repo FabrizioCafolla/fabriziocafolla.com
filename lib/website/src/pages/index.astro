@@ -27,6 +27,7 @@ interface TalkPodcast {
   url?: string;
   embedUrl?: string;
   slidesUrl?: string;
+  demoUrl?: string;
   type: "podcast" | "talk";
   date: string;
 }
@@ -110,6 +111,7 @@ const talksAndPodcasts: TalkPodcast[] = [
       "In Platform Engineering, AI agents can speed up IaC management, but without clear boundaries, they can also amplify errors and operational impact. In this talk, we'll look at a spec-driven approach in which dedicated agents operate with specific identities, explicit guardrails, and a purpose-built toolchain (MCP, prompts, and focused skills). The goal is to use AI reliably to manage cloud-native infrastructure with greater control, traceability, and security.",
     image: "/img/talks/cloudnativedaysitaly_19052026.jpg",
     url: "https://sessionize.com/cloud-native-days-italy-2026/",
+    demoUrl: "https://github.com/FabrizioCafolla/demo-talk-cnd-italy-2026",
     type: "talk",
     date: "2026-05-19",
   },
@@ -412,6 +414,17 @@ const personSchema = {
                             >
                               <Icon name="mdi:presentation-play" class="button-icon" />
                               Slides
+                            </a>
+                          )}
+                          {item.demoUrl && (
+                            <a
+                              href={item.demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="action-button demo-button"
+                            >
+                              <Icon name="mdi:code-tags" class="button-icon" />
+                              Demo
                             </a>
                           )}
                         </>
@@ -814,6 +827,19 @@ const personSchema = {
   .slides-button:hover {
     background: var(--primary);
     color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  .demo-button {
+    background: transparent;
+    color: var(--gray-dark);
+    border: 1.5px solid var(--gray-medium);
+  }
+
+  .demo-button:hover {
+    background: var(--gray);
+    color: var(--primary-dark);
+    border-color: var(--gray-dark);
     transform: translateY(-1px);
   }
 

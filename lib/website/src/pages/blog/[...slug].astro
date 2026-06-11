@@ -6,21 +6,41 @@ import { calculateReadingTime } from "@utils";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
-  }));
+  const sorted = [...posts].sort((a, b) => {
+    const aDate = a.data.publishDate?.getTime() ?? 0;
+    const bDate = b.data.publishDate?.getTime() ?? 0;
+    return aDate - bDate;
+  });
+
+  return sorted.map((post, index) => {
+    const prev = index > 0 ? sorted[index - 1] : undefined;
+    const next = index < sorted.length - 1 ? sorted[index + 1] : undefined;
+    return {
+      params: { slug: post.id },
+      props: {
+        post,
+        prevPost: prev ? { title: prev.data.title, slug: `/blog/${prev.id}` } : undefined,
+        nextPost: next ? { title: next.data.title, slug: `/blog/${next.id}` } : undefined,
+      },
+    };
+  });
 }
 
-type Props = CollectionEntry<"posts">;
+interface Props {
+  post: CollectionEntry<"posts">;
+  prevPost?: { title: string; slug: string };
+  nextPost?: { title: string; slug: string };
+}
 
-const posts = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 
-const { Content } = await render(posts);
+const { Content } = await render(post);
 
 const data = {
-  readingTime: calculateReadingTime(posts.body || "").text,
-  ...posts.data,
+  readingTime: calculateReadingTime(post.body || "").text,
+  ...post.data,
+  prevPost,
+  nextPost,
 };
 ---
 

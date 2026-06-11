@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 export interface MapPlace {
   name: string;
   lat: number;
@@ -33,11 +35,17 @@ const mapPlaces: MapPlace[] = places.filter(
   )
 }
 
+<span id="gm-external-link-icon" style="display:none" aria-hidden="true">
+  <Icon name="fa:external-link" />
+</span>
+
 <script>
   import L from "leaflet";
   import "leaflet/dist/leaflet.css";
 
   const el = document.getElementById("guide-map") as HTMLElement | null;
+  const externalLinkSvg = document.getElementById("gm-external-link-icon")?.innerHTML ?? "";
+
   if (el) {
     const places: {
       name: string;
@@ -84,7 +92,7 @@ const mapPlaces: MapPlace[] = places.filter(
       const ratingLabel = place.rating.charAt(0).toUpperCase() + place.rating.slice(1);
 
       const mapsLink = place.maps
-        ? `<a class="gm-popup__link" href="${place.maps}" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>`
+        ? `<a class="gm-popup__link" href="${place.maps}" target="_blank" rel="noopener noreferrer">Open in Maps${externalLinkSvg}</a>`
         : "";
 
       const popup = `
@@ -197,7 +205,9 @@ const mapPlaces: MapPlace[] = places.filter(
   }
 
   .gm-popup__link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 11px;
     color: #2d5a8e;
     text-decoration: none;
@@ -206,6 +216,12 @@ const mapPlaces: MapPlace[] = places.filter(
 
   .gm-popup__link:hover {
     text-decoration: underline;
+  }
+
+  .gm-popup__link svg {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
   }
 
   /* Custom marker dot */
@@ -253,6 +269,7 @@ const mapPlaces: MapPlace[] = places.filter(
     border: 1px solid var(--gray-medium);
     border-radius: 3px;
     overflow: hidden;
+    isolation: isolate;
   }
 
   .guide-map-canvas {

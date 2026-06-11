@@ -1,7 +1,13 @@
 ---
-import { BlogReadingProgress, BlogTableOfContents, SectionHeaderStandard } from "@walle/components";
+import {
+  BlogArticleNavigation,
+  BlogReadingProgress,
+  BlogTableOfContents,
+  SectionHeaderStandard,
+} from "@walle/components";
 import { BaseLayout } from "@walle/layouts";
 import { formatDate } from "@walle/utils";
+import FooterBlogPost from "@components/FooterBlogPost.astro";
 
 interface Props {
   title: string;
@@ -12,6 +18,8 @@ interface Props {
   image?: string | null;
   tags?: string[];
   draft?: boolean;
+  prevPost?: { title: string; slug: string };
+  nextPost?: { title: string; slug: string };
 }
 
 const {
@@ -23,6 +31,8 @@ const {
   tags,
   image = null,
   draft = false,
+  prevPost,
+  nextPost,
 } = Astro.props;
 ---
 
@@ -69,7 +79,9 @@ const {
               <ul class="tags no-markers" aria-label="Article tags">
                 {tags.map((tag) => (
                   <li>
-                    <span class="tag">{tag}</span>
+                    <a href={`/blog/${tag.toLowerCase().replace(/\s+/g, "-")}`} class="tag">
+                      {tag}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -85,6 +97,16 @@ const {
             <div class="article-content" id="article-content">
               <slot />
             </div>
+            {(prevPost || nextPost) && (
+              <BlogArticleNavigation
+                navigation={{
+                  previousArticle: prevPost,
+                  nextArticle: nextPost,
+                  columnName: "blog",
+                }}
+              />
+            )}
+            <FooterBlogPost />
           </article>
         </div>
       </>

@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Button } from "@walle/components";
 
 export interface ReferralLink {
   name: string;
@@ -15,12 +14,6 @@ export interface Props {
 }
 
 const defaultReferralLinks: ReferralLink[] = [
-  {
-    name: "Airbnb",
-    description: "Receive 50$ when you join",
-    link: "https://www.airbnb.com/c/NTLjwmx25Incom4O?unique_share_id=dee305d4-d7ca-4946-967d-13a82a9f4526",
-    reward: "50$",
-  },
   {
     name: "Revolut",
     description: "Digital banking made simple",
@@ -51,369 +44,210 @@ const defaultReferralLinks: ReferralLink[] = [
 const { referralLinks = defaultReferralLinks } = Astro.props;
 ---
 
-<div class="blog-footer-content">
-  <!-- Referral Section -->
-  <section class="blog-footer-content__referrals" aria-label="Referral links">
-    <div class="referrals-header">
-      <h3 class="referrals-title" data-toc-skip>Referral Partners</h3>
-      <p class="referrals-description">
-        Support the blog and get rewards by using these referral links and codes
-      </p>
-    </div>
-
-    <div class="referrals-grid">
-      {
-        referralLinks.map((referral) => (
-          <div class="referral-card">
-            <div class="referral-card__header">
-              <h4 class="referral-card__name">{referral.name}</h4>
-              {referral.reward && <span class="referral-card__reward">{referral.reward}</span>}
-            </div>
-            <p class="referral-card__description">{referral.description}</p>
-            <div class="referral-card__actions">
-              {referral.link ? (
-                <Button
-                  text="Get Started"
-                  link={referral.link}
-                  type="secondary"
-                  iconName="fa:external-link"
-                  target="_blank"
-                  size="small"
-                />
-              ) : (
-                ""
-              )}
-              {referral.code && (
-                <div class="referral-card__code">
-                  <span class="referral-card__code-label">Code:</span>
-                  <code class="referral-card__code-value">{referral.code}</code>
-                  <button
-                    class="referral-card__copy-btn"
-                    data-code={referral.code}
-                    aria-label={`Copy code ${referral.code}`}
-                  >
-                    <Icon name="fa:copy" class="copy-btn__icon" />
-                    <span class="copy-btn__text">Copy</span>
-                  </button>
-                </div>
-              )}
-            </div>
+<section class="referrals" aria-label="Referral links">
+  <p class="referrals__label">Referral Links</p>
+  <ul class="referrals__list">
+    {
+      referralLinks.map((referral) => (
+        <li class="referral-item">
+          <div class="referral-item__left">
+            <span class="referral-item__name">{referral.name}</span>
+            <span class="referral-item__desc">{referral.description}</span>
           </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- Feedback Section -->
-  <section class="blog-footer-content__feedback" aria-label="Feedback section">
-    <div class="feedback-card">
-      <div class="feedback-card__header">
-        <h3 class="feedback-card__title" data-toc-skip>
-          <Icon name="fa:heart" class="feedback-card__icon" />
-          Questions & Feedback
-        </h3>
-      </div>
-      <p class="feedback-card__description">
-        Have questions, suggestions, or feedback? I'd love to hear from you! Every piece of
-        constructive feedback helps me improve.
-      </p>
-      <Button
-        text="Send Feedback"
-        link="https://forms.gle/ZsirxCiXF735kVrT8"
-        type="primary"
-        iconName="fa:external-link"
-        target="_blank"
-        size="medium"
-      />
-    </div>
-  </section>
-</div>
+          <div class="referral-item__right">
+            <span class="referral-item__reward">{referral.reward}</span>
+            {referral.code && (
+              <div class="referral-item__code-wrap">
+                <code class="referral-item__code">{referral.code}</code>
+                <button
+                  class="referral-item__copy"
+                  data-code={referral.code}
+                  aria-label={`Copy code ${referral.code}`}
+                >
+                  <Icon name="fa:copy" />
+                </button>
+              </div>
+            )}
+            {referral.link && (
+              <a
+                href={referral.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="referral-item__link"
+                aria-label={`Open ${referral.name}`}
+              >
+                <Icon name="fa:external-link" />
+              </a>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>
 
 <style>
-  .blog-footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+  .referrals {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray);
   }
 
-  /* Card Sections */
-  .blog-footer-content__feedback,
-  .blog-footer-content__referrals {
-    margin-bottom: 1rem !important;
-    padding: 1.5rem !important;
-  }
-
-  .feedback-card {
-    padding: 2rem;
-    border: 1px solid var(--gray-light);
-    border-radius: 12px;
-    background: var(--white);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-  }
-
-  .feedback-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .feedback-card__header {
-    margin-bottom: 1rem;
-  }
-
-  .feedback-card__title {
-    margin: 0 0 1rem 0 !important;
-    color: var(--primary-dark);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: "Ronzino-Medium", sans-serif;
-  }
-
-  .feedback-card__icon {
-    width: 24px;
-    height: 24px;
-    color: var(--primary);
-  }
-
-  .feedback-card__description {
-    color: var(--gray-dark);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-
-  /* Referrals Section */
-  .referrals-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .referrals-title {
-    margin: 0 0 0.5rem 0;
-    color: var(--primary-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-family: "Ronzino-Medium", sans-serif;
-  }
-
-  .referrals-description {
-    margin: 0;
-  }
-
-  .referrals-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .referral-card {
-    padding: 1.5rem;
-    border: 1px solid var(--gray-light);
-    border-radius: 12px;
-    background: var(--white);
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
-  }
-
-  .referral-card:hover {
-    border-color: var(--secondary);
-    transform: translateY(-2px);
-  }
-
-  .referral-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.75rem;
-  }
-
-  .referral-card__name {
-    margin: 0;
-    color: var(--primary-dark);
-    font-size: 1.125rem;
-    font-family: "Ronzino-Medium", sans-serif;
-  }
-
-  .referral-card__reward {
-    background: var(--secondary);
-    color: var(--white);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
+  .referrals__label {
     font-size: 0.75rem;
-    font-weight: 600;
-    font-family: "Ronzino-Medium", sans-serif;
-  }
-
-  .referral-card__description {
     color: var(--gray-dark);
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.875rem;
   }
 
-  .referral-card__actions {
+  .referrals__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0;
   }
 
-  .referral-card__code {
+  .referral-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--gray);
+  }
+
+  .referral-item:last-child {
+    border-bottom: none;
+  }
+
+  .referral-item__left {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .referral-item__name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    white-space: nowrap;
+  }
+
+  .referral-item__desc {
+    font-size: 0.8rem;
+    color: var(--gray-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .referral-item__right {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem;
-    background: var(--gray);
-    border-radius: 6px;
-    font-size: 0.875rem;
+    flex-shrink: 0;
   }
 
-  .referral-card__code-label {
-    color: var(--gray-dark);
-    font-weight: 500;
-  }
-
-  .referral-card__code-value {
-    font-family: "NectoMono", monospace;
-    background: var(--primary);
-    color: var(--white);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+  .referral-item__reward {
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--secondary);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
   }
 
-  .referral-card__copy-btn {
+  .referral-item__code-wrap {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    background: var(--gray-dark);
-    color: var(--white);
-    border: none;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+  }
+
+  .referral-item__code {
+    font-family: "NectoMono", monospace;
     font-size: 0.75rem;
+    color: var(--primary-dark);
+    background: var(--gray);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+  }
+
+  .referral-item__copy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--gray-medium);
+    color: var(--gray-dark);
     cursor: pointer;
-    transition: var(--transition);
-    font-family: "Ronzino-Medium", sans-serif;
+    padding: 0.25rem;
+    border-radius: 3px;
+    transition: all 0.15s ease;
+    line-height: 1;
   }
 
-  .referral-card__copy-btn:hover {
-    background: var(--primary);
+  .referral-item__copy:hover {
+    border-color: var(--primary);
+    color: var(--primary);
   }
 
-  .copy-btn__icon {
+  .referral-item__copy :global(svg) {
+    width: 11px;
+    height: 11px;
+  }
+
+  .referral-item__copy.copied {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .referral-item__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-dark);
+    transition: color 0.15s ease;
+    padding: 0.25rem;
+  }
+
+  .referral-item__link:hover {
+    color: var(--primary);
+  }
+
+  .referral-item__link :global(svg) {
     width: 12px;
     height: 12px;
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .feedback-card {
-      padding: 1.5rem;
-    }
-
-    .referrals-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .referral-card {
-      padding: 1rem;
-    }
-
-    .referral-card__header {
-      flex-direction: column;
-      gap: 0.5rem;
-      align-items: flex-start;
-    }
-  }
-
   @media (max-width: 480px) {
-    .referral-card__code {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
+    .referral-item__desc {
+      display: none;
     }
-  }
-
-  /* Accessibility improvements */
-  @media (prefers-reduced-motion: reduce) {
-    .feedback-card,
-    .referral-card {
-      transition: none;
-    }
-
-    .feedback-card:hover,
-    .referral-card:hover {
-      transform: none;
-    }
-  }
-
-  /* Focus styles */
-  .referral-card__copy-btn:focus {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
   }
 </style>
 
 <script>
-  // Add copy to clipboard functionality
-  document.addEventListener("DOMContentLoaded", function () {
-    const copyButtons = document.querySelectorAll(".referral-card__copy-btn");
-
-    copyButtons.forEach((button) => {
-      button.addEventListener("click", async function (event) {
-        event.preventDefault();
-
-        const button = event.currentTarget as HTMLButtonElement;
-        const code = button.getAttribute("data-code");
-        const textSpan = button.querySelector(".copy-btn__text") as HTMLElement;
-
-        if (!code || !textSpan) return;
-
-        try {
-          // Try modern clipboard API first
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(code);
-          } else {
-            // Fallback for older browsers
-            const textArea = document.createElement("textarea");
-            textArea.value = code;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textArea);
-          }
-
-          // Visual feedback
-          const originalText = textSpan.textContent;
-          const originalBg = button.style.background;
-
-          textSpan.textContent = "Copied!";
-          button.style.background = "var(--primary)";
-
-          // Reset after 2 seconds
-          setTimeout(() => {
-            textSpan.textContent = originalText;
-            button.style.background = originalBg;
-          }, 2000);
-        } catch (err) {
-          console.error("Failed to copy: ", err);
-
-          // Show error feedback
-          const originalText = textSpan.textContent;
-          textSpan.textContent = "Error!";
-          button.style.background = "var(--secondary)";
-
-          setTimeout(() => {
-            textSpan.textContent = originalText;
-            button.style.background = "";
-          }, 2000);
-        }
-      });
+  document.querySelectorAll<HTMLButtonElement>(".referral-item__copy").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const code = btn.dataset.code;
+      if (!code) return;
+      try {
+        await navigator.clipboard.writeText(code);
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = code;
+        ta.style.cssText = "position:fixed;left:-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+      }
+      btn.classList.add("copied");
+      setTimeout(() => btn.classList.remove("copied"), 2000);
     });
   });
 </script>
