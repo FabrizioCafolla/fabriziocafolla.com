@@ -39,6 +39,11 @@ const photos: Photo[] = photosCollection.flatMap((entry) => entry.data.photos);
       }
     </div>
   </div>
+
+  <dialog class="photo-modal" id="photo-modal" aria-label="Photo viewer">
+    <button class="photo-modal__close" type="button" aria-label="Close">&times;</button>
+    <img class="photo-modal__img" src="" alt="" />
+  </dialog>
 </BaseLayout>
 
 <style>
@@ -68,4 +73,92 @@ const photos: Photo[] = photosCollection.flatMap((entry) => entry.data.photos);
       padding: 0 16px 40px;
     }
   }
+
+  .photo-modal {
+    border: none;
+    background: transparent;
+    padding: 0;
+    max-width: 92vw;
+    max-height: 92vh;
+    overflow: visible;
+  }
+
+  .photo-modal::backdrop {
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .photo-modal[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-modal__img {
+    display: block;
+    max-width: 92vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .photo-modal__close {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .photo-modal__close:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
 </style>
+
+<script>
+  function initPhotoZoom() {
+    const modal = document.getElementById("photo-modal") as HTMLDialogElement | null;
+    if (!modal || !("showModal" in modal)) return;
+
+    const modalImg = modal.querySelector<HTMLImageElement>(".photo-modal__img");
+    const closeBtn = modal.querySelector<HTMLButtonElement>(".photo-modal__close");
+    if (!modalImg) return;
+
+    // Zoom is a desktop-only affordance: skip on touch / coarse-pointer devices.
+    const canZoom = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (canZoom) {
+      document.querySelectorAll<HTMLElement>(".photo-card").forEach((card) => {
+        const img = card.querySelector<HTMLImageElement>("img");
+        if (!img) return;
+        card.addEventListener("click", () => {
+          modalImg.src = img.currentSrc || img.src;
+          modalImg.alt = img.alt;
+          modal.showModal();
+        });
+      });
+    }
+
+    closeBtn?.addEventListener("click", () => modal.close());
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) modal.close();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initPhotoZoom);
+  document.addEventListener("astro:page-load", initPhotoZoom);
+</script>

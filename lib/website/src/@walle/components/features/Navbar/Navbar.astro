@@ -390,6 +390,11 @@ const shouldShowBrand = hasLogo || hasTitle;
       border-radius: 0;
       background: transparent;
       letter-spacing: -0.02em;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
     }
 
     .nav-link:hover {
@@ -431,18 +436,23 @@ const shouldShowBrand = hasLogo || hasTitle;
       background: transparent;
       box-shadow: none;
       border: none;
-      opacity: 1;
       visibility: visible;
       transform: none;
-      transition: none;
       padding: 0;
       margin: 0;
       border-radius: 0;
-      display: none;
+      display: block;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.25s ease;
     }
 
     .nav-item.has-dropdown.active .dropdown-menu {
-      display: block;
+      max-height: 60vh;
+      opacity: 1;
       transform: none;
     }
 

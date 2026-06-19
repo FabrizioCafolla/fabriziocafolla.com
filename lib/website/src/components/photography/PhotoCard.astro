@@ -29,7 +29,13 @@ const { title, description, location, date, path } = Astro.props;
     overflow: hidden;
     break-inside: avoid;
     margin-bottom: 16px;
-    cursor: pointer;
+  }
+
+  /* Pointer + zoom affordance only where hover/click makes sense (desktop). */
+  @media (hover: hover) and (pointer: fine) {
+    .photo-card {
+      cursor: pointer;
+    }
   }
 
   .photo-card img {
@@ -93,6 +99,17 @@ const { title, description, location, date, path } = Astro.props;
   .photo-card__location,
   .photo-card__date {
     font-family: "NectoMono", monospace;
+  }
+
+  /* Touch devices have no hover: keep info overlay always visible, no zoom. */
+  @media (hover: none) {
+    .photo-card__overlay {
+      opacity: 1;
+    }
+
+    .photo-card:hover img {
+      transform: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
