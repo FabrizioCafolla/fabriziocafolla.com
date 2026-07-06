@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schemas/app.schema.json",
+  "website": {
+    "title": "Fabrizio Cafolla",
+    "description": "DevOps & Platform Engineer specializing in secure, scalable cloud solutions and CI/CD automation. Open-source advocate. Founder of European OpenSource and Italia Open-Source.",
+    "favicon": "/favicon/favicon.svg",
+    "image": "/img/logo/standard.svg",
+    "robots": "index, follow",
+    "language": "en-US"
+  },
+  "astro": {
+    "baseUrl": "https://fabriziocafolla.com",
+    "basePath": "/",
+    "trailingSlash": "never",
+    "analyticsScriptContent": ""
+  }
+}

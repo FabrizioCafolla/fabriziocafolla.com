@@ -1,0 +1,9 @@
+{
+  "$schema": "../schemas/walle.config.schema.json",
+  "schemaVersion": 2,
+  "name": "fabriziocafolla.com",
+  "walleVersion": "v0.1.2",
+  "modules": ["website", "ci", "harness-coding", "ai"],
+  "devcontainer": { "enabled": true },
+  "updatedAt": "2026-07-06T09:40:00Z"
+}

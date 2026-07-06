@@ -1,46 +1,19 @@
-# Fabrizio Cafolla Blog's
+# Fabrizio Cafolla blog's
 
-This is my personal blog: [fabriziocafolla.com](https://fabriziocafolla.com)
-
-### Talks
-
-You can find the slides from the talks in the [talk-slides](lib/website/public/talks/slides) folder or on the website.
-
-## Devmode
-
-### With Dev Container (Recommended)
-
-1. Requirements: `Docker >=24`
-2. Open the project in Visual Studio Code
-3. Install the Dev Containers extension
-4. Reopen in container when prompted
-5. Website automatically starts at [http://localhost:4321](http://localhost:4321)
-
-### Without Dev Container
-
-1. **Requirements**
-
-   | pkg    | version |
-   | ------ | ------- |
-   | Docker | `>=24`  |
-   | Node   | `>=22`  |
-   | Yarn   | `^1.22` |
-
-2. **Setup the project:**
-
-   ```bash
-   just setup
-   ```
-
-3. **Start development server:**
-
-   ```bash
-   just dev
-   ```
-
-4. **Open your browser:**
-   Navigate to [http://localhost:4321](http://localhost:4321)
+- See the blog: [https://fabriziocafolla.com/](https://fabriziocafolla.com/)
+- See the slides: [here](https://github.com/FabrizioCafolla/fabriziocafolla.com/tree/main/public/slides)
 
 ---
 
-<div align="center">License © All right reserved.</div>
+Scaffolded with [Walle](https://github.com/FabrizioCafolla/harness-walle) — an Astro design
+system copied straight into this project. You own every file here; the `@walle/` namespaces
+are the only read-only parts, kept current with `just walle-update`.
+
+```bash
+yarn install
+yarn dev   # → http://localhost:4321
+```
+
+- Edit `src/pages/index.astro` and the JSON files in `src/configs/` to make this site your own.
+- `src/@walle/` is regenerated on update — don't hand-edit it.
+- See `.walle/docs/` for the full CLI, modules, and versioning reference.

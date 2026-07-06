@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/navbar.schema.json",
+  "logo": {
+    "src": "/img/logo/standard.svg",
+    "alt": "Fabrizio Cafolla Logo",
+    "url": "/",
+    "cssClasses": "logo-img-navbar"
+  },
+  "items": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog",
+      "dropdown": [
+        { "name": "All", "url": "/blog" },
+        { "name": "# Tech", "url": "/blog/tech" },
+        { "name": "# On the Road", "url": "/blog/on-the-road" },
+        {
+          "name": "# Travel Guides",
+          "url": "/blog/guides"
+        }
+      ]
+    },
+    {
+      "name": "Photography",
+      "url": "/photography"
+    },
+    {
+      "icon": "mdi:link-variant",
+      "url": "https://linktr.ee/fabriziocafolla"
+    }
+  ]
+}

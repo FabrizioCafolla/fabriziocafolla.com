@@ -1,0 +1,9 @@
+# [walle:START]
+services:
+  devcontainer:
+    build:
+      args:
+        - TERRAFORM_ENABLE=true
+    ports:
+      - "4321:4321"
+# [walle:END]

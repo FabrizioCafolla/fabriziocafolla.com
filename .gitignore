@@ -1,8 +1,75 @@
-.DS_Store
-*.env
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+*.env
+.env
+.env.production
+
+# three-layer local overrides (never committed, see AGENTS.md/devcontainer module)
+*.local
+*.local.sh
+*.local.yml
+.harness-coding/lock
+
+# yarn berry (node-modules linker)
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# misc
 *.tmp
-AGENTS.md
-.github/skills/
-.github/agents/
-.github/prompts/
+.DS_Store
+.idea/
+
+# [harness-coding:START]
+.env
+*.local
+*.local.sh
+*.local.yml
+# [harness-coding:END]
+
+# [START] Harness AI
+.harness-ai/lock
+.harness-ai/manifest.json
+.claude/agents/developer.md
+.claude/skills/agent-creator/
+.claude/skills/skill-creator/
+.claude/skills/developer-diagnosing-bugs/
+.claude/skills/developer-docker/
+.claude/skills/developer-framework-astro/
+.claude/skills/developer-github-actions/
+.claude/skills/developer-go/
+.claude/skills/developer-javascript/
+.claude/skills/developer-kubernetes/
+.claude/skills/developer-microservices-and-api/
+.claude/skills/developer-python/
+.claude/skills/developer-shell/
+.claude/skills/developer-tdd/
+.claude/skills/developer-terraform/
+.claude/skills/developer-typescript/
+.claude/skills/caveman/
+.claude/skills/developer-github-cli/
+.claude/skills/wikictl/
+.claude/skills/wikictl-read/
+.claude/skills/wikictl-create/
+.claude/skills/wikictl-edit/
+.claude/skills/wikictl-mcp/
+.claude/settings.local.json
+# [END] Harness AI
