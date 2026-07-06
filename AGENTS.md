@@ -10,7 +10,7 @@ Fabrizio Cafolla personal website
 
 This repository was bootstrapped from the [harness-coding](https://github.com/FabrizioCafolla/harness-coding) template.
 
-The `cli.sh` script keeps template-managed files in sync with upstream. Run `./cli.sh check` to see what changed, and `./cli.sh update` to apply updates.
+Template-managed files are kept in sync with upstream via `just harness-coding check` / `just harness-coding update` — `cli.sh` is never vendored locally, it's always fetched fresh from `main`.
 
 Instructions and context for AI agents (Claude Code, GitHub Copilot, etc.) working in this repository.
 
@@ -38,7 +38,7 @@ All work happens inside the DevContainer. Do not assume tools are installed on t
 
 This project follows a **three-layer model** for configuration:
 
-1. **BASE** (template-managed, auto-updated): `docker-compose.yml`, `setup-devcontainer.sh`, `justfile`, `justfile.tooling` — updated when you run `cli.sh update`
+1. **BASE** (template-managed, auto-updated): `docker-compose.yml`, `setup-devcontainer.sh`, `justfile`, `justfile.tooling` — updated when you run `just harness-coding update`
 2. **PROJECT** (versionated, `.project` files): Shared defaults for all team members — `justfile.project`, `setup-devcontainer.project.sh`, `docker-compose.project.yml`, `.env.project`
 3. **LOCAL** (dev-specific, `.local` files, gitignored): Personal customizations that are never committed — `justfile.local`, `setup-devcontainer.local.sh`, `docker-compose.local.yml`, `.env`
 
@@ -66,11 +66,9 @@ just help
 - Do not modify `.project` files unless making changes that should be shared with the team — these are versionated
 - Do edit `.local` files for personal/local customizations — these are gitignored and won't be committed
 - Do not install packages globally inside the container without updating the Dockerfile or devcontainer features
-
 <!-- [harness-coding:END] -->
 
 <!-- [walle:START] -->
-
 ## Walle design system (managed block)
 
 This project uses the [Walle](https://github.com/FabrizioCafolla/harness-walle)
@@ -94,16 +92,16 @@ Do not edit files inside `@walle/` directories, and do not edit the content betw
 ### Active walle modules
 
 - **website** — Astro site — @walle components, layouts, styles, config and CLI scripts
-  - Managed: src/@walle, schemas, scripts/@walle
+  - Managed: src/@walle, schemas, scripts/@walle, scripts/@walle/walle.yml
 - **ci** — GitHub Actions workflows (test + deploy) under @walle
   - Managed: .github/workflows/actions/@walle
   - Seeded once: .github/workflows/test.yml, .github/workflows/deploy.yml
 - **harness-coding** — Harness coding scaffold
-  - Seeded once: justfile.project, .husky/pre-commit, .husky/pre-push
+  - Seeded once: justfile.project, .husky/pre-commit, .husky/pre-push, .devcontainer/docker-compose.project.yml
 - **ai** — AI harness — generated AGENTS.md block and @walle skills
   - Managed: .claude/skills/@walle
 - **harness-coding** — Harness coding scaffold
-  - Seeded once: justfile.project, .husky/pre-commit, .husky/pre-push
+  - Seeded once: justfile.project, .husky/pre-commit, .husky/pre-push, .devcontainer/docker-compose.project.yml
 
 ### Working with walle
 
@@ -111,7 +109,6 @@ Do not edit files inside `@walle/` directories, and do not edit the content betw
 - Update: `just walle-update`.
 - Add: `just walle add <module>`.
 - Validate: `just walle-check`.
-
 <!-- [walle:END] -->
 
 <!-- [harness-ai:START] managed by harness-ai, do not edit manually -->
@@ -210,25 +207,20 @@ The private repo can also override config templates by placing files at:
 
 Skills are organized by category and subcategory. Every entry in `metadata.yml` carries `category` and `subcategory` fields.
 
-Plain, single-word subcategories on purpose — grouping follows what a skill actually does, not a target count.
-
-| Category        | Subcategory   | Typical prefix                        |
-| --------------- | ------------- | --------------------------------------- |
-| `engineering`   | `coding`      | `developer-*`                          |
-| `engineering`   | `architecture`| `developer-*`, `advisor-*`             |
-| `engineering`   | `operations`  | `advisor-*`                            |
-| `engineering`   | `documentation`| `advisor-*`                           |
-| `communication` | `content`     | `advisor-*`                            |
-| `communication` | `messaging`   | `advisor-*`                            |
-| `communication` | `style`       | `caveman`                              |
-| `reasoning`     | `brainstorming`| `advisor-*`                           |
-| `reasoning`     | `research`    | `advisor-*`, `research-scout`          |
-| `reasoning`     | `speaking`    | `advisor-*`                            |
-| `tools`         | `cli`         | `developer-github-cli`, `wikictl-*`    |
-| `meta`          | `creation`    | `skill-creator`, `agent-creator`       |
-| `meta`          | `review`      | `advisor-work-review`                  |
-| `coaching`      | `planning`    | `advisor-*` (private, personal-training) |
-| `coaching`      | `support`     | `advisor-*` (private, personal-training) |
+| Category        | Subcategory                    | Typical prefix                   |
+| --------------- | ------------------------------ | -------------------------------- |
+| `engineering`   | `architecture-and-platform`    | `developer-*`, `advisor-*`       |
+| `engineering`   | `build-and-quality`            | `developer-*`                    |
+| `engineering`   | `technical-documentation`      | `advisor-*`                      |
+| `engineering`   | `operations-and-reliability`   | `advisor-*`                      |
+| `communication` | `professional-communication`   | `advisor-*`                      |
+| `communication` | `editorial-and-content`        | `advisor-*`                      |
+| `communication` | `presence-and-ux-writing`      | `advisor-*`                      |
+| `reasoning`     | `ideation-and-problem-framing` | `advisor-*`                      |
+| `reasoning`     | `research-and-study`           | `advisor-*`                      |
+| `reasoning`     | `teaching-and-speaking`        | `advisor-*`                      |
+| `delivery`      | `review-and-improvement`       | `advisor-*`                      |
+| `meta`          | `skills-and-agents`            | `skill-creator`, `agent-creator` |
 
 ### Installed skills
 

@@ -1,7 +1,9 @@
 # [walle:START]
+#!/bin/bash
+
 echo "[INFO] Enabling corepack"
-corepack enable || echo "[WARN] corepack enable failed, continuing"
+corepack enable 2>/dev/null || sudo corepack enable || echo "[WARN] corepack enable failed, continuing"
 
 echo "[INFO] Installing dependencies"
-yarn install
+COREPACK_ENABLE_DOWNLOAD_PROMPT=0 yarn install
 # [walle:END]

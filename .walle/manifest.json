@@ -2,8 +2,39 @@
   "$schema": "../schemas/walle.config.schema.json",
   "schemaVersion": 2,
   "name": "fabriziocafolla.com",
-  "walleVersion": "v0.1.2",
-  "modules": ["website", "ci", "harness-coding", "ai"],
-  "devcontainer": { "enabled": true },
-  "updatedAt": "2026-07-06T09:40:00Z"
+  "walleVersion": "v0.2.1",
+  "modules": [
+    "website",
+    "ci",
+    "harness-coding",
+    "ai"
+  ],
+  "devcontainer": {
+    "enabled": true
+  },
+  "files": {
+    "managed": {
+      "src/@walle": "website",
+      "schemas": "website",
+      "scripts/@walle": "website",
+      "scripts/@walle/walle.yml": "website",
+      ".github/workflows/actions/@walle": "ci",
+      ".claude/skills/@walle": "ai"
+    },
+    "seed": {
+      "justfile.project": "harness-coding",
+      ".husky/pre-commit": "harness-coding",
+      ".husky/pre-push": "harness-coding",
+      ".devcontainer/docker-compose.project.yml": "harness-coding"
+    },
+    "inject": {
+      "justfile.project": "website",
+      ".vscode/settings.json": "website",
+      ".vscode/extensions.json": "website",
+      ".devcontainer/scripts/setup-devcontainer.project.sh": "harness-coding",
+      ".devcontainer/docker-compose.project.yml": "harness-coding",
+      "AGENTS.md": "ai"
+    }
+  },
+  "updatedAt": "2026-07-06T20:25:37Z"
 }

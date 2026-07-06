@@ -3,6 +3,9 @@ services:
   devcontainer:
     build:
       args:
+        - CLAUDE_CLI_ENABLE=true
+        - OPENSPEC_ENABLE=true
+        - GH_CLI_ENABLE=true
         - TERRAFORM_ENABLE=true
     ports:
       - "4321:4321"
