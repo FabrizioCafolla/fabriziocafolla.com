@@ -1,7 +1,7 @@
 {
   "$schema": "../../schemas/navbar.schema.json",
   "logo": {
-    "src": "/img/logo/standard.svg",
+    "src": "/assets/img/logo/standard.svg",
     "alt": "Fabrizio Cafolla Logo",
     "url": "/",
     "cssClasses": "logo-img-navbar"
