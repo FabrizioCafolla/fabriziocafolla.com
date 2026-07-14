@@ -1,18 +1,18 @@
-# Consumer-owned CI workflow (walle SEED): created once, never overwritten by `walle update`.
-# Edit freely. The reusable deploy logic lives in the walle-managed composite action below.
 name: Deploy
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  id-token: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
+env:
+  AWS_REGION: eu-west-1
 
 jobs:
   deploy:
@@ -21,11 +21,36 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Check out code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
-      - name: Deploy to GitHub Pages
-        uses: ./.github/workflows/actions/@walle/deploy-github-pages
-        timeout-minutes: 5
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          cname: "fabriziocafolla.com"
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - name: Install & Build
+        run: |
+          corepack prepare --activate
+          yarn install --immutable
+          yarn build
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync static assets to S3
+        run: |
+          aws s3 sync dist/ "s3://${{ secrets.AWS_SITE_BUCKET }}" \
+            --delete \
+            --cache-control "public,max-age=43200,immutable" \
+            --exclude "*.html"
+          aws s3 sync dist/ "s3://${{ secrets.AWS_SITE_BUCKET }}" \
+            --delete \
+            --cache-control "public,max-age=0,must-revalidate" \
+            --exclude "*" --include "*.html"
