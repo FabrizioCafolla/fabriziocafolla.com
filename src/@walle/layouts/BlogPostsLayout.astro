@@ -2,8 +2,9 @@
 import { BasicCard, CollectionFilters } from "@walle/components";
 import { BaseLayout } from "@walle/layouts";
 import { formatDate, resolveInternalUrl } from "@walle/utils";
-import { getCollection } from "astro:content";
-import type { PostsEntry } from "src/pages/blog/interfaces";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+type PostsEntry = CollectionEntry<"posts">;
 
 const {
   headerTitle = "Blog",
@@ -72,14 +73,14 @@ const allCategories: string[] = Array.from(
                 <div
                   data-filter-item
                   data-category={(post.data.tags || []).join(",")}
-                  data-search={`${post.data.title} ${post.data.description}`}
+                  data-search={`${post.data.title} ${post.data.description ?? ""}`}
                 >
                   <BasicCard
                     title={post.data.title}
                     content={post.data.description}
                     href={resolveInternalUrl(`/blog/${post.id}`)}
                     image={{
-                      src: resolveInternalUrl(post.data.image || "/img/posts/default.jpg"),
+                      src: resolveInternalUrl(post.data.image || "/img/posts/default.svg"),
                       alt: post.data.title,
                     }}
                     badge={badge}

@@ -2,8 +2,7 @@
   "$schema": "../schemas/walle.config.schema.json",
   "schemaVersion": 2,
   "name": "fabriziocafolla.com",
-  "walleVersion": "local",
-  "sourceRef": "/workspace/projects/harness-walle",
+  "walleVersion": "v0.3.0",
   "modules": [
     "website",
     "ci",
@@ -37,5 +36,5 @@
       "AGENTS.md": "ai"
     }
   },
-  "updatedAt": "2026-07-23T16:46:12Z"
+  "updatedAt": "2026-07-27T10:27:14Z"
 }
