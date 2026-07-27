@@ -1,5 +1,5 @@
 ---
-import { SectionHeaderStandard } from "@walle/components";
+import { SectionHeaderStandard, StructuredData } from "@walle/components";
 import { BaseLayout } from "@walle/layouts";
 import { Icon } from "astro-icon/components";
 
@@ -154,7 +154,6 @@ const metaDescription =
   "Fabrizio Cafolla is a DevOps & Platform Engineer specializing in cloud architecture (AWS, GCP), CI/CD automation, and infrastructure as code with Terraform. Founder of European OpenSource and Italia Open-Source. Community Manager at Latina in Tech.";
 
 const personSchema = {
-  "@context": "https://schema.org",
   "@type": "Person",
   name: "Fabrizio Cafolla",
   jobTitle: "DevOps & Platform Engineer",
@@ -182,7 +181,7 @@ const personSchema = {
 ---
 
 <BaseLayout headerTitle="Home" headerDescription={metaDescription}>
-  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  <StructuredData data={personSchema} />
 
   <SectionHeaderStandard title="Fabrizio Cafolla" variant="white" />
 

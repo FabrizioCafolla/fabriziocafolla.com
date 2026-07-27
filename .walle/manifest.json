@@ -2,7 +2,7 @@
   "$schema": "../schemas/walle.config.schema.json",
   "schemaVersion": 2,
   "name": "fabriziocafolla.com",
-  "walleVersion": "v0.2.1",
+  "walleVersion": "v0.3.0",
   "modules": [
     "website",
     "ci",
@@ -36,5 +36,5 @@
       "AGENTS.md": "ai"
     }
   },
-  "updatedAt": "2026-07-06T20:25:37Z"
+  "updatedAt": "2026-07-27T10:27:14Z"
 }
