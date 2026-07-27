@@ -1,0 +1,53 @@
+{
+  "$schema": "../schemas/walle.config.schema.json",
+  "schemaVersion": 3,
+  "name": "fabriziocafolla.com",
+  "walleVersion": "v0.3.1",
+  "modules": [
+    "website",
+    "ci",
+    "harness-coding",
+    "ai"
+  ],
+  "devcontainer": {
+    "enabled": true
+  },
+  "files": {
+    "managed": {
+      "website": [
+        "schemas",
+        "scripts/@walle",
+        "scripts/@walle/walle.yml",
+        "src/@walle"
+      ],
+      "ci": [
+        ".github/workflows/actions/@walle"
+      ],
+      "ai": [
+        ".claude/skills/@walle"
+      ]
+    },
+    "seed": {
+      "harness-coding": [
+        ".devcontainer/docker-compose.project.yml",
+        ".husky/pre-commit",
+        ".husky/pre-push",
+        "justfile.project"
+      ]
+    },
+    "inject": {
+      "website": [
+        ".vscode/extensions.json",
+        ".vscode/settings.json",
+        "justfile.project"
+      ],
+      "harness-coding": [
+        ".devcontainer/scripts/setup-devcontainer.project.sh"
+      ],
+      "ai": [
+        "AGENTS.md"
+      ]
+    }
+  },
+  "updatedAt": "2026-07-27T21:22:02Z"
+}
