@@ -1,0 +1,52 @@
+---
+/**
+ * Branded 404. Served by CloudFront via the shared cloudfront module's custom_error_response
+ * (403/404 to /404.html with a 404 status). See the site's Terraform stack. Builds to dist/404.html.
+ * With enable_domain_allowlist on for this site, a blocked Host also returns 403 and therefore
+ * renders this page, which is fine for a static site.
+ * noindex so search engines don't index the error page, follow so link equity still flows.
+ */
+import { BaseLayout } from "@walle/layouts";
+import { SectionHeaderStandard } from "@walle/components";
+
+const sections = [
+  { name: "Home", url: "/" },
+  { name: "Blog", url: "/blog" },
+  { name: "Photography", url: "/photography" },
+];
+---
+
+<BaseLayout
+  headerTitle="Page not found"
+  headerDescription="The page you are looking for does not exist or has moved. Head back to the homepage or browse the blog."
+  headerRobots="noindex, follow"
+>
+  <SectionHeaderStandard
+    title="Page not found"
+    subtitle="The page you were looking for does not exist or has moved."
+    variant="white"
+  />
+
+  <section class="container prose not-found">
+    <p>Try one of these instead:</p>
+    <ul class="not-found-links">
+      {sections.map((s) => (
+        <li><a href={s.url}>{s.name}</a></li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+  .not-found-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+  }
+</style>
