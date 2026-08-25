@@ -2,11 +2,10 @@
   "$schema": "../schemas/walle.config.schema.json",
   "schemaVersion": 3,
   "name": "fabriziocafolla.com",
-  "walleVersion": "v0.3.2",
+  "walleVersion": "v0.4.0",
   "modules": [
     "website",
     "ci",
-    "harness-coding",
     "ai"
   ],
   "devcontainer": {
@@ -49,5 +48,5 @@
       ]
     }
   },
-  "updatedAt": "2026-08-18T14:26:51Z"
+  "updatedAt": "2026-08-25T10:17:36Z"
 }
