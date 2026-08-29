@@ -58,10 +58,14 @@ const mapPlaces: MapPlace[] = places.filter(
 
     const map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    // CARTO's free "light_all" basemap (usata qui fino al 2026-08-29) ora richiede una API key
+    // gratuita - senza, le tile tornano con un watermark "API KEY REQUIRED" sopra la mappa
+    // (cambio di policy CARTO di agosto 2026). Standard OpenStreetMap: nessuna registrazione,
+    // nessuna key da gestire - stile più colorato del precedente grigio chiaro.
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
-        '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank">CARTO</a>',
-      subdomains: "abcd",
+        '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+      subdomains: "abc",
       maxZoom: 19,
     }).addTo(map);
 
