@@ -1,15 +1,19 @@
+# generated / dependencies / sandboxes: skip formatting
 dist
-node_modules
 .astro
+node_modules
+.yarn
+tests/e2e/.sandbox
 
-# walle marker blocks — the [walle:START]/[walle:END] lines must stay unindented for exact-match
+src/components/features/Analytics.astro
+
+# walle marker blocks: the [walle:START]/[walle:END] lines must stay unindented for exact-match
 # injection (see cli.sh's inject_marker_block); reformatting them would break the next `update`.
 .vscode/settings.json
 .vscode/extensions.json
+AGENTS.md
 
-# walle-managed docs, skills and manifests: overwritten on every `walle update`, so never
-# reformatted by hand (source code under src/@walle is prettier-clean and is checked)
+# generated or copied by the CLI (manifests, wiki copies, skills): rewritten on every `update`
 .harness-walle
 .harness-coding
 .claude/skills/@walle
-AGENTS.md
