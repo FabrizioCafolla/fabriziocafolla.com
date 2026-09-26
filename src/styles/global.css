@@ -1,250 +1,72 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap");
+@layer site {
+  body {
+    color: var(--gray-darker);
+    line-height: 1.75;
+  }
 
-@font-face {
-  font-family: "NectoMono";
-  src: url("/assets/fonts/NectoMono-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+  /* Plain text pages (privacy, terms, 404): base typography with roomy paragraphs. */
+  .page-text p {
+    margin-bottom: var(--space-xl);
+  }
 
-/* ── Brand / Logo ─────────────────────────────────────────── */
-.logo-text-footer,
-.header-title {
-  font-family: "NectoMono", monospace !important;
-}
+  /* Page header subtitle: walle caps it at 42rem but left-aligns the box, so a centered
+     header shows a left-aligned subtitle. Remove once walle centers the box itself. */
+  .header-subtitle {
+    margin-inline: auto;
+  }
 
-.logo-text-footer,
-footer .brand-link {
-  font-size: 1rem;
-  margin: 0;
-  padding: 0;
-  color: var(--primary) !important;
-}
+  /* Narrow screens keep the wider text gutter the page headers always had. */
+  @media (max-width: 640px) {
+    .section-wrapper {
+      --wrapper-gutter: var(--space-lg);
+    }
+  }
 
-.logo-img-navbar {
-  height: 52px;
-  width: auto;
-  margin: 0;
-  padding: 0;
-}
+  /* Navbar: flush with the page, no border or shadow. */
+  .site-header {
+    --navbar-border: transparent;
+    --navbar-shadow: none;
+  }
 
-/* Navbar: flush with page, no border or shadow */
-.site-header,
-.site-header.scrolled {
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
+  /* Footer: white, no top border, circular social icons. */
+  footer {
+    --footer-bg: var(--white);
+    --footer-border: transparent;
+    --social-icon-radius: 50%;
+  }
 
-@media screen and (max-width: 768px) {
-  .logo-img-navbar {
-    height: 38px;
-    width: auto;
-    padding: 0.125rem;
+  /* Text wordmark used in the footer. */
+  .logo-text-footer {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    color: var(--primary);
+  }
+
+  /* Flat, architectural corners on media and code. */
+  img:not(.bio-photo) {
+    border-radius: var(--radius-sm);
+  }
+
+  img.bio-photo,
+  .bio-photo-wrap img {
+    border-radius: 50%;
+  }
+
+  pre {
+    border-radius: var(--radius-md);
   }
 }
 
-/* ── Design tokens ────────────────────────────────────────── */
-:root {
-  /* Navy ink — primary brand color */
-  --primary: #0d1f3c;
-  --primary-light: #1e3a5f;
-  --primary-dark: #060f1f;
-
-  /* Mid-navy — secondary interactive, labels */
-  --secondary: #2d5a8e;
-  --secondary-light: #3b6fa8;
-  --secondary-dark: #1e3f63;
-
-  /* Neutral surfaces */
-  --white: #ffffff;
-  --black: #0d1f3c;
-  --gray: #eef1f5;
-  --gray-light: #f4f6f9;
-  --gray-medium: #c8d4e0;
-  --gray-dark: #5e6e7e;
-  --gray-darker: #3d4f64;
-  --gray-gradient: rgba(244, 246, 249, 0.5), var(--white);
-
-  /* Radius — architectural, flat */
-  --radius-sm: 2px;
-  --radius-md: 3px;
-  --radius-lg: 4px;
-  --radius-xl: 5px;
-
-  /* Navy-tinted shadows */
-  --box-shadow: 0 1px 2px rgba(6, 15, 31, 0.04), 0 2px 8px rgba(6, 15, 31, 0.06);
-  --box-shadow-hover: 0 4px 16px rgba(13, 31, 60, 0.12), 0 8px 24px rgba(13, 31, 60, 0.06);
-
-  /* Typography stacks */
-  --font-body: "Lora", Georgia, serif;
-  --font-heading: "NectoMono", monospace;
-}
-
-/* ── Typography ───────────────────────────────────────────── */
-body {
-  font-family: "Lora", Georgia, serif;
-  line-height: 1.75;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: "NectoMono", monospace;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-
-/* ── Walle component overrides ────────────────────────────── */
-
-/* Blog card badges — !important beats walle's scoped data-astro-cid selectors */
-.card__badge--primary {
-  color: var(--primary) !important;
-  background: rgba(13, 31, 60, 0.07) !important;
-}
-
-.card__badge--secondary {
-  color: var(--secondary) !important;
-  background: rgba(45, 90, 142, 0.09) !important;
-}
-
-/* Blog card: hover shadow */
-.card:hover .card__wrapper {
-  box-shadow: 0 4px 12px rgba(13, 31, 60, 0.1) !important;
-}
-
-/* Guide card: hover shadow */
-.guide-card:hover .guide-card__wrapper {
-  box-shadow: 0 4px 12px rgba(13, 31, 60, 0.1) !important;
-}
-
-/* ── Border radius: flatten walle defaults ────────────────── */
-img:not(.bio-photo) {
-  border-radius: 2px !important;
-}
-
-img.bio-photo,
-.bio-photo-wrap img {
-  border-radius: 50% !important;
-}
-
-pre {
-  border-radius: 3px !important;
-}
-
-[data-component="Navbar"] .nav-link,
-[data-component="Navbar"] .dropdown-menu,
-.main-nav .nav-link,
-.main-nav .dropdown-menu,
-.main-nav .mobile-menu-overlay {
-  border-radius: 3px !important;
-}
-
-.main-nav .mobile-menu-content {
-  border-radius: 0 !important;
-}
-
-.card__wrapper {
-  border-radius: 3px !important;
-}
-
-.card__image {
-  border-radius: 2px !important;
-}
-
-.card__badge {
-  border-radius: 3px !important;
-}
-
-.badge,
-[data-walle-badge] {
-  border-radius: 3px !important;
-}
-
-.button,
-[data-walle-button],
-button {
-  border-radius: 3px !important;
-}
-
-.image-container {
-  border-radius: 3px !important;
-}
-
-.header-image {
-  border-radius: 2px !important;
-}
-
-[data-walle-article-nav],
-.article-navigation a {
-  border-radius: 3px !important;
-}
-
-.toc-container,
-[data-walle-toc] {
-  border-radius: 3px !important;
-}
-
-.section-card {
-  border-radius: 4px !important;
-}
-
-.blog-post__hero img,
-.post-hero img {
-  border-radius: 2px !important;
-}
-
-/* Footer social icons remain circular */
-.footer-social a {
-  border-radius: 50% !important;
-}
-
-.filter-tag,
-.blog-filter button,
-.blog-filter a {
-  border-radius: 3px !important;
-}
-
-.article-content blockquote {
-  border-radius: 0 3px 3px 0 !important;
-}
-
-.article-content pre {
-  border-radius: 3px !important;
-}
-
-.article-content img {
-  border-radius: 2px !important;
-}
-
-.article-content code {
-  border-radius: 2px !important;
-}
-
-.tag {
-  border-radius: 3px !important;
-}
-
-.draft-message {
-  border-radius: 3px !important;
-}
-
-.toc-panel,
-.toc-mobile {
-  border-radius: 3px !important;
-}
-
-.nav-card {
-  border-radius: 3px !important;
-}
-
-.breadcrumb-item {
-  border-radius: 2px !important;
-}
-
-/* ── Footer ───────────────────────────────────────────── */
-footer {
-  background: var(--white) !important;
-  border-top: none !important;
+/* Light headings by default. Added to walle's own base layer, not to `site`, so component
+   headings (card titles, section titles) keep the weight their component sets. */
+@layer walle.base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
 }
