@@ -76,7 +76,7 @@ const tipsHtml = tips ? parseTips(tips) : null;
     <SectionHeaderStandard
       title={title}
       subtitle={`${places.length} places · ${sections.length} sections`}
-      variant="secondary"
+      muted
     />
 
     {
@@ -184,7 +184,7 @@ const tipsHtml = tips ? parseTips(tips) : null;
     gap: 6px;
     padding: 8px 14px;
     border: 1px solid var(--gray);
-    border-radius: 100px;
+    border-radius: var(--radius-md);
     background: transparent;
     color: var(--gray-darker);
     font-family: inherit;
@@ -222,7 +222,7 @@ const tipsHtml = tips ? parseTips(tips) : null;
     align-items: center;
     gap: 5px;
     padding: 8px 14px;
-    border-radius: 100px;
+    border-radius: var(--radius-md);
     border: 1.5px solid var(--primary);
     background: transparent;
     color: var(--primary);
