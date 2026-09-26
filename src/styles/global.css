@@ -9,12 +9,6 @@
     margin-bottom: var(--space-xl);
   }
 
-  /* Page header subtitle: walle caps it at 42rem but left-aligns the box, so a centered
-     header shows a left-aligned subtitle. Remove once walle centers the box itself. */
-  .header-subtitle {
-    margin-inline: auto;
-  }
-
   /* Narrow screens keep the wider text gutter the page headers always had. */
   @media (max-width: 640px) {
     .section-wrapper {
