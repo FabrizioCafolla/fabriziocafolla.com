@@ -6,7 +6,7 @@
     "favicon": "/assets/favicon/favicon.svg",
     "image": "/assets/img/logo/standard.svg",
     "robots": "index, follow",
-    "language": "en-US"
+    "language": "en-GB"
   },
   "astro": {
     "baseUrl": "https://fabriziocafolla.com",
