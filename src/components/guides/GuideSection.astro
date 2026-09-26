@@ -46,8 +46,15 @@ const { id, title, places } = Astro.props;
 
 <style>
   .guide-section {
+    padding: 4rem 1.5rem;
     margin-bottom: 48px;
     scroll-margin-top: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .guide-section {
+      padding: 3rem 0;
+    }
   }
 
   .guide-section__title {

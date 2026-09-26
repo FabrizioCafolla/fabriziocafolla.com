@@ -22,7 +22,7 @@ const photos: Photo[] = photosCollection.flatMap((entry) => entry.data.photos);
     <SectionHeaderStandard
       title="Photography"
       subtitle="Moments, places, silence"
-      variant="secondary"
+      muted
     />
 
     <div class="photography__masonry">
@@ -117,7 +117,7 @@ const photos: Photo[] = photosCollection.flatMap((entry) => entry.data.photos);
     background: rgba(255, 255, 255, 0.12);
     color: #fff;
     border: none;
-    border-radius: 50%;
+    border-radius: var(--radius-md);
     font-size: 1.6rem;
     line-height: 1;
     cursor: pointer;
