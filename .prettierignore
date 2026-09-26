@@ -7,12 +7,9 @@ node_modules
 .vscode/settings.json
 .vscode/extensions.json
 
-# walle-managed paths: overwritten on every `walle update`, so never reformatted by hand
-src/@walle
-scripts/@walle
-schemas
+# walle-managed docs, skills and manifests: overwritten on every `walle update`, so never
+# reformatted by hand (source code under src/@walle is prettier-clean and is checked)
 .harness-walle
 .harness-coding
 .claude/skills/@walle
-.github/workflows/actions/@walle
 AGENTS.md
