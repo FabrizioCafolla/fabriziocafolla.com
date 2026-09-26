@@ -38,6 +38,10 @@ Sites below 0.6 apply the intermediate CHANGELOG entries first, then update to 0
 `just walle-deps --apply`: 0.7.0 adds `leaflet`, `satori` and `@resvg/resvg-js` and moves several
 dependencies to new majors.
 
+Set the site's Node version to 24, which the 0.7.0 `engines` field requires: `.nvmrc`, plus any
+`node-version` in your own workflows (the walle test action reads `.nvmrc`). `update` never
+touches `.nvmrc`, a seed file, so change it yourself.
+
 ### 2. Config
 
 The build now validates every config file and stops on an error that names the file and the key.
@@ -185,7 +189,7 @@ Visible changes in components:
   It now works as documented: the image comes first by default and `imageRight` puts it after. If
   your header relied on the old behavior, add `imageRight`.
 - Section content keeps a 16px gutter at 640px and below (it was 24px). To restore the old
-  gutter: `@layer site { .section-wrapper { --wrapper-gutter: var(--space-xl); } }`.
+  gutter: `@layer site { @media (max-width: 640px) { .section-wrapper { --wrapper-gutter: var(--space-lg); } } }`.
 - Blog post tags use the theme radius instead of a pill. For the old pill:
   `@layer site { .tag { --blog-tag-radius: 2rem; } }`.
 
