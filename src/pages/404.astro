@@ -29,9 +29,13 @@ const sections = [
   <section class="container page-text not-found">
     <p>Try one of these instead:</p>
     <ul class="not-found-links">
-      {sections.map((s) => (
-        <li><a href={s.url}>{s.name}</a></li>
-      ))}
+      {
+        sections.map((s) => (
+          <li>
+            <a href={s.url}>{s.name}</a>
+          </li>
+        ))
+      }
     </ul>
   </section>
 </BaseLayout>

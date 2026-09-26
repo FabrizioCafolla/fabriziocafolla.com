@@ -6,3 +6,13 @@ node_modules
 # injection (see cli.sh's inject_marker_block); reformatting them would break the next `update`.
 .vscode/settings.json
 .vscode/extensions.json
+
+# walle-managed paths: overwritten on every `walle update`, so never reformatted by hand
+src/@walle
+scripts/@walle
+schemas
+.harness-walle
+.harness-coding
+.claude/skills/@walle
+.github/workflows/actions/@walle
+AGENTS.md
