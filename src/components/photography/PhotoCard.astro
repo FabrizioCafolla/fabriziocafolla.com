@@ -13,7 +13,7 @@ const { title, description, location, date, path } = Astro.props;
 <figure class="photo-card">
   <img src={path} alt={title} loading="lazy" decoding="async" />
   <figcaption class="photo-card__overlay">
-    <h3 class="photo-card__title">{title}</h3>
+    <h2 class="photo-card__title">{title}</h2>
     <p class="photo-card__description">{description}</p>
     <div class="photo-card__meta">
       <span class="photo-card__location">{location}</span>

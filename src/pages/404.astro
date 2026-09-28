@@ -24,15 +24,18 @@ const sections = [
   <SectionHeaderStandard
     title="Page not found"
     subtitle="The page you were looking for does not exist or has moved."
-    variant="white"
   />
 
-  <section class="container prose not-found">
+  <section class="container page-text not-found">
     <p>Try one of these instead:</p>
     <ul class="not-found-links">
-      {sections.map((s) => (
-        <li><a href={s.url}>{s.name}</a></li>
-      ))}
+      {
+        sections.map((s) => (
+          <li>
+            <a href={s.url}>{s.name}</a>
+          </li>
+        ))
+      }
     </ul>
   </section>
 </BaseLayout>

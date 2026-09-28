@@ -40,13 +40,16 @@ const mapPlaces: MapPlace[] = places.filter(
 </span>
 
 <script>
-  import L from "leaflet";
-  import "leaflet/dist/leaflet.css";
-
   const el = document.getElementById("guide-map") as HTMLElement | null;
   const externalLinkSvg = document.getElementById("gm-external-link-icon")?.innerHTML ?? "";
 
   if (el) {
+    // Leaflet and its CSS are loaded only here, once we know the map will actually mount.
+    const [{ default: L }] = await Promise.all([
+      import("leaflet"),
+      import("./guide-map-leaflet-styles"),
+    ]);
+
     const places: {
       name: string;
       lat: number;
@@ -107,10 +110,13 @@ const mapPlaces: MapPlace[] = places.filter(
         </div>
       `;
 
-      const marker = L.marker([place.lat, place.lng], { icon }).bindPopup(popup, {
-        maxWidth: 240,
-        closeButton: false,
-      });
+      // Leaflet gives every marker role="button" and keyboard focus (options.keyboard, on
+      // by default), but only sets an accessible `title` from options.title; a divIcon has
+      // no text content of its own, so without it screen readers announce an empty button.
+      const marker = L.marker([place.lat, place.lng], { icon, title: place.name }).bindPopup(
+        popup,
+        { maxWidth: 240, closeButton: false }
+      );
       marker.addTo(map);
       allMarkers.push(marker);
 

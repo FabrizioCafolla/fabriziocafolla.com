@@ -191,7 +191,9 @@ const personSchema = {
 <BaseLayout headerTitle="Home" headerDescription={metaDescription}>
   <StructuredData data={personSchema} />
 
-  <SectionHeaderStandard title="Fabrizio Cafolla" variant="white" />
+  <div class="home-header">
+    <SectionHeaderStandard title="Fabrizio Cafolla" />
+  </div>
 
   <!-- Bio -->
   <section class="bio-section">
@@ -236,6 +238,7 @@ const personSchema = {
             width="400"
             height="400"
             loading="eager"
+            fetchpriority="high"
           />
         </div>
       </div>
@@ -919,7 +922,7 @@ const personSchema = {
     }
   }
 
-  :global(.header-section) {
+  .home-header {
     animation: fadeUp 0.65s ease-out both;
   }
 
@@ -942,7 +945,7 @@ const personSchema = {
       transform: none !important;
     }
 
-    :global(.header-section),
+    .home-header,
     .bio-section,
     .projects-section {
       animation: none;

@@ -3,8 +3,7 @@
   "logo": {
     "src": "/assets/img/logo/standard.svg",
     "alt": "Fabrizio Cafolla Logo",
-    "url": "/",
-    "cssClasses": "logo-img-navbar"
+    "url": "/"
   },
   "items": [
     {
