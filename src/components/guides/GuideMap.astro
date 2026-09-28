@@ -40,13 +40,16 @@ const mapPlaces: MapPlace[] = places.filter(
 </span>
 
 <script>
-  import L from "leaflet";
-  import "leaflet/dist/leaflet.css";
-
   const el = document.getElementById("guide-map") as HTMLElement | null;
   const externalLinkSvg = document.getElementById("gm-external-link-icon")?.innerHTML ?? "";
 
   if (el) {
+    // Leaflet and its CSS are loaded only here, once we know the map will actually mount.
+    const [{ default: L }] = await Promise.all([
+      import("leaflet"),
+      import("./guide-map-leaflet-styles"),
+    ]);
+
     const places: {
       name: string;
       lat: number;
