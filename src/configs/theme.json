@@ -34,7 +34,9 @@
         "name": "Lora",
         "provider": "fontsource",
         "weights": [400, 500, 600, 700],
-        "styles": ["normal", "italic"]
+        "styles": ["normal", "italic"],
+        "fallback": "serif",
+        "display": "optional"
       },
       {
         "role": "heading",
@@ -42,6 +44,8 @@
         "provider": "local",
         "weights": [400],
         "styles": ["normal"],
+        "fallback": "monospace",
+        "display": "optional",
         "src": ["./public/assets/fonts/NectoMono-Regular.woff2"]
       }
     ]
