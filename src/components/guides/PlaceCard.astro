@@ -137,7 +137,9 @@ const costLabel: Record<string, string> = {
   }
 
   .place-card__badge--unique {
-    color: #b45309;
+    /* #b45309 cleared only 4.49:1 against the card's flattened background (needs 4.5); a
+       hair darker clears it with margin (4.92:1) and is not a visible color change. */
+    color: #ab4e08;
     background: rgba(180, 83, 9, 0.08);
   }
 
