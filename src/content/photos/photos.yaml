@@ -1,4 +1,28 @@
 photos:
+  - title: "Peacevalley"
+    description: "—"
+    location: "Marken"
+    date: "2026"
+    path: "/assets/img/photos/peacevalley.jpg"
+
+  - title: "God Lights"
+    description: "—"
+    location: "Barcellona"
+    date: "2026"
+    path: "/assets/img/photos/god-lights.jpg"
+
+  - title: "Teide"
+    description: "—"
+    location: "Tenerife"
+    date: "2025"
+    path: "/assets/img/photos/teide.jpg"
+
+  - title: "Teide night"
+    description: "—"
+    location: "Tenerife"
+    date: "2025"
+    path: "/assets/img/photos/teide-night.jpg"
+
   - title: "Blessed"
     description: "—"
     location: "Utrecht"
@@ -17,38 +41,8 @@ photos:
     date: "2024"
     path: "/assets/img/photos/the-dying-city.jpg"
 
-  - title: "God Lights"
-    description: "—"
-    location: "Barcellona"
-    date: "2026"
-    path: "/assets/img/photos/god-lights.jpg"
-
-  - title: "Teide"
-    description: "—"
-    location: "Tenerife"
-    date: "2024"
-    path: "/assets/img/photos/teide.jpg"
-
-  - title: "Teide night"
-    description: "—"
-    location: "Tenerife"
-    date: "2024"
-    path: "/assets/img/photos/teide-night.jpg"
-
   - title: "Sand"
     description: "—"
     location: "Marocco"
     date: "2024"
     path: "/assets/img/photos/sand.jpg"
-
-  - title: "Peacevalley"
-    description: "—"
-    location: "Marken"
-    date: "2024"
-    path: "/assets/img/photos/peacevalley.jpg"
-
-  - title: "Norba"
-    description: "—"
-    location: "Norma"
-    date: "2023"
-    path: "/assets/img/photos/norba.jpg"
