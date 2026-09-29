@@ -29,6 +29,16 @@
     --social-icon-radius: 50%;
   }
 
+  /* Footer social icons: no background. */
+  .social-links a,
+  .social-links a:hover {
+    background-color: transparent;
+  }
+
+  .social-links a:hover {
+    color: var(--primary);
+  }
+
   /* Text wordmark used in the footer. */
   .logo-text-footer {
     font-family: var(--font-heading);
