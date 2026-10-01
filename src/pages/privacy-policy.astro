@@ -1,5 +1,6 @@
 ---
 import { BaseLayout } from "@walle/layouts";
+import { business } from "../configs/business";
 ---
 
 <BaseLayout
@@ -11,7 +12,7 @@ import { BaseLayout } from "@walle/layouts";
     <h1 style="padding-top: 2rem;">Privacy Policy</h1>
     <p>Last updated: Jul 23, 2026</p>
     <p>
-      This notice describes how Fabrizio Cafolla (<a
+      This notice describes how {business.legalName} (<a
         href="https://fabriziocafolla.com/"
         target="_blank"
         rel="noopener">fabriziocafolla.com</a
@@ -25,8 +26,8 @@ import { BaseLayout } from "@walle/layouts";
 
     <h4>1. Data Controller</h4>
     <p>
-      The data controller is Fabrizio Cafolla, owner of this blog. For any privacy-related requests,
-      you can contact me via LinkedIn.
+      The data controller is {business.legalName}, owner of this blog. For any privacy-related
+      requests, you can contact me via LinkedIn.
     </p>
 
     <h4>2. Data Collected</h4>

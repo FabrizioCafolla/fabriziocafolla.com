@@ -1,5 +1,6 @@
 ---
 import { BaseLayout } from "@walle/layouts";
+import { business } from "../configs/business";
 ---
 
 <BaseLayout
@@ -12,8 +13,8 @@ import { BaseLayout } from "@walle/layouts";
     <p>Last updated: Jul 23, 2026</p>
 
     <p>
-      This site is managed by Fabrizio Cafolla and serves as a personal blog and showcase for my
-      projects and articles.
+      This site is managed by {business.legalName} and serves as a personal blog and showcase for my projects
+      and articles.
     </p>
 
     <h4>1. Purpose of the site</h4>
@@ -38,7 +39,7 @@ import { BaseLayout } from "@walle/layouts";
     <ul>
       <li>
         Unless otherwise specified, all content on this site (texts, articles, images, code, and any
-        other material) is written and created by me, Fabrizio Cafolla, and is protected by
+        other material) is written and created by me, {business.legalName}, and is protected by
         copyright.
       </li>
       <li>Trademarks and logos of third parties belong to their respective owners.</li>
